@@ -1,27 +1,31 @@
 package tp1.logic;
 
+import java.util.ArrayList;
 import tp1.logic.gameobjects.Land;
+import tp1.logic.gameobjects.Mario;
 
 public class GameObjectContainer {
-	//TODO fill your code
+  // TODO fill your code
 
-	private Land[] lands;   // array para guardar los Land
-    private int landCount;  // número actual de Lands guardados
-	private static final int MAX_LANDS = 50; // tamaño máximo, pon el que necesites
+  private ArrayList<Land> lands; // arrayList = arrayMasComodo
+  // el <> es el tipo del contenido
+  private ArrayList<Goomba> goombas;
+  private ArrayList<ExitDoor> exits;
+  private ArrayList<Mario> marios;
 
+  public GameObjectContainer() {
+    lands = new ArrayList<>(); // inicializo el array, queda vacio
+    goombas = new ArrayList<>();
+    exits = new ArrayList<>();
+    marios = new ArrayList<>();
+  }
 
-	public GameObjectContainer() {
-        lands = new Land[MAX_LANDS];
-        landCount = 0;
-    }
+  public void add(Land land) {
+    lands.add(land); // añades ese trozo de "land" a la lista
+    // insercion mucho mas facil
+  }
 
-	public void add(Land land) {
-        if (landCount < MAX_LANDS) {
-            lands[landCount] = land;
-            landCount++;
-        } else {
-            System.out.println("No se pueden añadir más Land, array lleno");
-        }
-    }
-
+  public void add(Goomba goomba) { goombas.add(goomba); }
+  public void add(ExitDoor exit) { exits.add(exit); }
+  public void add(Mario mario) { marios.add(mario); }
 }
