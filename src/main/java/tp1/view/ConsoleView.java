@@ -138,7 +138,6 @@ public class ConsoleView extends GameView {
 	@Override
 	public void showEndMessage() {
 		System.out.println(this.endMessage());
-		
 	}
 
 	@Override
