@@ -3,28 +3,19 @@ package tp1.logic.gameobjects;
 import tp1.logic.Game;
 import tp1.logic.Position;
 
-public class Mario {
-
+public class Goomba {
   private Game game;
   private Position pos;
   private boolean isAlive;
-private boolean isSolid;
-private boolean big;
+  private boolean isSolid;
 
-  public Mario(Game game, Position position) {
+  public Goomba(Game game, Position position) {
     this.game = game;
     this.pos = position;
     this.isAlive = true;
-    this.isSolid = false;
   }
-  public String getIcon() { return "🧍"; }
-
-  /**
-   *  Implements the automatic update
-   */
-  public void update() {
-    // TODO fill your code
-  }
+  public String getIcon() { return "🐻"; }
   public boolean isAlive() { return this.isAlive; }
   public boolean isInPosition(Position p) { return this.pos.equals(p); }
 }
+  

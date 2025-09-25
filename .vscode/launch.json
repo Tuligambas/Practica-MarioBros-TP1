@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Mapa 1",
+      "request": "launch",
+      "mainClass": "tp1.Main",
+      "args": "2"
+    },
+    {
+      "type": "java",
+      "name": "Mapa 2",
+      "request": "launch",
+      "mainClass": "tp1.Main",
+      "args": "2"
+    }
+  ]
+}

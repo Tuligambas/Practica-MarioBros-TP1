@@ -13,6 +13,18 @@ public class Position {
     this.col = x;
     this.row = y;
   }
-
-  // TODO fill your code
+  
+  @Override
+public boolean equals(Object obj) {
+    if (this == obj)  // mismo objeto en memoria
+        return true;
+    if (obj == null)  // comparando con null
+        return false;
+    if (getClass() != obj.getClass())  // tipos diferentes
+        return false;
+    Position other = (Position) obj;   // casteo seguro
+    return this.col == other.col && this.row == other.row;
 }
+
+}
+  
