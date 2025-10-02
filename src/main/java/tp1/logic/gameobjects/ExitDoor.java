@@ -1,32 +1,37 @@
 package tp1.logic.gameobjects;
 
+import tp1.logic.Game;
 import tp1.logic.Position;
 import tp1.view.Messages;
 
-public class ExitDoor {
-  private Position pos;
+public class ExitDoor extends GameObject {
+  private static final String ICON = Messages.EXIT_DOOR;
   private boolean isAlive;
-  private boolean isSolid;
 
-  public ExitDoor(Position position) {
-    this.pos = position;
+  public ExitDoor(Position position, Game game) {
+    super(position, game);
     this.isAlive = true;
-    this.isSolid = false;
   }
 
   // CONSTRUCTOR VACIO
   public ExitDoor() {
   }
 
+  @Override
   public boolean isAlive() {
-    return this.isAlive;
+    return isAlive;
+  }
+
+  @Override
+  public boolean isSolid() {
+    return false;
   }
 
   public String getIcon() {
-    return Messages.EXIT_DOOR;
+    return ICON;
   }
 
-  public boolean isInPosition(Position p) {
-    return this.pos.equals(p);
+  @Override
+  public void update() {
   }
 }

@@ -1,29 +1,54 @@
 package tp1.logic.gameobjects;
 
-import tp1.logic.Direction;
+import tp1.logic.Action;
 import tp1.logic.Game;
 import tp1.logic.Position;
 import tp1.view.Messages;
 
-public class Mario {
-
-  private Game game;
-  private Position pos;
-  private boolean isAlive;
-  private boolean isSolid;
+public class Mario extends GameObject {
   private boolean big;
-  private Direction dir = Direction.RIGHT;
+  private Action dir;
+  private boolean isAlive;
 
-  public Mario(Game game, Position position) {
-    this.game = game;
-    this.pos = position;
-    this.isAlive = true;
-    this.isSolid = false;
+  public Mario(Position position, Game game) {
+    super(position, game);
     this.big = false;
+    this.dir = Action.RIGHT;
+    this.isAlive = true;
   }
 
   // CONSTRUCTOR VACIO
   public Mario() {
+  }
+
+  public void update() {
+    // TODO fill your code
+  }
+
+  public boolean isInPosition(Position p) {
+    if (this.pos.equals(p)) {
+      return true;
+    }
+    if (this.big) {
+      // casilla justo arriba (misma columna, fila - 1)
+      Position above = new Position(pos.getCol(), pos.getRow() - 1);
+      return above.equals(p);
+    }
+    return false;
+  }
+
+  @Override
+  public boolean isSolid() {
+    return false;
+  }
+
+  @Override
+  public boolean isAlive() {
+    return isAlive;
+  }
+
+  public void makeBig() {
+    this.big = true;
   }
 
   public String getIcon() {
@@ -43,27 +68,4 @@ public class Mario {
     return icon;
   }
 
-  public void update() {
-    // TODO fill your code
-  }
-
-  public boolean isAlive() {
-    return this.isAlive;
-  }
-
-  public boolean isInPosition(Position p) {
-    if (this.pos.equals(p)) {
-      return true;
-    }
-    if (this.big) {
-      // casilla justo arriba (misma columna, fila - 1)
-      Position above = new Position(pos.getCol(), pos.getRow() - 1);
-      return above.equals(p);
-    }
-    return false;
-  }
-
-  public void makeBig() {
-    this.big = true;
-  }
 }

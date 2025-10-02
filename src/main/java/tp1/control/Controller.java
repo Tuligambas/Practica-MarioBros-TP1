@@ -1,10 +1,13 @@
 package tp1.control;
 
+import tp1.logic.Commands.CommandGenerator;
+import tp1.logic.Commands.Commands;
 import tp1.logic.Game;
 import tp1.view.GameView;
+import tp1.view.Messages;
 
 /**
- *  Accepts user input and coordinates the game execution logic
+ * Accepts user input and coordinates the game execution logic
  */
 public class Controller {
 
@@ -16,15 +19,23 @@ public class Controller {
     this.view = view;
   }
 
-  /**
-   * Runs the game logic, coordinate Model(game) and View(view)
-   *
-   */
   public void run() {
+    String[] words = null;
+
     view.showWelcome();
-
     view.showGame();
+    while (!game.isFinished()) {
+      // coge lo que has escrito
+      words = view.getPrompt();
 
+      // crea el comando y lo ejecuta
+      Commands command = CommandGenerator.parse(words);
+      if (command != null)
+        command.execute(game);
+      else
+        view.showMessage(Messages.UNKNOWN_COMMAND);
+
+    }
     view.showEndMessage();
   }
 }

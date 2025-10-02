@@ -4,27 +4,31 @@ import tp1.logic.Game;
 import tp1.logic.Position;
 import tp1.view.Messages;
 
-public class Goomba {
-  private Game game;
-  private Position pos;
+public class Goomba extends GameObject {
+  private static final String ICON = Messages.GOOMBA;
   private boolean isAlive;
-  private boolean isSolid;
 
-  public Goomba(Game game, Position position) {
-    this.game = game;
-    this.pos = position;
+  public Goomba(Position position, Game game) {
+    super(position, game);
     this.isAlive = true;
   }
 
   public String getIcon() {
-    return Messages.GOOMBA;
+    return ICON;
   }
 
+  @Override
+  public void update() {
+  }
+
+  @Override
   public boolean isAlive() {
-    return this.isAlive;
+    return isAlive;
   }
 
-  public boolean isInPosition(Position p) {
-    return this.pos.equals(p);
+  @Override
+  public boolean isSolid() {
+    return false;
   }
+
 }

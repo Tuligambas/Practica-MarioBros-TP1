@@ -76,4 +76,20 @@ public class Messages {
 	public static final String MARIO_RIGHT = "🧍";// "🧍➡️";
 	public static final String MARIO_LEFT = "🚶";// "⬅️🚶";
 	public static final String GOOMBA = "🐻";
+
+	public static final String COMMAND_EXIT_NAME = "exit";
+	public static final String COMMAND_EXIT_SHORTCUT = "e";
+	public static final String COMMAND_EXIT_DETAILS = "Exits the game";
+	public static final String COMMAND_EXIT_HELP = "[e]xit: exits the game";
+
+	public static final String COMMAND_HELP_NAME = "help";
+	public static final String COMMAND_HELP_SHORTCUT = "h";
+	public static final String COMMAND_HELP_DETAILS = "Shows this help message";
+	public static final String COMMAND_HELP_HELP = "[h]elp: shows this help message";
+
+	public static final String COMMAND_RESET_NAME = "reset";
+	public static final String COMMAND_RESET_SHORTCUT = "r";
+	public static final String COMMAND_RESET_DETAILS = "Resets the game";
+	public static final String COMMAND_RESET_HELP = "[r]eset: resets the game";
+
 }
