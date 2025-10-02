@@ -1,6 +1,7 @@
 package tp1.logic.gameobjects;
 
 import tp1.logic.Position;
+import tp1.view.Messages;
 
 public class Land {
   private Position pos;
@@ -11,8 +12,15 @@ public class Land {
     this.isAlive = true;
   }
 
-  public String getIcon() { return "▓▓▓▓"; }
-  public boolean isAlive() { return this.isAlive; }
+  public String getIcon() {
+    return Messages.LAND;
+  }
 
-  public boolean isInPosition(Position p) { return this.pos.equals(p); }
+  public boolean isAlive() {
+    return this.isAlive;
+  }
+
+  public boolean isInPosition(Position p) {
+    return this.pos.equals(p);
+  }
 }

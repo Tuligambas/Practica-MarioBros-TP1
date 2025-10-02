@@ -6,6 +6,7 @@ import tp1.logic.gameobjects.ExitDoor;
 import tp1.logic.gameobjects.Goomba;
 import tp1.logic.gameobjects.Land;
 import tp1.logic.gameobjects.Mario;
+import tp1.view.Messages;
 
 public class GameObjectContainer {
   // TODO fill your code
@@ -13,14 +14,14 @@ public class GameObjectContainer {
   private ArrayList<Land> lands; // arrayList = arrayMasComodo
   // el <> es el tipo del contenido
   private ArrayList<Goomba> goombas;
-  private ArrayList<ExitDoor> exits;
-  private ArrayList<Mario> marios;
+  private ExitDoor exit;
+  private Mario mario;
 
   public GameObjectContainer() {
     lands = new ArrayList<>(); // inicializo el array, queda vacio
-    goombas = new ArrayList<>();
-    exits = new ArrayList<>();
-    marios = new ArrayList<>();
+    goombas = new ArrayList<>(); // lo mismo
+    exit = new ExitDoor();
+    mario = new Mario();
   }
 
   public void add(Land land) {
@@ -43,24 +44,32 @@ public class GameObjectContainer {
         sb.append(goomba.getIcon());
     }
 
-    for (ExitDoor exit : exits) {
-      if (exit.isInPosition(p) && exit.isAlive())
-        sb.append(exit.getIcon());
-    }
+    if (exit.isInPosition(p) && exit.isAlive())
+      sb.append(exit.getIcon());
 
-    for (Mario mario : marios) {
-      if (mario.isInPosition(p) && mario.isAlive())
-        sb.append(mario.getIcon());
-    }
+    if (mario.isInPosition(p) && mario.isAlive())
+      sb.append(mario.getIcon());
 
     // Si no hay nada en esa posición, devuelve un espacio vacío
     if (sb.length() == 0)
-      return " ";
+      sb.append(Messages.EMPTY);
 
     return sb.toString();
   }
 
-  public void add(Goomba goomba) { goombas.add(goomba); }
-  public void add(ExitDoor exit) { exits.add(exit); }
-  public void add(Mario mario) { marios.add(mario); }
+  public void add(Goomba goomba) {
+    goombas.add(goomba);
+  }
+
+  public void add(ExitDoor exit) {
+    this.exit = exit;
+  }
+
+  public void add(Mario mario) {
+    this.mario = mario;
+  }
+
+  public void makeBig() {
+    this.mario.makeBig();
+  }
 }

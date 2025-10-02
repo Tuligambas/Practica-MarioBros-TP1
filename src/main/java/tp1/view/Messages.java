@@ -3,7 +3,7 @@ package tp1.view;
 import tp1.util.MyStringUtils;
 
 public class Messages {
-	
+
 	public static final String VERSION = "1.0";
 
 	public static final String GAME_NAME = "MarioBross";
@@ -44,7 +44,7 @@ public class Messages {
 	public static final String LINE_TAB = TAB + LINE;
 	public static final String LINE_2TABS = TAB + LINE_TAB;
 
-//Commands
+	// Commands
 	public static final String UNKNOWN_COMMAND = "Unknown command: %s";
 	public static final String UNKNOWN_ACTION = "Unknown action: \"%s\"";
 	public static final String ILLEGAL_ACTION = "Illegal action: \"%s\"";
@@ -55,7 +55,6 @@ public class Messages {
 	public static final String INVALID_COMMAND_PARAMETERS = "Invalid command parameters";
 	public static final String ERROR_COMMAND_EXECUTE = "Command execute problem";
 
-	
 	public static final String HELP_AVAILABLE_COMMANDS = "Available commands:";
 	/* @formatter:off */
 	public static final String[] HELP_LINES = new String[] { HELP_AVAILABLE_COMMANDS,
@@ -67,14 +66,14 @@ public class Messages {
 	};
 	/* @formatter:on */
 
-	public static final String HELP = String.join(LINE_SEPARATOR+"   ", HELP_LINES) + LINE_SEPARATOR;
+	public static final String HELP = String.join(LINE_SEPARATOR + "   ", HELP_LINES) + LINE_SEPARATOR;
 
-//Symbols
+	// Symbols
 	public static final String EMPTY = "";
-	public static final String LAND = MyStringUtils.repeat("▓",ConsoleView.CELL_SIZE);
+	public static final String LAND = MyStringUtils.repeat("▓", ConsoleView.CELL_SIZE);
 	public static final String EXIT_DOOR = "🚪";
 	public static final String MARIO_STOP = "🧑";
-	public static final String MARIO_RIGHT = "🧍";//"🧍➡️";
-	public static final String MARIO_LEFT = "🚶";//"⬅️🚶";
+	public static final String MARIO_RIGHT = "🧍";// "🧍➡️";
+	public static final String MARIO_LEFT = "🚶";// "⬅️🚶";
 	public static final String GOOMBA = "🐻";
 }
