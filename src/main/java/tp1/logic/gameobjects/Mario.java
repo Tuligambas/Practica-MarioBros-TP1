@@ -1,5 +1,7 @@
 package tp1.logic.gameobjects;
 
+import java.util.List;
+
 import tp1.logic.Action;
 import tp1.logic.Game;
 import tp1.logic.Position;
@@ -10,12 +12,14 @@ public class Mario extends GameObject {
   private Action dir;
   private boolean isAlive;
   private boolean falling;
+  private ActionList actionList;
 
   public Mario(Position position, Game game) {
     super(position, game);
     this.big = false;
     this.dir = Action.RIGHT;
     this.isAlive = true;
+    this.actionList = new ActionList();
   }
 
   // CONSTRUCTOR VACIO
@@ -24,16 +28,43 @@ public class Mario extends GameObject {
 
   @Override
   public void update() {
+    if (actionList.isEmpty()) {
+      automaticMovement();
+    } else {
+      commandMovement();
+    }
+
+    // chequea si esta en una posicion valida
+    checkPosition();
+  }
+
+  private void commandMovement() {
+    Position initPos = this.pos;
+    while (!actionList.isEmpty()) {
+      Action action = actionList.getNext(); // método auxiliar que devuelve y elimina
+
+      // cambia de direccion
+      if (action == Action.LEFT || action == Action.RIGHT || action == Action.STOP)
+        this.dir = action;
+
+      // calculo la siguiente posicion y si no es solido ni pared se mueve
+      Position next = this.pos.move(action);
+      if (!solidNextTo(action) && !wallNextTo(action))
+        this.pos = next;
+    }
+
+    if (initPos.equals(this.pos))
+      automaticMovement();
+  }
+
+  public void automaticMovement() {
+
     // si es solido abajo dos opciones
     if (solidBelow()) {
-      // primero veo si estaba cayendo
-      if (falling) {
-        falling = false;
-      }
       // si es solido a la izquierda o derecha cambia de direccion
-      if (solidNextTo(dir) || wallNextTo(dir)) {
+      if (solidNextTo(dir) || wallNextTo(dir))
         dir = dir.opposite(dir);
-      }
+
       // si no es solido a la izquierda o derecha se mueve
       else {
         move();
@@ -44,9 +75,6 @@ public class Mario extends GameObject {
       this.falling = true;
       fall();
     }
-
-    // chequea si esta en una posicion valida
-    checkPosition();
   }
 
   private void move() {
@@ -83,6 +111,9 @@ public class Mario extends GameObject {
       case RIGHT:
         icon = Messages.MARIO_RIGHT;
         break;
+      case STOP:
+        icon = Messages.MARIO_STOP;
+        break;
       default:
     }
     if (this.big) {
@@ -104,6 +135,22 @@ public class Mario extends GameObject {
       game.marioWasKilled();
     }
     return aire;
+  }
+
+  @Override
+  public void addAction(List<Action> actionList) {
+    this.actionList = new ActionList();
+    for (Action a : actionList) {
+      this.actionList.addAction(a);
+    }
+  }
+
+  private void fall() {
+    this.pos = this.pos.move(Action.DOWN);
+    if (solidBelow()) {
+      this.falling = false;
+    }
+
   }
 
 }

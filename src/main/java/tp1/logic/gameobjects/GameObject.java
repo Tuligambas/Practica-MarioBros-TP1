@@ -1,5 +1,7 @@
 package tp1.logic.gameobjects;
 
+import java.util.List;
+
 import tp1.logic.Action;
 import tp1.logic.Game;
 import tp1.logic.Position;
@@ -40,6 +42,8 @@ public abstract class GameObject {
     // si no hace nada, no se necesita implementar
     public abstract void update();
 
+    public abstract void addAction(List<Action> actionList);
+
     // PARA SABER EL ICONO DEL OBJETO
     public abstract String getIcon();
 
@@ -58,10 +62,6 @@ public abstract class GameObject {
     protected boolean solidNextTo(Action dir) {
         Position next = this.pos.move(dir);
         return this.game.isSolid(next);
-    }
-
-    protected void fall() {
-        this.pos = this.pos.move(Action.DOWN);
     }
 
     protected boolean solidBelow() {

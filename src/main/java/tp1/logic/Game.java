@@ -1,5 +1,7 @@
 package tp1.logic;
 
+import java.util.List;
+
 import tp1.logic.gameobjects.ExitDoor;
 import tp1.logic.gameobjects.Goomba;
 import tp1.logic.gameobjects.Land;
@@ -156,5 +158,9 @@ public class Game {
       reset();
       System.out.println(Messages.GAME_OVER);
     }
+  }
+
+  public void addActions(List<Action> actionList) {
+    gameObjects.addActions(actionList);
   }
 }

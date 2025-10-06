@@ -1,5 +1,7 @@
 package tp1.logic.gameobjects;
 
+import java.util.List;
+
 import tp1.logic.Action;
 import tp1.logic.Game;
 import tp1.logic.Position;
@@ -57,4 +59,16 @@ public class Goomba extends GameObject {
     return isAlive;
   }
 
+  @Override
+  public void addAction(List<Action> actionList) {
+    // No hace nada, el goomba no recibe acciones
+  }
+
+  private void fall() {
+    this.pos = this.pos.move(Action.DOWN);
+    if (solidBelow()) {
+      this.falling = false;
+    }
+
+  }
 }

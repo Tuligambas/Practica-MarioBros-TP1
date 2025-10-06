@@ -92,9 +92,14 @@ public class Messages {
 	public static final String COMMAND_RESET_DETAILS = "Resets the game";
 	public static final String COMMAND_RESET_HELP = "[r]eset: resets the game";
 
-	public static String COMMAND_UPDATE_NAME = "update";
-	public static String COMMAND_UPDATE_SHORTCUT = "u";
-	public static String COMMAND_UPDATE_DETAILS = "Updates the game state";
-	public static String COMMAND_UPDATE_HELP = "[u]pdate: updates the game state";
+	public static final String COMMAND_UPDATE_NAME = "update";
+	public static final String COMMAND_UPDATE_SHORTCUT = "u";
+	public static final String COMMAND_UPDATE_DETAILS = "Updates the game state";
+	public static final String COMMAND_UPDATE_HELP = "[u]pdate: updates the game state";
+
+	public static final String COMMAND_ACTION_NAME = "action";
+	public static final String COMMAND_ACTION_SHORTCUT = "a";
+	public static final String COMMAND_ACTION_DETAILS = "Performs an action";
+	public static final String COMMAND_ACTION_HELP = "[a]ction: performs an action";
 
 }

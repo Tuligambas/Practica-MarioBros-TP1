@@ -83,4 +83,11 @@ public class GameObjectContainer {
     return solido;
   }
 
+  public void addActions(List<Action> actionList) {
+    for (GameObject obj : objects) {
+      if (obj instanceof Mario)
+        obj.addAction(actionList);
+    }
+  }
+
 }

@@ -25,14 +25,25 @@ public enum Action {
 
 	// Método que convierte un string en una dirección
 	public static Action StringToDir(String nombre) {
-		if (nombre.equals("RIGHT")) {
-			return RIGHT;
-		} else if (nombre.equals("LEFT")) {
-			return LEFT;
-		} else if (nombre.equals("UP")) {
-			return UP;
-		} else if (nombre.equals("DOWN")) {
-			return DOWN;
+		nombre = nombre.toUpperCase();
+		switch (nombre) {
+			case "RIGHT", "R" -> {
+				return RIGHT;
+			}
+			case "LEFT", "L" -> {
+				return LEFT;
+			}
+			case "UP", "U" -> {
+				return UP;
+			}
+			case "DOWN", "D" -> {
+				return DOWN;
+			}
+			case "STOP", "S" -> {
+				return STOP;
+			}
+			default -> {
+			}
 		}
 		return null;
 	}
