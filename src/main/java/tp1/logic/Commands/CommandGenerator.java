@@ -6,7 +6,7 @@ import java.util.List;
 public class CommandGenerator {
     // LISTA DE COMANDOS DISPONIBLES
     private static final List<Commands> availableCommands = Arrays.asList(
-            // new UpdateCommand(),
+            new UpdateCommand(),
             new ResetCommand(),
             new HelpCommand(),
             new ExitCommand());

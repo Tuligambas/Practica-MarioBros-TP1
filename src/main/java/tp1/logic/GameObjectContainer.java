@@ -45,4 +45,42 @@ public class GameObjectContainer {
       }
     }
   }
+
+  void update() {
+    for (GameObject obj : objects)
+      obj.update();
+
+    removeDead();
+
+  }
+
+  // Recorre la lista de objetos y si el objeto está muerto lo elimina
+  private void removeDead() {
+    GameObject objeto;
+    int i = objects.size() - 1;
+    while (i >= 0) {
+      objeto = objects.get(i);
+      if (!objeto.isAlive())
+        eliminarObjeto(i);
+      i--;
+    }
+  }
+
+  // Elimina de objeto de la lista
+  public void eliminarObjeto(int i) {
+    this.objects.remove(i);
+  }
+
+  // Comprueba si el objeto en esa posición es sólido
+  public boolean isSolid(Position pos) {
+    boolean solido = false;
+    for (int i = 0; i < objects.size(); i++) {
+      GameObject object = objects.get(i);
+      if (object.isInPosition(pos) && object.isSolid() && object.isAlive()) {
+        solido = true;
+      }
+    }
+    return solido;
+  }
+
 }

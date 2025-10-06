@@ -1,6 +1,7 @@
 package tp1.logic.Commands;
 
 import tp1.logic.Game;
+import tp1.view.GameView;
 import tp1.view.Messages;
 
 public class ResetCommand extends NoParamsCommand {
@@ -16,8 +17,9 @@ public class ResetCommand extends NoParamsCommand {
 
     // llama al game.reset para que se reinicie el juego
     @Override
-    public void execute(Game game) {
+    public void execute(Game game, GameView view) {
         game.reset();
+        view.showGame();
     }
 
 }

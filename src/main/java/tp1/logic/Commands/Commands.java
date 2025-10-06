@@ -1,6 +1,7 @@
 package tp1.logic.Commands;
 
 import tp1.logic.Game;
+import tp1.view.GameView;
 import tp1.view.Messages;
 
 public abstract class Commands {
@@ -33,7 +34,7 @@ public abstract class Commands {
         return help;
     }
 
-    public abstract void execute(Game game);
+    public abstract void execute(Game game, GameView view);
 
     public abstract Commands parse(String[] commandWords);
 

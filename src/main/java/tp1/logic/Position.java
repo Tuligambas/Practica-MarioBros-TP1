@@ -35,4 +35,16 @@ public class Position {
     return this.row;
   }
 
+  public Position move(Action dir) {
+    return new Position(this.col + dir.getX(), this.row + dir.getY());
+  }
+
+  public boolean isInBoard() {
+    return col >= 0 && col < Game.DIM_X && row >= 0 && row < Game.DIM_Y;
+  }
+
+  public boolean isWall() {
+    return this.col == -1 || this.col == Game.DIM_X - 1 || this.row == -1 || this.row == Game.DIM_Y - 1;
+  }
+
 }

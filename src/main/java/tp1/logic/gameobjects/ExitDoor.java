@@ -22,11 +22,6 @@ public class ExitDoor extends GameObject {
     return isAlive;
   }
 
-  @Override
-  public boolean isSolid() {
-    return false;
-  }
-
   public String getIcon() {
     return ICON;
   }

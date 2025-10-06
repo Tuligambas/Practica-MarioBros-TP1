@@ -14,11 +14,10 @@ public class Game {
   // ATRIBUTOS AÑADIDOS
   private int nLevel;
   private int remainingTime;
+  private int numLives = 3;
   private GameObjectContainer gameObjects;
   private Mario mario;
   public boolean exit = false;
-
-  // TODO fill your code
 
   public Game(int nLevel) {
     // this.nLevel = nLevel;
@@ -54,8 +53,7 @@ public class Game {
   }
 
   public int numLives() {
-    // TODO Auto-generated method stub
-    return 3;
+    return numLives;
   }
 
   @Override
@@ -144,4 +142,19 @@ public class Game {
     return acabado;
   }
 
+  public void update() {
+    gameObjects.update();
+  }
+
+  public boolean isSolid(Position p) {
+    return gameObjects.isSolid(p);
+  }
+
+  public void marioWasKilled() {
+    this.numLives--;
+    if (this.numLives < 0) {
+      reset();
+      System.out.println(Messages.GAME_OVER);
+    }
+  }
 }

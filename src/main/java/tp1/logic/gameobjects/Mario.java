@@ -9,6 +9,7 @@ public class Mario extends GameObject {
   private boolean big;
   private Action dir;
   private boolean isAlive;
+  private boolean falling;
 
   public Mario(Position position, Game game) {
     super(position, game);
@@ -21,8 +22,35 @@ public class Mario extends GameObject {
   public Mario() {
   }
 
+  @Override
   public void update() {
-    // TODO fill your code
+    // si es solido abajo dos opciones
+    if (solidBelow()) {
+      // primero veo si estaba cayendo
+      if (falling) {
+        falling = false;
+      }
+      // si es solido a la izquierda o derecha cambia de direccion
+      if (solidNextTo(dir) || wallNextTo(dir)) {
+        dir = dir.opposite(dir);
+      }
+      // si no es solido a la izquierda o derecha se mueve
+      else {
+        move();
+      }
+    }
+    // si no es solido abajo cae
+    else {
+      this.falling = true;
+      fall();
+    }
+
+    // chequea si esta en una posicion valida
+    checkPosition();
+  }
+
+  private void move() {
+    this.pos = this.pos.move(this.dir);
   }
 
   public boolean isInPosition(Position p) {
@@ -34,11 +62,6 @@ public class Mario extends GameObject {
       Position above = new Position(pos.getCol(), pos.getRow() - 1);
       return above.equals(p);
     }
-    return false;
-  }
-
-  @Override
-  public boolean isSolid() {
     return false;
   }
 
@@ -66,6 +89,21 @@ public class Mario extends GameObject {
       icon = icon.toUpperCase();
     }
     return icon;
+  }
+
+  // MÉTODO QUE DICE SI EL MARIO ESTÁ EN EL AIRE
+  public boolean isInAir() {
+    Position abajo = new Position(this.pos.getCol(), this.pos.getRow() + 1);
+    boolean aire = false;
+    if (!game.isSolid(abajo) && pos.isInBoard()) { // Si no tiene pared abajo y la posición está en el tablero, estará
+                                                   // en el aire
+      aire = true;
+
+    } else if (!pos.isInBoard()) { // Si la posición no está en el tablero, mata al mario
+      this.isAlive = false;
+      game.marioWasKilled();
+    }
+    return aire;
   }
 
 }

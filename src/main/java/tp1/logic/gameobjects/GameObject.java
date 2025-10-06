@@ -1,5 +1,6 @@
 package tp1.logic.gameobjects;
 
+import tp1.logic.Action;
 import tp1.logic.Game;
 import tp1.logic.Position;
 
@@ -30,7 +31,6 @@ public abstract class GameObject {
     }
 
     // Inicializado a false y cambiado en los override
-
     public boolean isSolid() {
         return false;
     }
@@ -42,5 +42,31 @@ public abstract class GameObject {
 
     // PARA SABER EL ICONO DEL OBJETO
     public abstract String getIcon();
+
+    // ESTAS FUNCIONES VAN AQUI???
+    protected boolean wallNextTo(Action dir) {
+        Position next = this.pos.move(dir);
+        return next.isWall();
+    }
+
+    protected void checkPosition() {
+        if (!this.pos.isInBoard()) {
+            this.isAlive = false;
+        }
+    }
+
+    protected boolean solidNextTo(Action dir) {
+        Position next = this.pos.move(dir);
+        return this.game.isSolid(next);
+    }
+
+    protected void fall() {
+        this.pos = this.pos.move(Action.DOWN);
+    }
+
+    protected boolean solidBelow() {
+        Position below = this.pos.move(Action.DOWN);
+        return this.game.isSolid(below);
+    }
 
 }

@@ -31,7 +31,7 @@ public class Controller {
       // crea el comando y lo ejecuta
       Commands command = CommandGenerator.parse(words);
       if (command != null)
-        command.execute(game);
+        command.execute(game, view);
       else
         view.showMessage(Messages.UNKNOWN_COMMAND);
 
