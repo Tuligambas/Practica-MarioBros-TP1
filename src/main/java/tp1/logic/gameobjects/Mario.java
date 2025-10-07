@@ -28,14 +28,15 @@ public class Mario extends GameObject {
 
   @Override
   public void update() {
+    checkInteractions();
     if (actionList.isEmpty()) {
       automaticMovement();
     } else {
       commandMovement();
     }
-
     // chequea si esta en una posicion valida
     checkPosition();
+
   }
 
   private void commandMovement() {
@@ -152,5 +153,63 @@ public class Mario extends GameObject {
     }
 
   }
+
+  // MÉTODOS PARA LAS INTERACCIONES
+  // @Override
+  // public boolean receiveInteraction(GameItem other) {
+  // return this.role.receiveInteraction(other, this);
+  // }
+
+  public boolean checkInteractions() {
+    return game.receiveInteractionsFrom(this);
+  }
+
+  @Override
+  public boolean interactWith(ExitDoor door) {
+    boolean interact = this.pos.equals(door.getPos());
+    if (interact)
+      game.marioExited();
+    return interact;
+  }
+
+  @Override
+  public boolean interactWith(Goomba goomba) {
+    boolean onTop = this.pos.equals(goomba.getPos().move(Action.UP));
+    if (onTop) {
+      killGoomba(goomba);
+    } else if (this.pos.equals(goomba.getPos())) {
+      killGoomba(goomba);
+      marioGetAttacked();
+    }
+    return onTop;
+  }
+
+  private void marioGetAttacked() {
+    if (this.big) {
+      this.big = false;
+    } else {
+      game.looseLife();
+    }
+  }
+
+  private void killGoomba(Goomba goomba) {
+    goomba.setAlive(false);
+    game.goombaWasKilled();
+  }
+
+  /*
+   * 
+   * 
+   * 
+   * 
+   * @Override
+   * public boolean interactWith(Lemming lemming) {
+   * return this.role.interactWith(lemming, this);
+   * }
+   * 
+   * public boolean checkInteractions() {
+   * return game.receiveInteractionsFrom(this);
+   * }
+   */
 
 }

@@ -38,4 +38,8 @@ public class ExitDoor extends GameObject {
     // No hace nada, la puerta no se mueve
   }
 
+  @Override
+  public boolean receiveInteraction(GameObject other) {
+    return other.interactWith(this);
+  }
 }

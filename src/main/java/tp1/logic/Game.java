@@ -20,10 +20,15 @@ public class Game {
   private GameObjectContainer gameObjects;
   private Mario mario;
   public boolean exit = false;
+  private int points;
 
   public Game(int nLevel) {
     // this.nLevel = nLevel;
     this.gameObjects = new GameObjectContainer();
+    this.points = 0;
+    this.numLives = 3;
+    this.exit = false;
+    this.remainingTime = 100;
     if (nLevel == 0)
       initLevel0();
     if (nLevel == 1)
@@ -45,13 +50,11 @@ public class Game {
   }
 
   public int remainingTime() {
-    // TODO Auto-generated method stub
-    return 100;
+    return remainingTime;
   }
 
   public int points() {
-    // TODO Auto-generated method stub
-    return 0;
+    return points;
   }
 
   public int numLives() {
@@ -68,6 +71,10 @@ public class Game {
     this.remainingTime = 100;
 
     gameObjects = new GameObjectContainer();
+
+    // personajes
+    this.mario = new Mario(new Position(0, Game.DIM_Y - 3), this);
+    gameObjects.add(this.mario);
 
     // suelo base filas 13 y 14
     for (int col = 0; col < 15; col++) {
@@ -102,10 +109,6 @@ public class Game {
 
     // puerta de salida
     gameObjects.add(new ExitDoor(new Position(Game.DIM_X - 1, Game.DIM_Y - 3), this));
-
-    // personajes
-    this.mario = new Mario(new Position(0, Game.DIM_Y - 3), this);
-    gameObjects.add(this.mario);
 
     gameObjects.add(new Goomba(new Position(19, 0), this));
   }
@@ -145,6 +148,7 @@ public class Game {
   }
 
   public void update() {
+    remainingTime--;
     gameObjects.update();
   }
 
@@ -163,4 +167,25 @@ public class Game {
   public void addActions(List<Action> actionList) {
     gameObjects.addActions(actionList);
   }
+
+  public void marioExited() {
+    this.points += this.remainingTime * 10;
+    exit();
+  }
+
+  public boolean receiveInteractionsFrom(Mario mario) {
+    return gameObjects.receiveInteractionsFrom(mario);
+  }
+
+  public void goombaWasKilled() {
+    this.points += 100;
+  }
+
+  public void looseLife() {
+    this.numLives--;
+    if (this.numLives < 0) {
+      gameObjects.killMario();
+    }
+  }
+
 }

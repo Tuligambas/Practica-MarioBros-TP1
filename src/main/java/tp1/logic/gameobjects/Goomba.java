@@ -71,4 +71,14 @@ public class Goomba extends GameObject {
     }
 
   }
+
+  public void setAlive(boolean alive) {
+    this.isAlive = alive;
+  }
+
+  @Override
+  public boolean receiveInteraction(GameObject other) {
+    return other.interactWith(this);
+  }
+
 }

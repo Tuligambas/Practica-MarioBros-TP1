@@ -44,7 +44,7 @@ public class Position {
   }
 
   public boolean isWall() {
-    return this.col == -1 || this.col == Game.DIM_X - 1 || this.row == -1 || this.row == Game.DIM_Y - 1;
+    return this.col == -1 || this.col == Game.DIM_X || this.row == -1 || this.row == Game.DIM_Y - 1;
   }
 
 }

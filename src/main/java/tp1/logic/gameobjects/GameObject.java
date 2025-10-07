@@ -69,4 +69,33 @@ public abstract class GameObject {
         return this.game.isSolid(below);
     }
 
+    public Position getPos() {
+        return this.pos;
+    }
+
+    // TODAS LAS INTERACCIONES ESTÁN A FALSE PQ DEPENDIENDO DEL OBJETO SE MODIFICAN
+    public boolean receiveInteraction(GameObject other) {
+        return false;
+    }
+
+    public boolean interactWith(Mario mario) {
+        return false;
+    }
+
+    public boolean interactWith(Land land) {
+        return false;
+    }
+
+    public boolean interactWith(Goomba goomba) {
+        return false;
+    }
+
+    public boolean interactWith(ExitDoor door) {
+        return false;
+    }
+
+    public void setAlive(boolean alive) {
+        this.isAlive = alive;
+    }
+
 }

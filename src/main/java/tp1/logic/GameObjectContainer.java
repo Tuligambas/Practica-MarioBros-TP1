@@ -3,6 +3,7 @@ package tp1.logic;
 import java.util.ArrayList;
 import java.util.List;
 
+import tp1.logic.gameobjects.ExitDoor;
 import tp1.logic.gameobjects.GameObject;
 import tp1.logic.gameobjects.Mario;
 import tp1.view.Messages;
@@ -49,8 +50,16 @@ public class GameObjectContainer {
   void update() {
     for (GameObject obj : objects)
       obj.update();
-
     removeDead();
+
+  }
+
+  private void checkMarioInExit() {
+    for (GameObject obj : objects) {
+      if (obj instanceof ExitDoor) {
+        obj.interactWith((ExitDoor) obj);
+      }
+    }
 
   }
 
@@ -90,4 +99,22 @@ public class GameObjectContainer {
     }
   }
 
+  public boolean receiveInteractionsFrom(Mario mario) {
+    boolean si = false;
+    for (GameObject objeto : objects) {
+      if (objeto.receiveInteraction(mario)) {
+        si = true;
+      }
+    }
+    return si;
+  }
+
+  public void killMario() {
+    for (GameObject obj : objects) {
+      if (obj instanceof Mario) {
+        obj.setAlive(false);
+      }
+    }
+
+  }
 }
