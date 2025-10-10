@@ -18,8 +18,11 @@ public class ResetCommand extends NoParamsCommand {
     // llama al game.reset para que se reinicie el juego
     @Override
     public void execute(Game game, GameView view) {
-        game.reset();
-        view.showGame();
+        if (this.valid) {
+            game.reset();
+            view.showGame();
+        }
+
     }
 
 }

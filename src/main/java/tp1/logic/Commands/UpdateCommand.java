@@ -18,9 +18,10 @@ public class UpdateCommand extends NoParamsCommand {
     // llama al game.update para que se actualice el juego
     @Override
     public void execute(Game game, GameView view) {
-        game.update();
-        view.showGame();
-
+        if (this.valid) {
+            game.update();
+            view.showGame();
+        }
     }
 
     // es diferente porque si no le entra nada también se updatea

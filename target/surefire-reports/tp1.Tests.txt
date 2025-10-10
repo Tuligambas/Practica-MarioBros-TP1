@@ -1,0 +1,100 @@
+-------------------------------------------------------------------------------
+Test set: tp1.Tests
+-------------------------------------------------------------------------------
+Tests run: 7, Failures: 6, Errors: 0, Skipped: 0, Time elapsed: 0.090 s <<< FAILURE! -- in tp1.Tests
+tp1.Tests.test01 -- Time elapsed: 0.014 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+Line: 33
+Expected: Time: 99
+Actual  : Command > [DEBUG] Executing: update
+
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
+	at tp1.Tests.compareOutput(Tests.java:113)
+	at tp1.Tests.parameterizedTest(Tests.java:145)
+	at tp1.Tests.testN(Tests.java:160)
+	at tp1.Tests.test01(Tests.java:173)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+tp1.Tests.test02 -- Time elapsed: 0.023 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+Line: 29
+Expected: Time: 99
+Actual  : Command > [DEBUG] Executing: a d
+
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
+	at tp1.Tests.compareOutput(Tests.java:113)
+	at tp1.Tests.parameterizedTest(Tests.java:145)
+	at tp1.Tests.testN(Tests.java:160)
+	at tp1.Tests.test02(Tests.java:178)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+tp1.Tests.test03 -- Time elapsed: 0.006 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+Line: 29
+Expected: Time: 99
+Actual  : Command > [DEBUG] Executing: a u u u u r
+
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
+	at tp1.Tests.compareOutput(Tests.java:113)
+	at tp1.Tests.parameterizedTest(Tests.java:145)
+	at tp1.Tests.testN(Tests.java:160)
+	at tp1.Tests.test03(Tests.java:183)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+tp1.Tests.test04 -- Time elapsed: 0.009 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+Line: 29
+Expected: Time: 99
+Actual  : Command > [DEBUG] Executing: action u r
+
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
+	at tp1.Tests.compareOutput(Tests.java:113)
+	at tp1.Tests.parameterizedTest(Tests.java:145)
+	at tp1.Tests.testN(Tests.java:160)
+	at tp1.Tests.test04(Tests.java:188)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+tp1.Tests.test05 -- Time elapsed: 0.004 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+Line: 29
+Expected: Time: 99
+Actual  : Command > [DEBUG] Executing: 
+
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
+	at tp1.Tests.compareOutput(Tests.java:113)
+	at tp1.Tests.parameterizedTest(Tests.java:145)
+	at tp1.Tests.testN(Tests.java:160)
+	at tp1.Tests.test05(Tests.java:193)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+tp1.Tests.test06 -- Time elapsed: 0.004 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+Line: 29
+Expected: Time: 99
+Actual  : Command > [DEBUG] Executing: a u r
+
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
+	at tp1.Tests.compareOutput(Tests.java:113)
+	at tp1.Tests.parameterizedTest(Tests.java:145)
+	at tp1.Tests.testN(Tests.java:160)
+	at tp1.Tests.test06(Tests.java:198)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

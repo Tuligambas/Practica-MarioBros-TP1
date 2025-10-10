@@ -21,9 +21,10 @@ public class Game {
   private Mario mario;
   public boolean exit = false;
   private int points;
+  private boolean win = false;
 
   public Game(int nLevel) {
-    // this.nLevel = nLevel;
+    this.nLevel = nLevel;
     this.gameObjects = new GameObjectContainer();
     this.points = 0;
     this.numLives = 3;
@@ -40,13 +41,11 @@ public class Game {
   }
 
   public boolean playerWins() {
-    // TODO Auto-generated method stub
-    return false;
+    return win;
   }
 
   public boolean playerLoses() {
-    // TODO Auto-generated method stub
-    return false;
+    return win;
   }
 
   public int remainingTime() {
@@ -111,6 +110,8 @@ public class Game {
     gameObjects.add(new ExitDoor(new Position(Game.DIM_X - 1, Game.DIM_Y - 3), this));
 
     gameObjects.add(new Goomba(new Position(19, 0), this));
+
+    gameObjects.makeBig();
   }
 
   private void initLevel1() {
@@ -121,7 +122,6 @@ public class Game {
     gameObjects.add(new Goomba(new Position(10, 10), this));
     gameObjects.add(new Goomba(new Position(11, 12), this));
     gameObjects.add(new Goomba(new Position(14, 12), this));
-    gameObjects.makeBig();
   }
 
   public void exit() {
@@ -169,8 +169,9 @@ public class Game {
   }
 
   public void marioExited() {
+    this.win = true;
     this.points += this.remainingTime * 10;
-    exit();
+    playerWins();
   }
 
   public boolean receiveInteractionsFrom(Mario mario) {

@@ -102,4 +102,8 @@ public class Messages {
 	public static final String COMMAND_ACTION_DETAILS = "Performs an action";
 	public static final String COMMAND_ACTION_HELP = "[a]ction: performs an action";
 
+	public static char[] showError(String commandIncorrectParameterNumber) {
+		return String.format(ERROR, commandIncorrectParameterNumber).toCharArray();
+	}
+
 }

@@ -7,6 +7,20 @@
       "request": "launch",
       "mainClass": "tp1.Main",
       "args": "1"
+    },
+    {
+      "type": "java",
+      "name": "Mapa 0",
+      "request": "launch",
+      "mainClass": "tp1.Main",
+      "args": "0"
+    },
+    {
+      "type": "java",
+      "name": "Mapa 3",
+      "request": "launch",
+      "mainClass": "tp1.Main",
+      "args": "3"
     }
   ]
 }

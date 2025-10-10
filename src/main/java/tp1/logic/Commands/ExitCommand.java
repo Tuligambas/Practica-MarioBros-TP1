@@ -19,7 +19,8 @@ public class ExitCommand extends NoParamsCommand {
     // llama al game.exit para que se salga del juego
     @Override
     public void execute(Game game, GameView view) {
-        game.exit();
+        if (this.valid)
+            game.exit();
     }
 
 }

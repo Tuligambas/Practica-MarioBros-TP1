@@ -22,8 +22,11 @@ public class ActionCommand extends NoParamsCommand {
 
     @Override
     public Commands parse(String[] commandWords) {
-        if (commandWords.length < 2 || !matchCommandName(commandWords[0]))
+        if (!matchCommandName(commandWords[0]))
             return null;
+
+        if (commandWords.length < 2) // máximo 3 acciones
+            System.out.println(Messages.ERROR.formatted(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER));
 
         actions = new ArrayList<>();
 
@@ -31,10 +34,9 @@ public class ActionCommand extends NoParamsCommand {
             Action act = Action.StringToDir(commandWords[i]); // convierte texto en enum
             if (act != null)
                 actions.add(act); // añade acción válida
+            else
+                System.out.println(Messages.ERROR.formatted(Messages.UNKNOWN_ACTION.formatted(commandWords[i])));
         }
-
-        if (actions.isEmpty())
-            return null;
 
         ActionCommand cmd = new ActionCommand();
         cmd.actions = actions;
@@ -45,8 +47,10 @@ public class ActionCommand extends NoParamsCommand {
     @Override
     public void execute(Game game, GameView view) {
         game.addActions(actions);
-        game.update();
-        view.showGame();
+        if (!actions.isEmpty()) {
+            game.update();
+        }
+        // view.showGame();
     }
 
 }

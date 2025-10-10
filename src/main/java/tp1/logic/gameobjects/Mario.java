@@ -99,10 +99,6 @@ public class Mario extends GameObject {
     return isAlive;
   }
 
-  public void makeBig() {
-    this.big = true;
-  }
-
   public String getIcon() {
     String icon = " ";
     switch (this.dir) {
@@ -197,19 +193,8 @@ public class Mario extends GameObject {
     game.goombaWasKilled();
   }
 
-  /*
-   * 
-   * 
-   * 
-   * 
-   * @Override
-   * public boolean interactWith(Lemming lemming) {
-   * return this.role.interactWith(lemming, this);
-   * }
-   * 
-   * public boolean checkInteractions() {
-   * return game.receiveInteractionsFrom(this);
-   * }
-   */
+  public void makeBig() {
+    this.big = true;
+  }
 
 }

@@ -1,5 +1,7 @@
 package tp1.logic.Commands;
 
+import tp1.view.Messages;
+
 public abstract class NoParamsCommand extends Commands {
 
     // CONSTRUCTORA
@@ -9,13 +11,20 @@ public abstract class NoParamsCommand extends Commands {
 
     @Override
     public Commands parse(String[] commandWords) {
-        if (commandWords.length < 1 || !matchCommandName(commandWords[0])) // si no le entra nada, no devuelve nada
+        this.valid = false;
+        // no hay palabras o el comando no coincide
+        if (commandWords.length == 0 || !matchCommandName(commandWords[0])) {
             return null;
+        }
 
-        if (commandWords.length == 1 && matchCommandName(commandWords[0])) // si lo que le entra coincide con un
-                                                                           // comando, devuelve ese comando
+        // comando correcto pero con más parámetros de los esperados
+        if (commandWords.length > 1) {
+            System.out.println(Messages.ERROR.formatted(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER));
             return this;
+        }
 
-        return null; // si le entra mas de un parametro, no devuelve nada
+        // comando correcto
+        this.valid = true;
+        return this;
     }
 }

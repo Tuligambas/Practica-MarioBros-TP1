@@ -9,6 +9,7 @@ public abstract class Commands {
     private final String shorcut;
     private final String details;
     private final String help;
+    protected boolean valid = false;
 
     // CONSTRUCTORA
     public Commands(String name, String shorcut, String details, String help) {
@@ -47,4 +48,5 @@ public abstract class Commands {
     public String helpText() {
         return Messages.LINE_TAB.formatted(Messages.HELP.formatted(getDetails(), getHelp()));
     }
+
 }
