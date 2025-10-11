@@ -36,7 +36,6 @@ public class Mario extends GameObject {
     }
     // chequea si esta en una posicion valida
     checkPosition();
-
   }
 
   private void commandMovement() {
@@ -49,13 +48,28 @@ public class Mario extends GameObject {
         this.dir = action;
 
       // calculo la siguiente posicion y si no es solido ni pared se mueve
-      Position next = this.pos.move(action);
-      if (!solidNextTo(action) && !wallNextTo(action))
-        this.pos = next;
+      if (action == Action.DOWN) {
+        if (solidBelow())
+          this.dir = Action.STOP;
+        else
+          toTheFloor();
+      } else {
+        Position next = this.pos.move(action);
+        if (!solidNextTo(action) && !wallNextTo(action))
+          this.pos = next;
+      }
     }
 
     if (initPos.equals(this.pos))
       automaticMovement();
+  }
+
+  private void toTheFloor() {
+    Position next = this.pos.move(Action.DOWN);
+    if (!solidBelow()) {
+      this.pos = next;
+      toTheFloor();
+    }
   }
 
   public void automaticMovement() {

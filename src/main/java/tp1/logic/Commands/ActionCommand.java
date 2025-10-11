@@ -22,35 +22,37 @@ public class ActionCommand extends NoParamsCommand {
 
     @Override
     public Commands parse(String[] commandWords) {
+        actions = new ArrayList<>();
         if (!matchCommandName(commandWords[0]))
             return null;
+        else {
+            this.valid = true;
+            if (commandWords.length < 2) // minimo
+                System.out.println(Messages.ERROR.formatted(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER));
 
-        if (commandWords.length < 2) // máximo 3 acciones
-            System.out.println(Messages.ERROR.formatted(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER));
+            for (int i = 1; i < commandWords.length; i++) {
+                Action act = Action.StringToDir(commandWords[i]); // convierte texto en enum
+                if (act != null)
+                    actions.add(act); // añade acción válida
+                else {
+                    System.out.println(Messages.ERROR.formatted(Messages.UNKNOWN_ACTION.formatted(commandWords[i])));
+                }
+            }
 
-        actions = new ArrayList<>();
+            ActionCommand cmd = new ActionCommand();
+            cmd.actions = actions;
 
-        for (int i = 1; i < commandWords.length; i++) {
-            Action act = Action.StringToDir(commandWords[i]); // convierte texto en enum
-            if (act != null)
-                actions.add(act); // añade acción válida
-            else
-                System.out.println(Messages.ERROR.formatted(Messages.UNKNOWN_ACTION.formatted(commandWords[i])));
+            return cmd;
         }
-
-        ActionCommand cmd = new ActionCommand();
-        cmd.actions = actions;
-
-        return cmd;
     }
 
     @Override
     public void execute(Game game, GameView view) {
         game.addActions(actions);
-        if (!actions.isEmpty()) {
+        if (valid) {
             game.update();
+            view.showGame();
         }
-        // view.showGame();
     }
 
 }

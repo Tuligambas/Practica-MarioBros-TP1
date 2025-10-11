@@ -12,23 +12,25 @@ import tp1.view.Messages;
 public class Main {
 
 	/**
-	 * Entry point
+	 * Entry pointaction
+	 * action dir_Incorrecta
 	 * 
 	 * @param args Arguments for the game.
 	 */
 	public static void main(String[] args) {
 		// Required to avoid issues with tests
-        Locale.of("es", "ES");
-		
-		try {
-			
-			int nLevel = 1;
-			if (args.length != 0) nLevel = Integer.parseInt(args[0]);
+		Locale.of("es", "ES");
 
-            Game game = new Game(nLevel);
-            GameView view = args.length>1 ? new ConsoleView(game): new ConsoleColorsView(game);
-            Controller controller = new Controller(game, view);
-					
+		try {
+
+			int nLevel = 1;
+			if (args.length != 0)
+				nLevel = Integer.parseInt(args[0]);
+
+			Game game = new Game(nLevel);
+			GameView view = args.length > 1 ? new ConsoleView(game) : new ConsoleColorsView(game);
+			Controller controller = new Controller(game, view);
+
 			controller.run();
 
 		} catch (NumberFormatException e) {

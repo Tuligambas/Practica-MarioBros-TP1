@@ -17,6 +17,7 @@ public abstract class Commands {
         this.shorcut = shorcut;
         this.details = details;
         this.help = help;
+        this.valid = false;
     }
 
     protected String getName() {

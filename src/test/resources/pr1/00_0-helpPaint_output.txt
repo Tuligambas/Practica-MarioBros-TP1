@@ -54,6 +54,13 @@ Available commands:
 Command > [DEBUG] Executing: help con argumentosIncorrectos
 
 [ERROR] Error: Incorrect parameter number
+Available commands:
+   [a]ction [[R]IGHT | [L]EFT | [U]P | [D]OWN | [S]TOP]+: user performs actions
+   [u]pdate | "": user does not perform any action
+   [r]eset [numLevel]: reset the game to initial configuration if not numLevel else load the numLevel map
+   [h]elp: print this help message
+   [e]xit: exits the game
+
 Command > [DEBUG] Executing: n
 
 [ERROR] Error: Unknown command: n

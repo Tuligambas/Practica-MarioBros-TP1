@@ -11,7 +11,6 @@ public abstract class NoParamsCommand extends Commands {
 
     @Override
     public Commands parse(String[] commandWords) {
-        this.valid = false;
         // no hay palabras o el comando no coincide
         if (commandWords.length == 0 || !matchCommandName(commandWords[0])) {
             return null;
