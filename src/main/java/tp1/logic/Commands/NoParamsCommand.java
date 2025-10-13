@@ -19,6 +19,7 @@ public abstract class NoParamsCommand extends Commands {
         // comando correcto pero con más parámetros de los esperados
         if (commandWords.length > 1) {
             System.out.println(Messages.ERROR.formatted(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER));
+            this.valid = false;
             return this;
         }
 

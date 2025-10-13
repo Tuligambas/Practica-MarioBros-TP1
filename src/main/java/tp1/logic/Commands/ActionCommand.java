@@ -13,9 +13,12 @@ public class ActionCommand extends NoParamsCommand {
     private static final String SHORTCUT = Messages.COMMAND_ACTION_SHORTCUT;
     private static final String DETAILS = Messages.COMMAND_ACTION_DETAILS;
     private static final String HELP = Messages.COMMAND_ACTION_HELP;
+
+    private boolean incorrectParameters;
+    private boolean missingParameters;
     private List<Action> actions;
 
-    // CONSTRUCTORA
+    // CONSTRUCTOR
     public ActionCommand() {
         super(NAME, SHORTCUT, DETAILS, HELP);
     }
@@ -23,36 +26,46 @@ public class ActionCommand extends NoParamsCommand {
     @Override
     public Commands parse(String[] commandWords) {
         actions = new ArrayList<>();
-        if (!matchCommandName(commandWords[0]))
+        incorrectParameters = false;
+        missingParameters = false;
+
+        if (!matchCommandName(commandWords[0])) {
             return null;
-        else {
-            this.valid = true;
-            if (commandWords.length < 2) // minimo
-                System.out.println(Messages.ERROR.formatted(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER));
-
-            for (int i = 1; i < commandWords.length; i++) {
-                Action act = Action.StringToDir(commandWords[i]); // convierte texto en enum
-                if (act != null)
-                    actions.add(act); // añade acción válida
-                else {
-                    System.out.println(Messages.ERROR.formatted(Messages.UNKNOWN_ACTION.formatted(commandWords[i])));
-                }
-            }
-
-            ActionCommand cmd = new ActionCommand();
-            cmd.actions = actions;
-
-            return cmd;
         }
+
+        if (commandWords.length < 2) {
+            System.out.println(Messages.ERROR.formatted(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER));
+            this.missingParameters = true;
+            return this;
+        }
+
+        // Si tiene más palabras, las intentamos convertir a acciones
+        for (int i = 1; i < commandWords.length; i++) {
+            Action act = Action.StringToDir(commandWords[i]);
+            if (act != null) {
+                actions.add(act);
+            } else {
+                System.out.println(Messages.ERROR.formatted(Messages.UNKNOWN_ACTION.formatted(commandWords[i])));
+                this.incorrectParameters = true;
+            }
+        }
+
+        ActionCommand cmd = new ActionCommand();
+        cmd.actions = actions;
+        cmd.incorrectParameters = this.incorrectParameters;
+        cmd.missingParameters = this.missingParameters;
+
+        return cmd;
     }
 
     @Override
     public void execute(Game game, GameView view) {
-        game.addActions(actions);
-        if (valid) {
-            game.update();
-            view.showGame();
+        if (missingParameters) {
+            return;
         }
-    }
 
+        game.addActions(actions);
+        game.update();
+        view.showGame();
+    }
 }

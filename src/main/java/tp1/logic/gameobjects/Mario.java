@@ -12,6 +12,7 @@ public class Mario extends GameObject {
   private Action dir;
   private boolean isAlive;
   private boolean falling;
+  private Position prevPosition;
   private ActionList actionList;
 
   public Mario(Position position, Game game) {
@@ -28,7 +29,7 @@ public class Mario extends GameObject {
 
   @Override
   public void update() {
-    checkInteractions();
+    setPrevPosition();
     if (actionList.isEmpty()) {
       automaticMovement();
     } else {
@@ -36,10 +37,15 @@ public class Mario extends GameObject {
     }
     // chequea si esta en una posicion valida
     checkPosition();
+    checkInteractions();
+  }
+
+  private void setPrevPosition() {
+    if (dir != Action.STOP)
+      this.prevPosition = new Position(this.pos.getCol(), this.pos.getRow());
   }
 
   private void commandMovement() {
-    Position initPos = this.pos;
     while (!actionList.isEmpty()) {
       Action action = actionList.getNext(); // método auxiliar que devuelve y elimina
 
@@ -53,32 +59,32 @@ public class Mario extends GameObject {
           this.dir = Action.STOP;
         else
           toTheFloor();
-      } else {
+      } else if (action != Action.STOP) {
         Position next = this.pos.move(action);
-        if (!solidNextTo(action) && !wallNextTo(action))
+        if (!solidNextTo(action) && !wallNextTo(action)) {
+          this.prevPosition = new Position(this.pos.getCol(), this.pos.getRow());
           this.pos = next;
+        }
       }
     }
 
-    if (initPos.equals(this.pos))
+    if (this.prevPosition.equals(this.pos))
       automaticMovement();
   }
 
   private void toTheFloor() {
-    Position next = this.pos.move(Action.DOWN);
-    if (!solidBelow()) {
-      this.pos = next;
-      toTheFloor();
+    while (!solidBelow() && pos.isInBoard()) {
+      this.pos = this.pos.move(Action.DOWN);
     }
+
   }
 
   public void automaticMovement() {
-
     // si es solido abajo dos opciones
     if (solidBelow()) {
       // si es solido a la izquierda o derecha cambia de direccion
       if (solidNextTo(dir) || wallNextTo(dir))
-        dir = dir.opposite(dir);
+        dir = dir.opposite();
 
       // si no es solido a la izquierda o derecha se mueve
       else {
@@ -94,6 +100,12 @@ public class Mario extends GameObject {
 
   private void move() {
     this.pos = this.pos.move(this.dir);
+  }
+
+  protected boolean solidNextTo(Action dir) {
+    Position next = this.pos.move(dir);
+    Position next_big = this.pos.move(dir).move(Action.UP);
+    return this.game.isSolid(next) || game.isSolid(next_big);
   }
 
   public boolean isInPosition(Position p) {
@@ -127,9 +139,9 @@ public class Mario extends GameObject {
         break;
       default:
     }
-    if (this.big) {
+    if (this.big)
       icon = icon.toUpperCase();
-    }
+
     return icon;
   }
 
@@ -142,8 +154,7 @@ public class Mario extends GameObject {
       aire = true;
 
     } else if (!pos.isInBoard()) { // Si la posición no está en el tablero, mata al mario
-      this.isAlive = false;
-      game.marioWasKilled();
+      game.looseLife();
     }
     return aire;
   }
@@ -161,14 +172,7 @@ public class Mario extends GameObject {
     if (solidBelow()) {
       this.falling = false;
     }
-
   }
-
-  // MÉTODOS PARA LAS INTERACCIONES
-  // @Override
-  // public boolean receiveInteraction(GameItem other) {
-  // return this.role.receiveInteraction(other, this);
-  // }
 
   public boolean checkInteractions() {
     return game.receiveInteractionsFrom(this);
@@ -184,14 +188,22 @@ public class Mario extends GameObject {
 
   @Override
   public boolean interactWith(Goomba goomba) {
-    boolean onTop = this.pos.equals(goomba.getPos().move(Action.UP));
+    boolean onTop = this.prevPosition.equals(goomba.getPos().move(Action.UP));
     if (onTop) {
       killGoomba(goomba);
-    } else if (this.pos.equals(goomba.getPos())) {
+    } else if (samePos(goomba) || goombaOnYou(goomba)) {
       killGoomba(goomba);
       marioGetAttacked();
     }
     return onTop;
+  }
+
+  private boolean samePos(Goomba g) {
+    return pos.equals(g.getPos()) || pos.move(Action.UP).equals(g.getPos());
+  }
+
+  private boolean goombaOnYou(Goomba g) {
+    return prevPosition.equals(g.getPos()) || prevPosition.move(Action.UP).equals(g.getPos());
   }
 
   private void marioGetAttacked() {
@@ -211,4 +223,16 @@ public class Mario extends GameObject {
     this.big = true;
   }
 
+  @Override
+  protected void checkPosition() {
+    if (!this.pos.isInBoard()) {
+      this.big = false; // ayuda con test
+      game.looseLife();
+    }
+  }
+
+  @Override
+  public void killMario() {
+    isAlive = false;
+  }
 }

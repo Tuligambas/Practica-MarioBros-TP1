@@ -49,9 +49,9 @@ public enum Action {
 	}
 
 	// Método que devuelve la dirección contraria
-	public Action opposite(Action dir) {
+	public Action opposite() {
 		Action r;
-		if (dir == Action.RIGHT) {
+		if (this == Action.RIGHT) {
 			r = Action.LEFT;
 		} else {
 			r = Action.RIGHT;

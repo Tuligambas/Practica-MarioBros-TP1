@@ -1,76 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: tp1.Tests
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 7, Errors: 0, Skipped: 0, Time elapsed: 0.092 s <<< FAILURE! -- in tp1.Tests
-tp1.Tests.test00 -- Time elapsed: 0.021 s <<< FAILURE!
+Tests run: 7, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.105 s <<< FAILURE! -- in tp1.Tests
+tp1.Tests.test04 -- Time elapsed: 0.018 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
-Line: 57
-Expected: Command > [DEBUG] Executing: n
-Actual  : Available commands:
-
-	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
-	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
-	at tp1.Tests.compareOutput(Tests.java:113)
-	at tp1.Tests.parameterizedTest(Tests.java:145)
-	at tp1.Tests.testN(Tests.java:160)
-	at tp1.Tests.test00(Tests.java:168)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-
-tp1.Tests.test01 -- Time elapsed: 0.013 s <<< FAILURE!
-org.opentest4j.AssertionFailedError: 
-Line: 33
-Expected: Time: 99
-Actual  : Command > [DEBUG] Executing: update
-
-	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
-	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
-	at tp1.Tests.compareOutput(Tests.java:113)
-	at tp1.Tests.parameterizedTest(Tests.java:145)
-	at tp1.Tests.testN(Tests.java:160)
-	at tp1.Tests.test01(Tests.java:173)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-
-tp1.Tests.test02 -- Time elapsed: 0.024 s <<< FAILURE!
-org.opentest4j.AssertionFailedError: 
-Line: 29
-Expected: Time: 99
-Actual  : Command > [DEBUG] Executing: a d
-
-	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
-	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
-	at tp1.Tests.compareOutput(Tests.java:113)
-	at tp1.Tests.parameterizedTest(Tests.java:145)
-	at tp1.Tests.testN(Tests.java:160)
-	at tp1.Tests.test02(Tests.java:178)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-
-tp1.Tests.test03 -- Time elapsed: 0.006 s <<< FAILURE!
-org.opentest4j.AssertionFailedError: 
-Line: 29
-Expected: Time: 99
-Actual  : Command > [DEBUG] Executing: a u u u u r
-
-	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
-	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
-	at tp1.Tests.compareOutput(Tests.java:113)
-	at tp1.Tests.parameterizedTest(Tests.java:145)
-	at tp1.Tests.testN(Tests.java:160)
-	at tp1.Tests.test03(Tests.java:183)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-
-tp1.Tests.test04 -- Time elapsed: 0.009 s <<< FAILURE!
-org.opentest4j.AssertionFailedError: 
-Line: 29
-Expected: Time: 99
-Actual  : Command > [DEBUG] Executing: action u r
+Line: 1193
+Expected:  14┃▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓        ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃14
+Actual  :  14┃▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ 🧍     ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃14
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
@@ -82,11 +18,11 @@ Actual  : Command > [DEBUG] Executing: action u r
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests.test05 -- Time elapsed: 0.004 s <<< FAILURE!
+tp1.Tests.test05 -- Time elapsed: 0.007 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
-Line: 29
-Expected: Time: 99
-Actual  : Command > [DEBUG] Executing: 
+Line: 316
+Expected: Points: 500
+Actual  : Points: 400
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
@@ -98,11 +34,11 @@ Actual  : Command > [DEBUG] Executing:
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests.test06 -- Time elapsed: 0.005 s <<< FAILURE!
+tp1.Tests.test06 -- Time elapsed: 0.006 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
-Line: 29
-Expected: Time: 99
-Actual  : Command > [DEBUG] Executing: a u r
+Line: 228
+Expected:  11┃                                 🚶                                             ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓            ┃11
+Actual  :  11┃                                 🧍                                             ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓            ┃11
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)

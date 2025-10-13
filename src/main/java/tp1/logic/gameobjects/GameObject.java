@@ -42,7 +42,9 @@ public abstract class GameObject {
     // si no hace nada, no se necesita implementar
     public abstract void update();
 
-    public abstract void addAction(List<Action> actionList);
+    public void addAction(List<Action> actionList) {
+
+    }
 
     // PARA SABER EL ICONO DEL OBJETO
     public abstract String getIcon();
@@ -51,12 +53,6 @@ public abstract class GameObject {
     protected boolean wallNextTo(Action dir) {
         Position next = this.pos.move(dir);
         return next.isWall();
-    }
-
-    protected void checkPosition() {
-        if (!this.pos.isInBoard()) {
-            this.isAlive = false;
-        }
     }
 
     protected boolean solidNextTo(Action dir) {
@@ -96,6 +92,14 @@ public abstract class GameObject {
 
     public void setAlive(boolean alive) {
         this.isAlive = alive;
+    }
+
+    protected void checkPosition() {
+
+    }
+
+    public void killMario() {
+
     }
 
 }
