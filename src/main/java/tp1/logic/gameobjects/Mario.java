@@ -35,13 +35,14 @@ public class Mario extends GameObject {
     } else {
       commandMovement();
     }
-    checkInteractions();
     // chequea si esta en una posicion valida
     checkPosition();
+    checkInteractions();
   }
 
   private void setPrevPosition() {
-    this.prevPosition = new Position(this.pos.getCol(), this.pos.getRow());
+    if (dir != Action.STOP)
+      this.prevPosition = new Position(this.pos.getCol(), this.pos.getRow());
   }
 
   private void commandMovement() {
@@ -58,10 +59,12 @@ public class Mario extends GameObject {
           this.dir = Action.STOP;
         else
           toTheFloor();
-      } else {
+      } else if (action != Action.STOP) {
         Position next = this.pos.move(action);
-        if (!solidNextTo(action) && !wallNextTo(action))
+        if (!solidNextTo(action) && !wallNextTo(action)) {
+          this.prevPosition = new Position(this.pos.getCol(), this.pos.getRow());
           this.pos = next;
+        }
       }
     }
 
@@ -188,11 +191,19 @@ public class Mario extends GameObject {
     boolean onTop = this.prevPosition.equals(goomba.getPos().move(Action.UP));
     if (onTop) {
       killGoomba(goomba);
-    } else if (this.pos.equals(goomba.getPos())) {
+    } else if (samePos(goomba) || goombaOnYou(goomba)) {
       killGoomba(goomba);
       marioGetAttacked();
     }
     return onTop;
+  }
+
+  private boolean samePos(Goomba g) {
+    return pos.equals(g.getPos()) || pos.move(Action.UP).equals(g.getPos());
+  }
+
+  private boolean goombaOnYou(Goomba g) {
+    return prevPosition.equals(g.getPos()) || prevPosition.move(Action.UP).equals(g.getPos());
   }
 
   private void marioGetAttacked() {
