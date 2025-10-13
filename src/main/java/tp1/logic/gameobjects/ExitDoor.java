@@ -42,4 +42,5 @@ public class ExitDoor extends GameObject {
   public boolean receiveInteraction(GameObject other) {
     return other.interactWith(this);
   }
+
 }

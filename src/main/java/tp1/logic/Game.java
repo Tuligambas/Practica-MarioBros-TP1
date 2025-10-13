@@ -44,7 +44,7 @@ public class Game {
   }
 
   public boolean playerLoses() {
-    return win;
+    return (numLives <= 0);
   }
 
   public int remainingTime() {
@@ -65,9 +65,9 @@ public class Game {
   }
 
   private void initLevel0() {
-    this.nLevel = 0;
     this.remainingTime = 100;
-
+    this.win = false;
+    this.exit = false;
     gameObjects = new GameObjectContainer();
 
     // personajes
@@ -139,11 +139,7 @@ public class Game {
   }
 
   public boolean isFinished() {
-    boolean acabado = false;
-    if (remainingTime == 0 || (exit)) {
-      acabado = true;
-    }
-    return acabado;
+    return remainingTime == 0 || exit || playerLoses();
   }
 
   public void update() {
@@ -155,14 +151,6 @@ public class Game {
     return gameObjects.isSolid(p);
   }
 
-  public void marioWasKilled() {
-    this.numLives--;
-    if (this.numLives < 0) {
-      reset(nLevel);
-      System.out.println(Messages.GAME_OVER);
-    }
-  }
-
   public void addActions(List<Action> actionList) {
     gameObjects.addActions(actionList);
   }
@@ -172,6 +160,7 @@ public class Game {
     this.points += this.remainingTime * 10;
     this.remainingTime = 0;
     playerWins();
+
   }
 
   public boolean receiveInteractionsFrom(Mario mario) {
@@ -184,8 +173,10 @@ public class Game {
 
   public void looseLife() {
     this.numLives--;
-    if (this.numLives < 0) {
+    if (numLives < 0)
       gameObjects.killMario();
+    if (this.numLives > 0) {
+      reset();
     }
   }
 

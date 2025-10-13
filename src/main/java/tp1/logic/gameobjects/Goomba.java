@@ -1,7 +1,5 @@
 package tp1.logic.gameobjects;
 
-import java.util.List;
-
 import tp1.logic.Action;
 import tp1.logic.Game;
 import tp1.logic.Position;
@@ -29,7 +27,7 @@ public class Goomba extends GameObject {
       }
       // si es solido a la izquierda o derecha cambia de direccion o pared
       if (solidNextTo(dir) || wallNextTo(dir)) {
-        dir = dir.opposite(dir);
+        dir = dir.opposite();
       }
       // si no es solido a la izquierda o derecha se mueve
       else {
@@ -59,11 +57,6 @@ public class Goomba extends GameObject {
     return isAlive;
   }
 
-  @Override
-  public void addAction(List<Action> actionList) {
-    // No hace nada, el goomba no recibe acciones
-  }
-
   private void fall() {
     this.pos = this.pos.move(Action.DOWN);
     if (solidBelow()) {
@@ -79,6 +72,13 @@ public class Goomba extends GameObject {
   @Override
   public boolean receiveInteraction(GameObject other) {
     return other.interactWith(this);
+  }
+
+  @Override
+  protected void checkPosition() {
+    if (!this.pos.isInBoard()) {
+      setAlive(false);
+    }
   }
 
 }
