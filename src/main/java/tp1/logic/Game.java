@@ -9,7 +9,6 @@ import tp1.logic.gameobjects.Mario;
 import tp1.view.Messages;
 
 public class Game {
-
   public static final int DIM_X = 30;
   public static final int DIM_Y = 15;
 
@@ -128,10 +127,10 @@ public class Game {
     this.exit = true;
   }
 
-  public void reset() {
-    if (nLevel == 0)
+  public void reset(int level) {
+    if (level == 0)
       initLevel0();
-    if (nLevel == 1)
+    if (level == 1)
       initLevel1();
   }
 
@@ -159,7 +158,7 @@ public class Game {
   public void marioWasKilled() {
     this.numLives--;
     if (this.numLives < 0) {
-      reset();
+      reset(nLevel);
       System.out.println(Messages.GAME_OVER);
     }
   }
@@ -171,6 +170,7 @@ public class Game {
   public void marioExited() {
     this.win = true;
     this.points += this.remainingTime * 10;
+    this.remainingTime = 0;
     playerWins();
   }
 
@@ -187,6 +187,13 @@ public class Game {
     if (this.numLives < 0) {
       gameObjects.killMario();
     }
+  }
+
+  public void reset() {
+    if (this.nLevel == 0)
+      initLevel0();
+    if (this.nLevel == 1)
+      initLevel1();
   }
 
 }

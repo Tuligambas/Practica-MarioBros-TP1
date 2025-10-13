@@ -28,12 +28,12 @@ public class Mario extends GameObject {
 
   @Override
   public void update() {
-    checkInteractions();
     if (actionList.isEmpty()) {
       automaticMovement();
     } else {
       commandMovement();
     }
+    checkInteractions();
     // chequea si esta en una posicion valida
     checkPosition();
   }
