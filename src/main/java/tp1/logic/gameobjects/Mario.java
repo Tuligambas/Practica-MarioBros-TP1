@@ -12,6 +12,7 @@ public class Mario extends GameObject {
   private Action dir;
   private boolean isAlive;
   private boolean falling;
+
   private ActionList actionList;
 
   public Mario(Position position, Game game) {
