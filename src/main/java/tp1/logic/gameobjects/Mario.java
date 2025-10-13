@@ -60,8 +60,10 @@ public class Mario extends GameObject {
         else
           toTheFloor();
       } else if (action != Action.STOP) {
-        Position next = this.pos.move(action);
-        if (!solidNextTo(action) && !wallNextTo(action)) {
+        if (solidNextTo(action) || wallNextTo(action))
+          this.dir = action.opposite();
+        else {
+          Position next = this.pos.move(action);
           this.prevPosition = new Position(this.pos.getCol(), this.pos.getRow());
           this.pos = next;
         }
@@ -74,6 +76,7 @@ public class Mario extends GameObject {
 
   private void toTheFloor() {
     while (!solidBelow() && pos.isInBoard()) {
+      setPrevPosition();
       this.pos = this.pos.move(Action.DOWN);
     }
 
@@ -191,11 +194,15 @@ public class Mario extends GameObject {
     boolean onTop = this.prevPosition.equals(goomba.getPos().move(Action.UP));
     if (onTop) {
       killGoomba(goomba);
-    } else if (samePos(goomba) || goombaOnYou(goomba)) {
+    } else if (samePos(goomba) || goombaOnYou(goomba) || goombaAgainstYou(goomba)) {
       killGoomba(goomba);
       marioGetAttacked();
     }
     return onTop;
+  }
+
+  private boolean goombaAgainstYou(Goomba goomba) {
+    return goomba.getPos().move(goomba.geAction()).equals(pos);
   }
 
   private boolean samePos(Goomba g) {

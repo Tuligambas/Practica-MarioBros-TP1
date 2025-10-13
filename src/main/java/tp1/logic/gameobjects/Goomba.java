@@ -57,6 +57,10 @@ public class Goomba extends GameObject {
     return isAlive;
   }
 
+  public Action geAction() {
+    return this.dir;
+  }
+
   private void fall() {
     this.pos = this.pos.move(Action.DOWN);
     if (solidBelow()) {
@@ -79,6 +83,11 @@ public class Goomba extends GameObject {
     if (!this.pos.isInBoard()) {
       setAlive(false);
     }
+  }
+
+  public Object getAction() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getAction'");
   }
 
 }
