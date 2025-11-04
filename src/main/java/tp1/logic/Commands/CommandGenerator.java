@@ -11,8 +11,6 @@ public class CommandGenerator {
             new HelpCommand(),
             new ExitCommand(),
             new ActionCommand());
-    // new SetRoleCommand(),
-    // new LoadCommand());
 
     // RECORRE LA LISTA DE LOS COMANDOS, COMPROBANDO SI LO QUE LE ENTRA ES UN
     // COMANDO CON EL PARSE DE CADA COMANDO

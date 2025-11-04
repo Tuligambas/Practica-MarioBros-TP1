@@ -86,6 +86,10 @@ public abstract class GameObject {
         return false;
     }
 
+    public boolean itsMeMario() {
+        return false;
+    }
+
     public boolean interactWith(ExitDoor door) {
         return false;
     }
@@ -95,11 +99,12 @@ public abstract class GameObject {
     }
 
     protected void checkPosition() {
-
     }
 
     public void killMario() {
+    }
 
+    public void makeBig() {
     }
 
 }

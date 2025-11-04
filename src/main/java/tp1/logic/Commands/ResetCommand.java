@@ -31,6 +31,7 @@ public class ResetCommand extends NoParamsCommand {
 
     @Override
     public Commands parse(String[] commandWords) {
+        this.valid = false;
         // no hay palabras o el comando no coincide
         if (commandWords.length == 0 || !matchCommandName(commandWords[0]))
             return null;

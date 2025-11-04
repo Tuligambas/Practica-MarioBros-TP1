@@ -71,7 +71,7 @@ public class Game {
     gameObjects = new GameObjectContainer();
 
     // personajes
-    this.mario = new Mario(new Position(0, Game.DIM_Y - 3), this);
+    this.mario = new Mario(new Position(0, Game.DIM_Y - 3), this, true);
     gameObjects.add(this.mario);
 
     // suelo base filas 13 y 14
@@ -110,7 +110,6 @@ public class Game {
 
     gameObjects.add(new Goomba(new Position(19, 0), this));
 
-    gameObjects.makeBig();
   }
 
   private void initLevel1() {
@@ -173,11 +172,13 @@ public class Game {
 
   public void looseLife() {
     this.numLives--;
-    if (numLives < 0)
-      gameObjects.killMario();
     if (this.numLives > 0) {
       reset();
     }
+  }
+
+  public int getNumLives() {
+    return this.numLives;
   }
 
   public void reset() {

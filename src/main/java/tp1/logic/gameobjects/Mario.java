@@ -15,12 +15,13 @@ public class Mario extends GameObject {
   private Position prevPosition;
   private ActionList actionList;
 
-  public Mario(Position position, Game game) {
+  public Mario(Position position, Game game, boolean big) {
     super(position, game);
     this.big = false;
     this.dir = Action.RIGHT;
     this.isAlive = true;
     this.actionList = new ActionList();
+    this.big = big;
   }
 
   // CONSTRUCTOR VACIO
@@ -29,15 +30,14 @@ public class Mario extends GameObject {
 
   @Override
   public void update() {
-    setPrevPosition();
+    setPrevPosition(); // simplifica colisiones e interacciones
     if (actionList.isEmpty()) {
       automaticMovement();
     } else {
       commandMovement();
     }
-    // chequea si esta en una posicion valida
-    checkPosition();
-    checkInteractions();
+    checkPosition(); // chequea si esta en una posicion valida
+    checkInteractions(); // interactua con otros objetos if()
   }
 
   private void setPrevPosition() {
@@ -50,18 +50,19 @@ public class Mario extends GameObject {
       Action action = actionList.getNext(); // método auxiliar que devuelve y elimina
 
       // cambia de direccion
-      if (action == Action.LEFT || action == Action.RIGHT || action == Action.STOP)
+      if (action.isHorizontal() || action == Action.STOP)
         this.dir = action;
 
-      // calculo la siguiente posicion y si no es solido ni pared se mueve
       if (action == Action.DOWN) {
         if (solidBelow())
           this.dir = Action.STOP;
         else
           toTheFloor();
       } else if (action != Action.STOP) {
-        Position next = this.pos.move(action);
-        if (!solidNextTo(action) && !wallNextTo(action)) {
+        if (solidNextTo(action) || wallNextTo(action))
+          this.dir = action.opposite();
+        else {
+          Position next = this.pos.move(action);
           this.prevPosition = new Position(this.pos.getCol(), this.pos.getRow());
           this.pos = next;
         }
@@ -74,16 +75,15 @@ public class Mario extends GameObject {
 
   private void toTheFloor() {
     while (!solidBelow() && pos.isInBoard()) {
+      setPrevPosition();
       this.pos = this.pos.move(Action.DOWN);
     }
 
   }
 
   public void automaticMovement() {
-    // si es solido abajo dos opciones
-    if (solidBelow()) {
-      // si es solido a la izquierda o derecha cambia de direccion
-      if (solidNextTo(dir) || wallNextTo(dir))
+    if (solidBelow()) {// si es solido abajo dos opciones
+      if (solidNextTo(dir) || wallNextTo(dir)) // si es solido a la izquierda o derecha cambia de direccion
         dir = dir.opposite();
 
       // si no es solido a la izquierda o derecha se mueve
@@ -149,13 +149,10 @@ public class Mario extends GameObject {
   public boolean isInAir() {
     Position abajo = new Position(this.pos.getCol(), this.pos.getRow() + 1);
     boolean aire = false;
-    if (!game.isSolid(abajo) && pos.isInBoard()) { // Si no tiene pared abajo y la posición está en el tablero, estará
-                                                   // en el aire
+
+    if (!game.isSolid(abajo) && pos.isInBoard())
       aire = true;
 
-    } else if (!pos.isInBoard()) { // Si la posición no está en el tablero, mata al mario
-      game.looseLife();
-    }
     return aire;
   }
 
@@ -191,11 +188,15 @@ public class Mario extends GameObject {
     boolean onTop = this.prevPosition.equals(goomba.getPos().move(Action.UP));
     if (onTop) {
       killGoomba(goomba);
-    } else if (samePos(goomba) || goombaOnYou(goomba)) {
+    } else if (samePos(goomba) || goombaOnYou(goomba) || goombaAgainstYou(goomba)) {
       killGoomba(goomba);
       marioGetAttacked();
     }
     return onTop;
+  }
+
+  private boolean goombaAgainstYou(Goomba goomba) {
+    return goomba.getPos().move(goomba.geAction()).equals(pos);
   }
 
   private boolean samePos(Goomba g) {
@@ -219,6 +220,7 @@ public class Mario extends GameObject {
     game.goombaWasKilled();
   }
 
+  @Override
   public void makeBig() {
     this.big = true;
   }
@@ -231,8 +233,4 @@ public class Mario extends GameObject {
     }
   }
 
-  @Override
-  public void killMario() {
-    isAlive = false;
-  }
 }

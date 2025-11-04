@@ -38,14 +38,6 @@ public class GameObjectContainer {
     return sb.toString();
   }
 
-  public void makeBig() {
-    for (Object obj : objects) {
-      if (obj instanceof Mario) {
-        ((Mario) obj).makeBig();
-      }
-    }
-  }
-
   void update() {
     for (GameObject obj : objects)
       obj.update();
@@ -84,8 +76,7 @@ public class GameObjectContainer {
 
   public void addActions(List<Action> actionList) {
     for (GameObject obj : objects) {
-      if (obj instanceof Mario)
-        obj.addAction(actionList);
+      obj.addAction(actionList);
     }
   }
 
@@ -98,13 +89,6 @@ public class GameObjectContainer {
     }
 
     return si;
-  }
-
-  public void killMario() {
-    for (GameObject obj : objects) {
-      if (obj instanceof Mario)
-        obj.killMario();
-    }
   }
 
 }

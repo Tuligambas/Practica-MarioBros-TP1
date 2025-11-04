@@ -28,6 +28,7 @@ public class ActionCommand extends NoParamsCommand {
         actions = new ArrayList<>();
         incorrectParameters = false;
         missingParameters = false;
+        this.valid = false;
 
         if (!matchCommandName(commandWords[0])) {
             return null;

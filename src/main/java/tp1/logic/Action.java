@@ -59,4 +59,8 @@ public enum Action {
 		return r;
 	}
 
+	public boolean isHorizontal() {
+		return this.equals(Action.RIGHT) || this.equals(Action.LEFT);
+	}
+
 }
