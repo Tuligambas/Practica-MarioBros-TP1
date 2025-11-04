@@ -1,10 +1,10 @@
-package tp1.logic.Commands;
+package tp1.control.Commands;
 
 import tp1.logic.Game;
 import tp1.view.GameView;
 import tp1.view.Messages;
 
-public abstract class Commands {
+public abstract class AbstractCommand implements Command {
     private final String name;
     private final String shorcut;
     private final String details;
@@ -12,7 +12,7 @@ public abstract class Commands {
     protected boolean valid = false;
 
     // CONSTRUCTORA
-    public Commands(String name, String shorcut, String details, String help) {
+    public AbstractCommand(String name, String shorcut, String details, String help) {
         this.name = name;
         this.shorcut = shorcut;
         this.details = details;
@@ -36,9 +36,11 @@ public abstract class Commands {
         return help;
     }
 
+    @Override
     public abstract void execute(Game game, GameView view);
 
-    public abstract Commands parse(String[] commandWords);
+    @Override
+    public abstract Command parse(String[] commandWords);
 
     // COMPRUEBA SI EL NOMBRE QUE LE ENTRA ES UN COMANDO
     protected boolean matchCommandName(String name) {
@@ -46,6 +48,7 @@ public abstract class Commands {
                 getName().equalsIgnoreCase(name);
     }
 
+    @Override
     public String helpText() {
         return Messages.LINE_TAB.formatted(Messages.HELP.formatted(getDetails(), getHelp()));
     }

@@ -1,4 +1,4 @@
-package tp1.logic.Commands;
+package tp1.control.Commands;
 
 import tp1.logic.Game;
 import tp1.view.GameView;

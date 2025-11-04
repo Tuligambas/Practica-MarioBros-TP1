@@ -3,13 +3,6 @@
   "configurations": [
     {
       "type": "java",
-      "name": "Mapa 1",
-      "request": "launch",
-      "mainClass": "tp1.Main",
-      "args": "1"
-    },
-    {
-      "type": "java",
       "name": "Mapa 0",
       "request": "launch",
       "mainClass": "tp1.Main",
@@ -17,10 +10,17 @@
     },
     {
       "type": "java",
-      "name": "Mapa 3",
+      "name": "Mapa 1",
       "request": "launch",
       "mainClass": "tp1.Main",
-      "args": "3"
+      "args": "1"
+    },
+    {
+      "type": "java",
+      "name": "Mapa 2",
+      "request": "launch",
+      "mainClass": "tp1.Main",
+      "args": "2"
     }
   ]
 }

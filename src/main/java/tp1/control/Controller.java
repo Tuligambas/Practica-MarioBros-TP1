@@ -1,7 +1,7 @@
 package tp1.control;
 
-import tp1.logic.Commands.CommandGenerator;
-import tp1.logic.Commands.Commands;
+import tp1.control.Commands.Command;
+import tp1.control.Commands.CommandGenerator;
 import tp1.logic.Game;
 import tp1.view.GameView;
 import tp1.view.Messages;
@@ -29,11 +29,11 @@ public class Controller {
       words = view.getPrompt();
 
       // crea el comando y lo ejecuta
-      Commands command = CommandGenerator.parse(words);
+      Command command = CommandGenerator.parse(words);
       if (command != null)
         command.execute(game, view);
       else
-        view.showMessage(Messages.ERROR.formatted(Messages.UNKNOWN_COMMAND.formatted(words[0])));
+        view.showError(Messages.UNKNOWN_COMMAND.formatted(String.join(" ", words)));
     }
     view.showEndMessage();
   }
