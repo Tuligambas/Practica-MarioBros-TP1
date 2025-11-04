@@ -7,21 +7,17 @@ import tp1.logic.Game;
 import tp1.logic.Position;
 import tp1.view.Messages;
 
-public class Mario extends GameObject {
+public class Mario extends MovingObject {
   private boolean big;
-  private Action dir;
   private boolean isAlive;
-  private boolean falling;
   private Position prevPosition;
   private ActionList actionList;
 
   public Mario(Position position, Game game, boolean big) {
-    super(position, game);
-    this.big = false;
-    this.dir = Action.RIGHT;
+    super(position, game, false, Action.RIGHT);
+    this.big = big;
     this.isAlive = true;
     this.actionList = new ActionList();
-    this.big = big;
   }
 
   // CONSTRUCTOR VACIO
@@ -79,27 +75,6 @@ public class Mario extends GameObject {
       this.pos = this.pos.move(Action.DOWN);
     }
 
-  }
-
-  public void automaticMovement() {
-    if (solidBelow()) {// si es solido abajo dos opciones
-      if (solidNextTo(dir) || wallNextTo(dir)) // si es solido a la izquierda o derecha cambia de direccion
-        dir = dir.opposite();
-
-      // si no es solido a la izquierda o derecha se mueve
-      else {
-        move();
-      }
-    }
-    // si no es solido abajo cae
-    else {
-      this.falling = true;
-      fall();
-    }
-  }
-
-  private void move() {
-    this.pos = this.pos.move(this.dir);
   }
 
   protected boolean solidNextTo(Action dir) {
@@ -167,7 +142,7 @@ public class Mario extends GameObject {
   private void fall() {
     this.pos = this.pos.move(Action.DOWN);
     if (solidBelow()) {
-      this.falling = false;
+      this.isfalling = false;
     }
   }
 
