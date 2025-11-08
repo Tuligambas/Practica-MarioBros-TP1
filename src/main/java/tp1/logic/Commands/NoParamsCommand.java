@@ -2,7 +2,7 @@ package tp1.logic.Commands;
 
 import tp1.view.Messages;
 
-public abstract class NoParamsCommand extends Commands {
+public abstract class NoParamsCommand extends AbstractCommand {
 
     // CONSTRUCTORA
     public NoParamsCommand(String name, String shortcut, String details, String help) {
