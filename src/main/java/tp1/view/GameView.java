@@ -1,13 +1,13 @@
 package tp1.view;
 
 // al igual cambiar game por gamestatus
-import tp1.logic.Game;
+import tp1.logic.GameStatus;
 
 public abstract class GameView implements ViewInterface {
 
-	protected Game game;
+	protected GameStatus game;
 
-	public GameView(Game game) {
+	public GameView(GameStatus game) {
 		this.game = game;
 	}
 

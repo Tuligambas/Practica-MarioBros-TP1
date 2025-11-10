@@ -171,11 +171,12 @@ public class Game implements GameModel, GameStatus, GameWorld {
   }
 
   // ver donde van
-
+  @Override
   public void exit() {
     this.exit = true;
   }
 
+  @Override
   public void reset(int level) {
     if (level == 0)
       initLevel0();
@@ -183,10 +184,12 @@ public class Game implements GameModel, GameStatus, GameWorld {
       initLevel1();
   }
 
+  @Override
   public void showHelp() {
     System.out.println(Messages.HELP);
   }
 
+  @Override
   public void addActions(List<Action> actionList) {
     gameObjects.addActions(actionList);
   }

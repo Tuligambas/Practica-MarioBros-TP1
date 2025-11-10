@@ -1,11 +1,19 @@
 package tp1.logic;
 
-public interface GameWorld {
+import java.util.List;
 
-    public boolean isSolid(Position pos);
+public interface GameWorld {
 
     public void addPoints(int points);
 
     public void marioArrived();
+
+    public void addActions(List<Action> actions); //
+
+    public boolean isSolid(Position pos);
+
+    public void looseLife();
+
+    public void goombaWasKilled();
 
 }

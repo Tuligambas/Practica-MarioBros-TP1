@@ -1,7 +1,7 @@
 package tp1.logic.gameobjects;
 
 import tp1.logic.Action;
-import tp1.logic.Game;
+import tp1.logic.GameWorld;
 import tp1.logic.GameItem;
 import tp1.logic.Position;
 import tp1.view.Messages;
@@ -9,7 +9,7 @@ import tp1.view.Messages;
 public class Goomba extends MovingObject {
   private static final String ICON = Messages.GOOMBA;
 
-  public Goomba(Position position, Game game) {
+  public Goomba(Position position, GameWorld game) {
     super(position, game, false, Action.LEFT);
   }
 

@@ -8,6 +8,8 @@ import tp1.logic.gameobjects.Mario;
 public interface GameItem {
     public boolean isSolid();
 
+    public boolean isSolid(Position pos);
+
     public boolean isAlive();
 
     public boolean isInPosition(Position pos);

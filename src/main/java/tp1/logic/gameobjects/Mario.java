@@ -3,8 +3,8 @@ package tp1.logic.gameobjects;
 import java.util.List;
 
 import tp1.logic.Action;
-import tp1.logic.GameModel;
 import tp1.logic.GameItem;
+import tp1.logic.GameWorld;
 import tp1.logic.Position;
 import tp1.view.Messages;
 
@@ -14,7 +14,7 @@ public class Mario extends MovingObject {
   private Position prevPosition;
   private ActionList actionList;
 
-  public Mario(Position position, GameModel game, boolean big) {
+  public Mario(Position position, GameWorld game, boolean big) {
     super(position, game, false, Action.RIGHT);
     this.big = big;
     this.isAlive = true;
@@ -34,7 +34,6 @@ public class Mario extends MovingObject {
       commandMovement();
     }
     checkPosition(); // chequea si esta en una posicion valida
-    checkInteractions(); // interactua con otros objetos if()
   }
 
   private void setPrevPosition() {
@@ -147,10 +146,6 @@ public class Mario extends MovingObject {
     }
   }
 
-  public boolean checkInteractions() {
-    return game.receiveInteractionsFrom(this);
-  }
-
   @Override
   public boolean interactWith(GameItem item) {
     boolean canInteract = item.isInPosition(this.pos);
@@ -193,11 +188,6 @@ public class Mario extends MovingObject {
   private void killGoomba(Goomba goomba) {
     goomba.setAlive(false);
     game.goombaWasKilled();
-  }
-
-  @Override
-  public void makeBig() {
-    this.big = true;
   }
 
   @Override

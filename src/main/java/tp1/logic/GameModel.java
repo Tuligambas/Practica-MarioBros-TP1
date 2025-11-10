@@ -9,12 +9,14 @@ public interface GameModel {
 
     public void reset();
 
+    // Cuidado que al igual no van aqui:
+
+    public void exit(); // esta si
+
+    public void reset(int level); // esta si
+
+    public void showHelp(); // esta no
+
     public void addActions(List<Action> actions);
-
-    public void exit();
-
-    public void reset(int level);
-
-    public void showHelp();
 
 }
