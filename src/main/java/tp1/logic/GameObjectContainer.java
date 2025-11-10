@@ -39,10 +39,11 @@ public class GameObjectContainer {
   }
 
   void update() {
-    for (GameObject obj : objects)
+    for (GameObject obj : objects) {
       obj.update();
+      doInteractions(obj);
+    }
     removeDead();
-
   }
 
   // Recorre la lista de objetos y si el objeto está muerto lo elimina
@@ -91,4 +92,14 @@ public class GameObjectContainer {
     return si;
   }
 
+  public void doInteractions(GameItem other) {
+    for (GameObject obj : objects) {
+      if (obj != other) {
+        // BIDIRECCIONAL: ambos intentan interactuar entre sí
+        other.interactWith(obj);
+        obj.interactWith(other);
+      }
+    }
+
+  }
 }

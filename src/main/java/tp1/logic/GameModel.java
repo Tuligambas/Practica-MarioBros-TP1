@@ -16,4 +16,5 @@ public interface GameModel {
     public void reset(int level);
 
     public void showHelp();
+
 }

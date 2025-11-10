@@ -3,7 +3,8 @@ package tp1.logic.gameobjects;
 import java.util.List;
 
 import tp1.logic.Action;
-import tp1.logic.Game;
+import tp1.logic.GameModel;
+import tp1.logic.GameItem;
 import tp1.logic.Position;
 import tp1.view.Messages;
 
@@ -13,7 +14,7 @@ public class Mario extends MovingObject {
   private Position prevPosition;
   private ActionList actionList;
 
-  public Mario(Position position, Game game, boolean big) {
+  public Mario(Position position, GameModel game, boolean big) {
     super(position, game, false, Action.RIGHT);
     this.big = big;
     this.isAlive = true;
@@ -151,23 +152,22 @@ public class Mario extends MovingObject {
   }
 
   @Override
-  public boolean interactWith(ExitDoor door) {
-    boolean interact = this.pos.equals(door.getPos());
-    if (interact)
-      game.marioExited();
-    return interact;
+  public boolean interactWith(GameItem item) {
+    boolean canInteract = item.isInPosition(this.pos);
+    if (canInteract) {
+      return item.receiveInteraction(this);
+    }
+    return false;
   }
 
   @Override
-  public boolean interactWith(Goomba goomba) {
-    boolean onTop = this.prevPosition.equals(goomba.getPos().move(Action.UP));
-    if (onTop) {
-      killGoomba(goomba);
-    } else if (samePos(goomba) || goombaOnYou(goomba) || goombaAgainstYou(goomba)) {
-      killGoomba(goomba);
+  public boolean receiveInteraction(Goomba goomba) {
+    if (samePos(goomba) || goombaAgainstYou(goomba)) {
       marioGetAttacked();
+      return true;
     }
-    return onTop;
+    return false;
+
   }
 
   private boolean goombaAgainstYou(Goomba goomba) {
@@ -178,7 +178,7 @@ public class Mario extends MovingObject {
     return pos.equals(g.getPos()) || pos.move(Action.UP).equals(g.getPos());
   }
 
-  private boolean goombaOnYou(Goomba g) {
+  public boolean goombaOnYou(Goomba g) {
     return prevPosition.equals(g.getPos()) || prevPosition.move(Action.UP).equals(g.getPos());
   }
 

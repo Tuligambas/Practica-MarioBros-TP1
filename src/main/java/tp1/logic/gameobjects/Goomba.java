@@ -2,6 +2,7 @@ package tp1.logic.gameobjects;
 
 import tp1.logic.Action;
 import tp1.logic.Game;
+import tp1.logic.GameItem;
 import tp1.logic.Position;
 import tp1.view.Messages;
 
@@ -35,14 +36,29 @@ public class Goomba extends MovingObject {
   }
 
   @Override
-  public boolean receiveInteraction(GameObject other) {
-    return other.interactWith(this);
-  }
-
-  @Override
   protected void checkPosition() {
     if (!this.pos.isInBoard()) {
       setAlive(false);
     }
   }
+
+  @Override
+  public boolean interactWith(GameItem other) {
+    boolean canInteract = other.isInPosition(this.pos);
+    if (canInteract) {
+      return other.receiveInteraction(this);
+    }
+    return false;
+  }
+
+  @Override
+  public boolean receiveInteraction(Mario mario) {
+    if (mario.goombaOnYou(this)) {
+      this.setAlive(false);
+      game.goombaWasKilled();
+      return true;
+    }
+    return false;
+  }
+
 }

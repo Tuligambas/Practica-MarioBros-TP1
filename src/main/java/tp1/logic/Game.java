@@ -13,14 +13,15 @@ public class Game implements GameModel, GameStatus, GameWorld {
   public static final int DIM_Y = 15;
 
   // ATRIBUTOS AÑADIDOS
+  private int points;
   private int nLevel;
   private int remainingTime;
   private int numLives = 3;
+  public boolean exit = false; // como finished
+  private boolean win = false; // como playerwon
+
   private GameObjectContainer gameObjects;
   private Mario mario;
-  public boolean exit = false;
-  private int points;
-  private boolean win = false;
 
   public Game(int nLevel) {
     this.nLevel = nLevel;
@@ -35,33 +36,80 @@ public class Game implements GameModel, GameStatus, GameWorld {
       initLevel1();
   }
 
-  public String positionToString(int col, int row) {
-    return gameObjects.positionToString(col, row);
+  // Métodos de GameModel
+  @Override
+  public boolean isFinished() {
+    return remainingTime == 0 || exit || playerLoses();
   }
 
-  public boolean playerWins() {
-    return win;
+  @Override
+  public void update() {
+    remainingTime--;
+    gameObjects.update();
   }
 
-  public boolean playerLoses() {
-    return (numLives <= 0);
+  @Override
+  public void reset() {
+    if (this.nLevel == 0)
+      initLevel0();
+    if (this.nLevel == 1)
+      initLevel1();
   }
 
-  public int remainingTime() {
-    return remainingTime;
-  }
-
+  // Métodos de GameStatus
+  @Override
   public int points() {
     return points;
   }
 
+  @Override
+  public boolean playerWins() {
+    return win;
+  }
+
+  @Override
+  public String positionToString(int col, int row) {
+    return gameObjects.positionToString(col, row);
+  }
+
+  @Override
+  public int getNumLives() {
+    return this.numLives;
+  }
+
+  @Override
+  public boolean playerLoses() {
+    return (numLives <= 0);
+  }
+
+  @Override
+  public int remainingTime() {
+    return remainingTime;
+  }
+
+  @Override
   public int numLives() {
     return numLives;
   }
 
+  // Métodos de GameWorld
   @Override
-  public String toString() {
-    return "TODO: Hola soy el game";
+  public boolean isSolid(Position p) {
+    return gameObjects.isSolid(p);
+  }
+
+  @Override
+  public void addPoints(int points) {
+    this.points += points;
+  }
+
+  @Override
+  public void marioArrived() {
+    this.win = true;
+    this.points += this.remainingTime * 10;
+    this.remainingTime = 0;
+    playerWins();
+
   }
 
   private void initLevel0() {
@@ -122,6 +170,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
     gameObjects.add(new Goomba(new Position(14, 12), this));
   }
 
+  // ver donde van
+
   public void exit() {
     this.exit = true;
   }
@@ -137,37 +187,17 @@ public class Game implements GameModel, GameStatus, GameWorld {
     System.out.println(Messages.HELP);
   }
 
-  public boolean isFinished() {
-    return remainingTime == 0 || exit || playerLoses();
-  }
-
-  public void update() {
-    remainingTime--;
-    gameObjects.update();
-  }
-
-  public boolean isSolid(Position p) {
-    return gameObjects.isSolid(p);
-  }
-
   public void addActions(List<Action> actionList) {
     gameObjects.addActions(actionList);
   }
 
-  public void marioExited() {
-    this.win = true;
-    this.points += this.remainingTime * 10;
-    this.remainingTime = 0;
-    playerWins();
-
-  }
-
+  // No van en interfaces
   public boolean receiveInteractionsFrom(Mario mario) {
     return gameObjects.receiveInteractionsFrom(mario);
   }
 
   public void goombaWasKilled() {
-    this.points += 100;
+    addPoints(100);
   }
 
   public void looseLife() {
@@ -177,15 +207,9 @@ public class Game implements GameModel, GameStatus, GameWorld {
     }
   }
 
-  public int getNumLives() {
-    return this.numLives;
-  }
-
-  public void reset() {
-    if (this.nLevel == 0)
-      initLevel0();
-    if (this.nLevel == 1)
-      initLevel1();
+  @Override
+  public String toString() {
+    return "TODO: Hola soy el game";
   }
 
 }
