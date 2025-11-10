@@ -5,47 +5,16 @@ import tp1.logic.Game;
 import tp1.logic.Position;
 import tp1.view.Messages;
 
-public class Goomba extends GameObject {
+public class Goomba extends MovingObject {
   private static final String ICON = Messages.GOOMBA;
-  private boolean isAlive;
-  private Action dir;
-  private boolean falling;
 
   public Goomba(Position position, Game game) {
-    super(position, game);
-    this.isAlive = true;
-    this.dir = Action.LEFT;
+    super(position, game, false, Action.LEFT);
   }
 
   @Override
   public void update() {
-    // si es solido abajo dos opciones
-    if (solidBelow()) {
-      // primero veo si estaba cayendo
-      if (falling) {
-        falling = false;
-      }
-      // si es solido a la izquierda o derecha cambia de direccion o pared
-      if (solidNextTo(dir) || wallNextTo(dir)) {
-        dir = dir.opposite();
-      }
-      // si no es solido a la izquierda o derecha se mueve
-      else {
-        move();
-      }
-    }
-    // si no es solido abajo cae
-    else {
-      this.falling = true;
-      fall();
-    }
-
-    // chequea si esta en una posicion valida
-    checkPosition();
-  }
-
-  private void move() {
-    this.pos = this.pos.move(dir);
+    automaticMovement();
   }
 
   public String getIcon() {
@@ -59,14 +28,6 @@ public class Goomba extends GameObject {
 
   public Action geAction() {
     return this.dir;
-  }
-
-  private void fall() {
-    this.pos = this.pos.move(Action.DOWN);
-    if (solidBelow()) {
-      this.falling = false;
-    }
-
   }
 
   public void setAlive(boolean alive) {
@@ -84,10 +45,4 @@ public class Goomba extends GameObject {
       setAlive(false);
     }
   }
-
-  public Object getAction() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getAction'");
-  }
-
 }

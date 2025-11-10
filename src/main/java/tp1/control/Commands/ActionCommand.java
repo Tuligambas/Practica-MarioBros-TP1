@@ -1,4 +1,4 @@
-package tp1.logic.Commands;
+package tp1.control.Commands;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class ActionCommand extends NoParamsCommand {
     }
 
     @Override
-    public Commands parse(String[] commandWords) {
+    public Command parse(String[] commandWords) {
         actions = new ArrayList<>();
         incorrectParameters = false;
         missingParameters = false;
