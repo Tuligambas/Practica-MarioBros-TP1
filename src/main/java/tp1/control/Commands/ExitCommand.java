@@ -1,6 +1,7 @@
 package tp1.control.Commands;
 
 import tp1.logic.Game;
+import tp1.logic.GameModel;
 import tp1.view.GameView;
 import tp1.view.Messages;
 
@@ -18,7 +19,7 @@ public class ExitCommand extends NoParamsCommand {
 
     // llama al game.exit para que se salga del juego
     @Override
-    public void execute(Game game, GameView view) {
+    public void execute(GameModel game, GameView view) {
         if (this.valid)
             game.exit();
     }

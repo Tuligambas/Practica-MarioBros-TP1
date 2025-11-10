@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tp1.logic.Action;
-import tp1.logic.Game;
+import tp1.logic.GameModel;
 import tp1.view.GameView;
 import tp1.view.Messages;
 
@@ -60,7 +60,7 @@ public class ActionCommand extends NoParamsCommand {
     }
 
     @Override
-    public void execute(Game game, GameView view) {
+    public void execute(GameModel game, GameView view) {
         if (missingParameters) {
             return;
         }
@@ -69,4 +69,5 @@ public class ActionCommand extends NoParamsCommand {
         game.update();
         view.showGame();
     }
+
 }

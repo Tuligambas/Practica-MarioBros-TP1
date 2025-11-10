@@ -8,7 +8,7 @@ import tp1.logic.gameobjects.Land;
 import tp1.logic.gameobjects.Mario;
 import tp1.view.Messages;
 
-public class Game {
+public class Game implements GameModel, GameStatus, GameWorld {
   public static final int DIM_X = 30;
   public static final int DIM_Y = 15;
 

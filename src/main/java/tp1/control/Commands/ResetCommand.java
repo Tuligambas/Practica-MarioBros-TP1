@@ -1,6 +1,6 @@
 package tp1.control.Commands;
 
-import tp1.logic.Game;
+import tp1.logic.GameModel;
 import tp1.view.GameView;
 import tp1.view.Messages;
 
@@ -19,7 +19,7 @@ public class ResetCommand extends NoParamsCommand {
 
     // llama al game.reset para que se reinicie el juego
     @Override
-    public void execute(Game game, GameView view) {
+    public void execute(GameModel game, GameView view) {
         // if (this.valid) {
         if (this.variousParameters)
             game.reset(this.level);
