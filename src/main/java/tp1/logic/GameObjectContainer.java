@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tp1.logic.gameobjects.GameObject;
-import tp1.logic.gameobjects.Mario;
 import tp1.view.Messages;
 
 public class GameObjectContainer {
@@ -79,17 +78,6 @@ public class GameObjectContainer {
     for (GameObject obj : objects) {
       obj.addAction(actionList);
     }
-  }
-
-  public boolean receiveInteractionsFrom(Mario mario) {
-    boolean si = false;
-    for (GameObject objeto : objects) {
-      if (objeto.receiveInteraction(mario)) {
-        si = true;
-      }
-    }
-
-    return si;
   }
 
   public void doInteractions(GameItem other) {

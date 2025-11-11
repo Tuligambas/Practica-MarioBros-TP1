@@ -194,11 +194,6 @@ public class Game implements GameModel, GameStatus, GameWorld {
     gameObjects.addActions(actionList);
   }
 
-  // No van en interfaces
-  public boolean receiveInteractionsFrom(Mario mario) {
-    return gameObjects.receiveInteractionsFrom(mario);
-  }
-
   public void goombaWasKilled() {
     addPoints(100);
   }

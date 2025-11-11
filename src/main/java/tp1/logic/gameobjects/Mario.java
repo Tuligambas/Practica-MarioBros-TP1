@@ -4,6 +4,7 @@ import java.util.List;
 
 import tp1.logic.Action;
 import tp1.logic.GameItem;
+import tp1.logic.GameObjectContainer;
 import tp1.logic.GameWorld;
 import tp1.logic.Position;
 import tp1.view.Messages;
@@ -152,6 +153,8 @@ public class Mario extends MovingObject {
     if (canInteract) {
       return item.receiveInteraction(this);
     }
+    System.out.println(GameObjectContainer.class.getResource("GameObjectContainer.class"));
+
     return false;
   }
 
