@@ -8,7 +8,7 @@ import tp1.logic.GameModel;
 import tp1.view.GameView;
 import tp1.view.Messages;
 
-public class ActionCommand extends NoParamsCommand {
+public class ActionCommand extends AbstractCommand { // He cambiado el noparams a abstract como dice el enunciado 
     private static final String NAME = Messages.COMMAND_ACTION_NAME;
     private static final String SHORTCUT = Messages.COMMAND_ACTION_SHORTCUT;
     private static final String DETAILS = Messages.COMMAND_ACTION_DETAILS;

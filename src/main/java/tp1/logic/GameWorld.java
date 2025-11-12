@@ -1,6 +1,5 @@
 package tp1.logic;
 
-import java.util.List;
 
 public interface GameWorld {
 
@@ -8,7 +7,7 @@ public interface GameWorld {
 
     public void marioArrived();
 
-    public void addActions(List<Action> actions); //
+    // public void addActions(List<Action> actions); // En teoría va en gamemodel
 
     public boolean isSolid(Position pos);
 

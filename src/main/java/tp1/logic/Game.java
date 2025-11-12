@@ -56,6 +56,25 @@ public class Game implements GameModel, GameStatus, GameWorld {
       initLevel1();
   }
 
+  @Override
+  public void exit() {
+    this.exit = true;
+  }
+
+  @Override
+  public void reset(int level) {
+    if (level == 0)
+      initLevel0();
+    if (level == 1)
+      initLevel1();
+  }
+
+  @Override
+  public void addActions(List<Action> actionList) {
+    gameObjects.addActions(actionList);
+  }
+
+
   // Métodos de GameStatus
   @Override
   public int points() {
@@ -111,6 +130,20 @@ public class Game implements GameModel, GameStatus, GameWorld {
     playerWins();
 
   }
+  
+  @Override
+  public void goombaWasKilled() {
+    addPoints(100);
+  }
+
+  @Override
+  public void looseLife() {
+    this.numLives--;
+    if (this.numLives > 0) {
+      reset();
+    }
+  }
+
 
   private void initLevel0() {
     this.remainingTime = 100;
@@ -170,40 +203,13 @@ public class Game implements GameModel, GameStatus, GameWorld {
     gameObjects.add(new Goomba(new Position(14, 12), this));
   }
 
-  // ver donde van
-  @Override
-  public void exit() {
-    this.exit = true;
-  }
-
-  @Override
-  public void reset(int level) {
-    if (level == 0)
-      initLevel0();
-    if (level == 1)
-      initLevel1();
-  }
-
+ 
+  /*
   @Override
   public void showHelp() {
     System.out.println(Messages.HELP);
   }
-
-  @Override
-  public void addActions(List<Action> actionList) {
-    gameObjects.addActions(actionList);
-  }
-
-  public void goombaWasKilled() {
-    addPoints(100);
-  }
-
-  public void looseLife() {
-    this.numLives--;
-    if (this.numLives > 0) {
-      reset();
-    }
-  }
+  */
 
   @Override
   public String toString() {

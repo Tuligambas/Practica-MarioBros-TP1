@@ -23,4 +23,5 @@ public interface GameItem {
     public boolean receiveInteraction(Mario obj);
 
     public boolean receiveInteraction(Goomba obj);
+
 }
