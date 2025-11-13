@@ -39,8 +39,7 @@ public class Mushroom extends MovingObject {
 
     @Override
     public boolean receiveInteraction(Mario mario) {
-
-        if (this.isInPosition(mario.getPos())) {
+        if (this.pos.equals(mario.getPos())) {
             if (!mario.isBig()) {
                 mario.makeBig();
             }
@@ -51,9 +50,21 @@ public class Mushroom extends MovingObject {
     }
 
     @Override
-    protected GameObject parse(String[] objWords, GameWorld game) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'parse'");
+    protected GameObject parse(String[] words, GameWorld game) {
+        if (words.length != 2)
+            return null;
+        String nombre = words[1];
+        if (matchObjectName(words[1])) {
+            String[] w = words[0].replace("(", " ").replace(",", " ").replace(")", " ").strip().split("( )+");
+            int fila = Integer.parseInt(w[0]);
+            int col = Integer.parseInt(w[1]);
+            Position pos = new Position(col, fila);
+
+            if (pos.isInBoard())
+                return new Mushroom(pos, game);
+
+        }
+        return null;
     }
 
 }

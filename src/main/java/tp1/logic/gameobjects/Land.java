@@ -43,6 +43,8 @@ public class Land extends GameObject {
 
   @Override
   protected GameObject parse(String[] words, GameWorld game) {
+    if (words.length != 2)
+      return null;
     String nombre = words[1];
     if (matchObjectName(words[1])) {
       String[] w = words[0].replace("(", " ").replace(",", " ").replace(")", " ").strip().split("( )+");

@@ -59,9 +59,31 @@ public class Goomba extends MovingObject {
   }
 
   @Override
-  protected GameObject parse(String[] objWords, GameWorld game) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'parse'");
+  protected GameObject parse(String[] words, GameWorld game) {
+    String nombre = words[1]; // guarda la segunda palabra como el nombre del objeto
+    Position posNueva; // Creamos la posición del nuevo goomba
+
+    if (words.length != 3) { // si no tiene 3 palabras, no es un goomba válido
+      return null;
+    }
+
+    if (matchObjectName(nombre)) {// comprueba que el nombre que le entra corresponde con el de goomba
+      String[] ws = words[0].replace("(", " ").replace(",", " ").replace(")", " ").strip().split("( )+");
+      int col = Integer.valueOf(ws[1]); // convierte lo que le llega en un entero (columna de la posición)
+      int row = Integer.valueOf(ws[0]); // convierte lo que le llega en un entero (fila de la posición)
+      posNueva = new Position(col, row); // crea la posición con la columna y fila que hemos conseguido
+      if (!posNueva.isInBoard()) { // si la posición conseguida no está en el tablero lanzará una excepción
+        return null;
+      }
+
+      Action dir = Action.StringToDir(words[2].toUpperCase()); // convierte la palabra en una dirección
+      if (dir == null || dir != Action.LEFT) { // si le ponemos una dirección que no existe o no es LEFT
+        return null;
+      }
+
+      return new Goomba(posNueva, game); // devuelve el nuevo goomba creado con los parámetros obtenidos
+    }
+    return null;
   }
 
   @Override

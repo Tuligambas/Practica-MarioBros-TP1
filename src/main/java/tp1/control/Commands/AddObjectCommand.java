@@ -7,7 +7,7 @@ import tp1.logic.gameobjects.GameObject;
 import tp1.view.GameView;
 import tp1.view.Messages;
 
-public class AddObjectCommand extends NoParamsCommand {
+public class AddObjectCommand extends AbstractCommand /* NoParamsCommand */ { // ver si esta bien
     public static final String NAME = Messages.COMMAND_LOAD_NAME;
     public static final String SHORTCUT = Messages.COMMAND_LOAD_SHORTCUT;
     public static final String DETAILS = Messages.COMMAND_LOAD_DETAILS;
@@ -49,9 +49,9 @@ public class AddObjectCommand extends NoParamsCommand {
             return null;
 
         // Copiamos SOLO los parámetros después del nombre del comando
-        String[] infoObj = Arrays.copyOfRange(words, 1, words.length);
-
-        return new AddObjectCommand(infoObj);
+        String[] params = Arrays.copyOfRange(words, 1, words.length);
+        // he cambiado el nombre a parms para que no se repita con infoObj
+        return new AddObjectCommand(params);
     }
 
 }

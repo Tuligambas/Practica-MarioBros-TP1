@@ -25,17 +25,49 @@ public class Box extends GameObject {
 
     @Override
     public boolean receiveInteraction(Mario mario) {
-        if (this.isInPosition(mario.getPos()) && !empty) {
+        if (!empty) {
             this.empty = true;
+            if (!mario.isBig()) {
+                mario.makeBig();
+            }
             return true;
         }
         return false;
     }
 
     @Override
-    protected GameObject parse(String[] objWords, GameWorld game) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'parse'");
+    protected GameObject parse(String[] words, GameWorld game) {
+        if (words.length != 3 && words.length != 2) { // si no tiene 3 palabras, no es un goomba válido
+            return null;
+        }
+        String nombre = words[1];
+        if (matchObjectName(words[1])) {
+            String[] w = words[0].replace("(", " ").replace(",", " ").replace(")", " ").strip().split("( )+");
+            int fila = Integer.parseInt(w[0]);
+            int col = Integer.parseInt(w[1]);
+            Position pos = new Position(col, fila);
+
+            if (!pos.isInBoard())
+                return null;
+
+            if (words.length == 2) { // Caja sin estado
+                return new Box(pos, game, true);
+            } else if (words.length == 3) {
+                String empty; // crea la fuerza de caída que lleva en ese momento, que siempre va a ser 0
+                empty = words[2]; // la lee, que normalmente es 0
+                boolean isEmpty;
+                if (empty.equalsIgnoreCase("FULL"))
+                    isEmpty = true;
+                else if (empty.equalsIgnoreCase("EMPTY"))
+                    isEmpty = false;
+                else
+                    return null;
+
+                return new Box(pos, game, isEmpty);
+            }
+
+        }
+        return null;
     }
 
     @Override

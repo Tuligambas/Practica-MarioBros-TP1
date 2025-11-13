@@ -31,6 +31,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
     this.numLives = 3;
     this.exit = false;
     this.remainingTime = 100;
+    if (nLevel == -1)
+      initLevelMenos1();
     if (nLevel == 0)
       initLevel0();
     if (nLevel == 1)
@@ -51,6 +53,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
 
   @Override
   public void reset() {
+    if (this.nLevel == -1)
+      initLevelMenos1();
     if (this.nLevel == 0)
       initLevel0();
     if (this.nLevel == 1)
@@ -64,6 +68,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
 
   @Override
   public void reset(int level) {
+    if (level == -1)
+      initLevelMenos1();
     if (level == 0)
       initLevel0();
     if (level == 1)
@@ -144,6 +150,21 @@ public class Game implements GameModel, GameStatus, GameWorld {
     }
   }
 
+  private void initLevelMenos1() {
+    this.remainingTime = 100;
+    this.win = false;
+    this.exit = false;
+    // Se reinicia todo
+    this.points = 0;
+    this.numLives = 3;
+    gameObjects = new GameObjectContainer();
+
+    // Poner a Mario en el inicio
+    this.mario = new Mario(new Position(1, Game.DIM_Y - 3), this, false);
+    gameObjects.add(this.mario);
+
+  }
+
   private void initLevel0() {
     this.remainingTime = 100;
     this.win = false;
@@ -201,13 +222,6 @@ public class Game implements GameModel, GameStatus, GameWorld {
     gameObjects.add(new Goomba(new Position(11, 12), this));
     gameObjects.add(new Goomba(new Position(14, 12), this));
   }
-
-  /*
-   * @Override
-   * public void showHelp() {
-   * System.out.println(Messages.HELP);
-   * }
-   */
 
   @Override
   public String toString() {

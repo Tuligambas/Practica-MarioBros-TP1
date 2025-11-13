@@ -1,5 +1,6 @@
 package tp1.logic;
 
+import tp1.logic.gameobjects.Box;
 import tp1.logic.gameobjects.ExitDoor;
 import tp1.logic.gameobjects.Goomba;
 import tp1.logic.gameobjects.Land;
@@ -23,5 +24,7 @@ public interface GameItem {
     public boolean receiveInteraction(Mario obj);
 
     public boolean receiveInteraction(Goomba obj);
+
+    public boolean receiveInteraction(Box box);
 
 }

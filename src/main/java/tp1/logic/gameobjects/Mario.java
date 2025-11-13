@@ -140,10 +140,10 @@ public class Mario extends MovingObject {
   @Override
   public boolean interactWith(GameItem item) {
     boolean canInteract = item.isInPosition(this.pos);
-    if (canInteract) {
+    boolean solidAndUp = item.isInPosition(this.pos.move(Action.UP)) && dir == Action.UP;
+    if (canInteract || solidAndUp) {
       return item.receiveInteraction(this);
     }
-
     return false;
   }
 
@@ -221,7 +221,8 @@ public class Mario extends MovingObject {
 
       Action dir = Action.StringToDir(words[2].toUpperCase()); // convierte la tercera palabra en una
                                                                // dirección
-      if (dir == null || (dir != Action.RIGHT && dir != Action.LEFT)) { // si le ponemos una dirección que no existe
+      if (dir == null || (dir != Action.RIGHT && dir != Action.LEFT)) { // si le ponemos una dirección que no existe o
+                                                                        // no es RIGHT o LEFT
         return null;
       }
 

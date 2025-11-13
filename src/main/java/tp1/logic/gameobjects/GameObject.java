@@ -106,6 +106,11 @@ public abstract class GameObject implements GameItem {
         return false;
     }
 
+    @Override
+    public boolean receiveInteraction(Box box) {
+        return false;
+    }
+
     protected abstract GameObject parse(String objWords[], GameWorld game); // implementar en todas las clases
 
     /*

@@ -4,7 +4,8 @@ import tp1.logic.GameModel;
 import tp1.view.GameView;
 import tp1.view.Messages;
 
-public class ResetCommand extends NoParamsCommand {
+public class ResetCommand extends AbstractCommand/* NoParamsCommand */ { // A lo mejor extiende de AbstractCommand y no
+                                                                         // de noParams
     private static final String NAME = Messages.COMMAND_RESET_NAME;
     private static final String SHORTCUT = Messages.COMMAND_RESET_SHORTCUT;
     private static final String DETAILS = Messages.COMMAND_RESET_DETAILS;
@@ -42,7 +43,7 @@ public class ResetCommand extends NoParamsCommand {
         if (commandWords.length > 1) {
             this.variousParameters = true;
             int nivel = Integer.parseInt(commandWords[1]);
-            if (nivel == 0 || nivel == 1)
+            if (nivel == -1 || nivel == 0 || nivel == 1)
                 this.level = nivel;
             return this;
         }
