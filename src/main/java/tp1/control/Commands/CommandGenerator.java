@@ -10,6 +10,7 @@ public class CommandGenerator {
             new UpdateCommand(),
             new ResetCommand(),
             new HelpCommand(),
+            new AddObjectCommand(),
             new ExitCommand());
 
     // RECORRE LA LISTA DE LOS COMANDOS, COMPROBANDO SI LO QUE LE ENTRA ES UN

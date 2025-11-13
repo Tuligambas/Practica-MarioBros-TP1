@@ -3,10 +3,11 @@ package tp1.logic;
 import java.util.List;
 
 import tp1.logic.gameobjects.ExitDoor;
+import tp1.logic.gameobjects.GameObject;
+import tp1.logic.gameobjects.GameObjectFactory;
 import tp1.logic.gameobjects.Goomba;
 import tp1.logic.gameobjects.Land;
 import tp1.logic.gameobjects.Mario;
-import tp1.view.Messages;
 
 public class Game implements GameModel, GameStatus, GameWorld {
   public static final int DIM_X = 30;
@@ -74,7 +75,6 @@ public class Game implements GameModel, GameStatus, GameWorld {
     gameObjects.addActions(actionList);
   }
 
-
   // Métodos de GameStatus
   @Override
   public int points() {
@@ -130,7 +130,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
     playerWins();
 
   }
-  
+
   @Override
   public void goombaWasKilled() {
     addPoints(100);
@@ -143,7 +143,6 @@ public class Game implements GameModel, GameStatus, GameWorld {
       reset();
     }
   }
-
 
   private void initLevel0() {
     this.remainingTime = 100;
@@ -203,17 +202,26 @@ public class Game implements GameModel, GameStatus, GameWorld {
     gameObjects.add(new Goomba(new Position(14, 12), this));
   }
 
- 
   /*
-  @Override
-  public void showHelp() {
-    System.out.println(Messages.HELP);
-  }
-  */
+   * @Override
+   * public void showHelp() {
+   * System.out.println(Messages.HELP);
+   * }
+   */
 
   @Override
   public String toString() {
     return "TODO: Hola soy el game";
+  }
+
+  @Override
+  public void addObject(GameObject obj) {
+    gameObjects.add(obj);
+  }
+
+  @Override
+  public GameObject parseObject(String[] infoObj) {
+    return GameObjectFactory.parse(infoObj, this);
   }
 
 }

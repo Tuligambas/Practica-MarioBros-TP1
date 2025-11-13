@@ -76,6 +76,23 @@ public class Messages {
 	public static final String MARIO_RIGHT = "🧍";// "🧍➡️";
 	public static final String MARIO_LEFT = "🚶";// "⬅️🚶";
 	public static final String GOOMBA = "🐻";
+	public static final String MUSHROOM = "🍄";
+	public static final String BOX_CERRADO = "?";
+	public static final String BOX_ABIERTO = "0";
+
+	public static final String SHORTCUT_EXITDOOR = "ED";
+	public static final String SHORTCUT_LAND = "L";
+	public static final String SHORTCUT_GOOMBA = "G";
+	public static final String SHORTCUT_MARIO = "M";
+	public static final String SHORTCUT_MUSHROOM = "MU";
+	public static final String SHORTCUT_BOX = "B";
+
+	public static final String LAND_NAME = "Land";
+	public static final String MARIO_NAME = "Mario";
+	public static final String GOOMBA_NAME = "Goomba";
+	public static final String MUSHROOM_NAME = "Mushroom";
+	public static final String BOX_NAME = "Box";
+	public static final String EXITDOOR_NAME = "ExitDoor";
 
 	public static final String COMMAND_EXIT_NAME = "exit";
 	public static final String COMMAND_EXIT_SHORTCUT = "e";
@@ -101,6 +118,12 @@ public class Messages {
 	public static final String COMMAND_ACTION_SHORTCUT = "a";
 	public static final String COMMAND_ACTION_DETAILS = "Performs an action";
 	public static final String COMMAND_ACTION_HELP = "[a]ction: performs an action";
+
+	// AddObject
+	public static final String COMMAND_LOAD_NAME = "addObject";
+	public static final String COMMAND_LOAD_SHORTCUT = "aO";
+	public static final String COMMAND_LOAD_DETAILS = "[a]dd[O]bject <object_description>";
+	public static final String COMMAND_LOAD_HELP = "adds to the board the object given by object_description";
 
 	public static char[] showError(String commandIncorrectParameterNumber) {
 		return String.format(ERROR, commandIncorrectParameterNumber).toCharArray();

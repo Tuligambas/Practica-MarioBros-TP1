@@ -1,16 +1,21 @@
 package tp1.logic.gameobjects;
 
 import tp1.logic.Action;
-import tp1.logic.GameWorld;
 import tp1.logic.GameItem;
+import tp1.logic.GameWorld;
 import tp1.logic.Position;
 import tp1.view.Messages;
 
 public class Goomba extends MovingObject {
   private static final String ICON = Messages.GOOMBA;
+  private static final String NAME = Messages.GOOMBA_NAME;
+  private static final String SHORTCUT = Messages.SHORTCUT_GOOMBA;
 
   public Goomba(Position position, GameWorld game) {
     super(position, game, false, Action.LEFT);
+  }
+
+  public Goomba() {
   }
 
   @Override
@@ -18,21 +23,13 @@ public class Goomba extends MovingObject {
     automaticMovement();
   }
 
+  @Override
   public String getIcon() {
     return ICON;
   }
 
-  @Override
-  public boolean isAlive() {
-    return isAlive;
-  }
-
   public Action geAction() {
     return this.dir;
-  }
-
-  public void setAlive(boolean alive) {
-    this.isAlive = alive;
   }
 
   @Override
@@ -59,6 +56,22 @@ public class Goomba extends MovingObject {
       return true;
     }
     return false;
+  }
+
+  @Override
+  protected GameObject parse(String[] objWords, GameWorld game) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'parse'");
+  }
+
+  @Override
+  protected String getName() {
+    return NAME;
+  }
+
+  @Override
+  protected String getShortCut() {
+    return SHORTCUT;
   }
 
 }

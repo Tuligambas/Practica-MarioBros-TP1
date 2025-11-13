@@ -40,8 +40,8 @@ public class GameObjectContainer {
   void update() {
     for (GameObject obj : objects) {
       obj.update();
-      doInteractions(obj);
     }
+    doInteractions();
     removeDead();
   }
 
@@ -80,14 +80,22 @@ public class GameObjectContainer {
     }
   }
 
-  public void doInteractions(GameItem other) {
-    for (GameObject obj : objects) {
-      if (obj != other) {
-        // BIDIRECCIONAL: ambos intentan interactuar entre sí
-        other.interactWith(obj);
-        obj.interactWith(other);
+  // Recorre todas las parejas de objetos SIN repetirlas
+  private void doInteractions() {
+    int n = objects.size();
+
+    for (int i = 0; i < n; i++) {
+      GameObject a = objects.get(i);
+      if (a.isAlive()) {
+        for (int j = i + 1; j < n; j++) {
+          GameObject b = objects.get(j);
+          if (b.isAlive()) {
+            a.interactWith(b);
+            b.interactWith(a);
+          }
+        }
       }
     }
-
   }
+
 }

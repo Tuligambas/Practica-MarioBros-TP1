@@ -4,21 +4,20 @@ import java.util.List;
 
 import tp1.logic.Action;
 import tp1.logic.GameItem;
-import tp1.logic.GameObjectContainer;
 import tp1.logic.GameWorld;
 import tp1.logic.Position;
 import tp1.view.Messages;
 
 public class Mario extends MovingObject {
   private boolean big;
-  private boolean isAlive;
   private Position prevPosition;
   private ActionList actionList;
+  private static final String NAME = Messages.MARIO_NAME;
+  private static final String SHORTCUT = Messages.SHORTCUT_MARIO;
 
   public Mario(Position position, GameWorld game, boolean big) {
     super(position, game, false, Action.RIGHT);
     this.big = big;
-    this.isAlive = true;
     this.actionList = new ActionList();
   }
 
@@ -78,12 +77,14 @@ public class Mario extends MovingObject {
 
   }
 
+  @Override
   protected boolean solidNextTo(Action dir) {
     Position next = this.pos.move(dir);
     Position next_big = this.pos.move(dir).move(Action.UP);
     return this.game.isSolid(next) || game.isSolid(next_big);
   }
 
+  @Override
   public boolean isInPosition(Position p) {
     if (this.pos.equals(p)) {
       return true;
@@ -97,10 +98,6 @@ public class Mario extends MovingObject {
   }
 
   @Override
-  public boolean isAlive() {
-    return isAlive;
-  }
-
   public String getIcon() {
     String icon = " ";
     switch (this.dir) {
@@ -140,20 +137,12 @@ public class Mario extends MovingObject {
     }
   }
 
-  private void fall() {
-    this.pos = this.pos.move(Action.DOWN);
-    if (solidBelow()) {
-      this.isfalling = false;
-    }
-  }
-
   @Override
   public boolean interactWith(GameItem item) {
     boolean canInteract = item.isInPosition(this.pos);
     if (canInteract) {
       return item.receiveInteraction(this);
     }
-    System.out.println(GameObjectContainer.class.getResource("GameObjectContainer.class"));
 
     return false;
   }
@@ -188,10 +177,13 @@ public class Mario extends MovingObject {
     }
   }
 
-  private void killGoomba(Goomba goomba) {
-    goomba.setAlive(false);
-    game.goombaWasKilled();
-  }
+  /*
+   * private void killGoomba(Goomba goomba) {
+   * goomba.setAlive(false);
+   * game.goombaWasKilled();
+   * }
+   */
+  // Eliminar porque no se usa
 
   @Override
   protected void checkPosition() {
@@ -201,4 +193,62 @@ public class Mario extends MovingObject {
     }
   }
 
+  public void makeBig() {
+    this.big = true;
+  }
+
+  public boolean isBig() {
+    return big;
+  }
+
+  @Override
+  protected GameObject parse(String[] words, GameWorld game) {
+    String nombre = words[1]; // guarda la segunda palabra como el nombre del objeto
+    Position posNueva; // Creamos la posición del nuevo mario
+
+    if (words.length != 4) { // si no tiene 4 palabras, no es un mario válido
+      return null;
+    }
+
+    if (matchObjectName(nombre)) {// comprueba que el nombre que le entra corresponde con el de mario
+      String[] ws = words[0].replace("(", " ").replace(",", " ").replace(")", " ").strip().split("( )+");
+      int col = Integer.valueOf(ws[1]); // convierte lo que le llega en un entero (columna de la posición)
+      int row = Integer.valueOf(ws[0]); // convierte lo que le llega en un entero (fila de la posición)
+      posNueva = new Position(col, row); // crea la posición con la columna y fila que hemos conseguido
+      if (!posNueva.isInBoard()) { // si la posición conseguida no está en el tablero lanzará una excepción
+        return null;
+      }
+
+      Action dir = Action.StringToDir(words[2].toUpperCase()); // convierte la tercera palabra en una
+                                                               // dirección
+      if (dir == null || (dir != Action.RIGHT && dir != Action.LEFT)) { // si le ponemos una dirección que no existe
+        return null;
+      }
+
+      String size; // crea la fuerza de caída que lleva en ese momento, que siempre va a ser 0
+      size = words[3]; // la lee, que normalmente es 0
+      boolean big;
+      if (size.equalsIgnoreCase("BIG"))
+        big = true;
+      else if (size.equalsIgnoreCase("SMALL"))
+        big = false;
+      else
+        return null;
+
+      return new Mario(posNueva, game, big); // devuelve el nuevo mario creado con los parámetros obtenidos
+
+    }
+    return null;
+
+  }
+
+  @Override
+  protected String getName() {
+    return NAME;
+  }
+
+  @Override
+  protected String getShortCut() {
+    return SHORTCUT;
+  }
 }
