@@ -152,9 +152,14 @@ public class Mario extends MovingObject {
     if (prevPosition.above(goomba.getPos())) {
       return true;
     }
+
     if (goomba.getPos().above(this.pos)) {
-      return true;
+    marioGetAttacked();
+    goomba.setAlive(false);
+    game.goombaWasKilled();
+    return true;
     }
+
     // if (samePos(goomba) || goombaAgainstYou(goomba))
     marioGetAttacked();
     return true;
