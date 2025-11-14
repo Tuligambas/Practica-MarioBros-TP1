@@ -7,7 +7,6 @@ public abstract class AbstractCommand implements Command {
     private final String shorcut;
     private final String details;
     private final String help;
-    protected boolean valid = false;
 
     // CONSTRUCTORA
     public AbstractCommand(String name, String shorcut, String details, String help) {
@@ -15,7 +14,6 @@ public abstract class AbstractCommand implements Command {
         this.shorcut = shorcut;
         this.details = details;
         this.help = help;
-        this.valid = false;
     }
 
     protected String getName() {

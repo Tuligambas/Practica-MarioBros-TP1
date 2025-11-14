@@ -19,11 +19,6 @@ public class ExitDoor extends GameObject {
   }
 
   @Override
-  public boolean isSolid() {
-    return true;
-  }
-
-  @Override
   public String getIcon() {
     return ICON;
   }
@@ -31,6 +26,13 @@ public class ExitDoor extends GameObject {
   @Override
   public String getName() {
     return NAME;
+  }
+
+  @Override
+  public boolean receiveInteraction(Mario mario) {
+    game.marioArrived();
+    return true;
+
   }
 
   @Override

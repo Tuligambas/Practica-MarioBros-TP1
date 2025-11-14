@@ -26,45 +26,27 @@ public class ActionCommand extends AbstractCommand { // He cambiado el noparams 
     @Override
     public Command parse(String[] commandWords) {
         actions = new ArrayList<>();
-        incorrectParameters = false;
-        missingParameters = false;
-        this.valid = false;
 
-        if (!matchCommandName(commandWords[0])) {
+        if (!matchCommandName(commandWords[0]) || commandWords.length < 2) {
             return null;
-        }
-
-        if (commandWords.length < 2) {
-            System.out.println(Messages.ERROR.formatted(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER));
-            this.missingParameters = true;
-            return this;
         }
 
         // Si tiene más palabras, las intentamos convertir a acciones
         for (int i = 1; i < commandWords.length; i++) {
             Action act = Action.StringToDir(commandWords[i]);
-            if (act != null) {
+            if (act != null)
                 actions.add(act);
-            } else {
-                System.out.println(Messages.ERROR.formatted(Messages.UNKNOWN_ACTION.formatted(commandWords[i])));
-                this.incorrectParameters = true;
-            }
+
         }
 
         ActionCommand cmd = new ActionCommand();
         cmd.actions = actions;
-        cmd.incorrectParameters = this.incorrectParameters;
-        cmd.missingParameters = this.missingParameters;
 
         return cmd;
     }
 
     @Override
     public void execute(GameModel game, GameView view) {
-        if (missingParameters) {
-            return;
-        }
-
         game.addActions(actions);
         game.update();
         view.showGame();

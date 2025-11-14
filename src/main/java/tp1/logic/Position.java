@@ -47,4 +47,8 @@ public class Position {
     return this.col == -1 || this.col == Game.DIM_X || this.row == -1 || this.row == Game.DIM_Y - 1;
   }
 
+  public boolean above(Position p) {
+    return this.col == p.col && this.row + 1 == p.row;
+  }
+
 }

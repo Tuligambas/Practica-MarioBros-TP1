@@ -1,7 +1,5 @@
 package tp1.control.Commands;
 
-import tp1.view.Messages;
-
 public abstract class NoParamsCommand extends AbstractCommand {
 
     // CONSTRUCTORA
@@ -11,20 +9,11 @@ public abstract class NoParamsCommand extends AbstractCommand {
 
     @Override
     public Command parse(String[] commandWords) {
-        this.valid = false;
         // no hay palabras o el comando no coincide
-        if (commandWords.length == 0 || !matchCommandName(commandWords[0])) {
+        if (commandWords.length == 0 || !matchCommandName(commandWords[0]) || commandWords.length > 1) {
             return null;
         }
 
-        // comando correcto pero con más parámetros de los esperados
-        if (commandWords.length > 1) {
-            System.out.println(Messages.ERROR.formatted(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER));
-            return this;
-        }
-
-        // comando correcto
-        this.valid = true;
         return this;
     }
 }

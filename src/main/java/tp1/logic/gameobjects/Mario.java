@@ -149,11 +149,15 @@ public class Mario extends MovingObject {
 
   @Override
   public boolean receiveInteraction(Goomba goomba) {
-    if (samePos(goomba) || goombaAgainstYou(goomba)) {
-      marioGetAttacked();
+    if (prevPosition.above(goomba.getPos())) {
       return true;
     }
-    return false;
+    if (goomba.getPos().above(this.pos)) {
+      return true;
+    }
+    // if (samePos(goomba) || goombaAgainstYou(goomba))
+    marioGetAttacked();
+    return true;
 
   }
 
@@ -252,4 +256,5 @@ public class Mario extends MovingObject {
   protected String getShortCut() {
     return SHORTCUT;
   }
+
 }

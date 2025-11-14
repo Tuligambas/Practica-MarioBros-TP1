@@ -1,12 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: tp1.Tests_V2_2
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 7, Errors: 0, Skipped: 0, Time elapsed: 0.023 s <<< FAILURE! -- in tp1.Tests_V2_2
-tp1.Tests_V2_2.test00 -- Time elapsed: 0.002 s <<< FAILURE!
+Tests run: 7, Failures: 7, Errors: 0, Skipped: 0, Time elapsed: 0.029 s <<< FAILURE! -- in tp1.Tests_V2_2
+tp1.Tests_V2_2.test00 -- Time elapsed: 0.001 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
-Line: 1
-Expected: MarioBross 2.X
-Actual  : MarioBross 1.0
+Line: 30
+Expected:    [a]dd[O]bject <object_description>: adds to the board the object given by object_description.
+Actual  :    [a]ction [[R]IGHT | [L]EFT | [U]P | [D]OWN | [S]TOP]+: user performs actions
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
@@ -18,11 +18,11 @@ Actual  : MarioBross 1.0
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V2_2.test01 -- Time elapsed: 0.004 s <<< FAILURE!
+tp1.Tests_V2_2.test01 -- Time elapsed: 0.006 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
-Line: 1
-Expected: MarioBross 2.X
-Actual  : MarioBross 1.0
+Line: 29
+Expected: Time: 100
+Actual  : Invalid game object: (10,0) Goomba
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
@@ -34,11 +34,11 @@ Actual  : MarioBross 1.0
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V2_2.test02 -- Time elapsed: 0.006 s <<< FAILURE!
+tp1.Tests_V2_2.test02 -- Time elapsed: 0.004 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
-Line: 1
-Expected: MarioBross 2.X
-Actual  : MarioBross 1.0
+Line: 81
+Expected: Time: 100
+Actual  : Time: 97
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
@@ -50,11 +50,11 @@ Actual  : MarioBross 1.0
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V2_2.test03 -- Time elapsed: 0.003 s <<< FAILURE!
+tp1.Tests_V2_2.test03 -- Time elapsed: 0.004 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
-Line: 1
-Expected: MarioBross 2.X
-Actual  : MarioBross 1.0
+Line: 47
+Expected:  12┃                                                                                                                        ┃12
+Actual  :  12┃     🧍                                                                                                                 ┃12
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
@@ -66,11 +66,11 @@ Actual  : MarioBross 1.0
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V2_2.test04 -- Time elapsed: 0.001 s <<< FAILURE!
+tp1.Tests_V2_2.test04 -- Time elapsed: 0.002 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
-Line: 1
-Expected: MarioBross 2.X
-Actual  : MarioBross 1.0
+Line: 32
+Expected: [ERROR] Error: Invalid game object: (-1,-1) Land
+Actual  : Invalid game object: (-1,-1) Land
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
@@ -82,11 +82,11 @@ Actual  : MarioBross 1.0
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V2_2.test05 -- Time elapsed: 0.003 s <<< FAILURE!
+tp1.Tests_V2_2.test05 -- Time elapsed: 0.004 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
-Line: 1
-Expected: MarioBross 2.X
-Actual  : MarioBross 1.0
+Line: 9
+Expected:   0┃                                                                             🐻                                         ┃0
+Actual  :   0┃                                                                                                                        ┃0
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
@@ -100,9 +100,9 @@ Actual  : MarioBross 1.0
 
 tp1.Tests_V2_2.test06 -- Time elapsed: 0.003 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
-Line: 1
-Expected: MarioBross 2.X
-Actual  : MarioBross 1.0
+Line: 9
+Expected:   0┃                                                                             🐻                                         ┃0
+Actual  :   0┃                                                                                                                        ┃0
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)

@@ -21,18 +21,17 @@ public class ResetCommand extends AbstractCommand/* NoParamsCommand */ { // A lo
     // llama al game.reset para que se reinicie el juego
     @Override
     public void execute(GameModel game, GameView view) {
-        // if (this.valid) {
-        if (this.variousParameters)
-            game.reset(this.level);
-        else
+        if (variousParameters == false) {
             game.reset();
-        view.showGame();
-        // }
+            view.showGame();
+        } else if (level == -1 || level == 0 || level == 1) {
+            game.reset(level);
+            view.showGame();
+        }
     }
 
     @Override
     public Command parse(String[] commandWords) {
-        this.valid = false;
         // no hay palabras o el comando no coincide
         if (commandWords.length == 0 || !matchCommandName(commandWords[0]))
             return null;
@@ -42,14 +41,13 @@ public class ResetCommand extends AbstractCommand/* NoParamsCommand */ { // A lo
         // comando correcto pero con más parámetros de los esperados
         if (commandWords.length > 1) {
             this.variousParameters = true;
-            int nivel = Integer.parseInt(commandWords[1]);
-            if (nivel == -1 || nivel == 0 || nivel == 1)
-                this.level = nivel;
-            return this;
+            this.level = Integer.parseInt(commandWords[1]);
+            if (this.level != 0 && this.level != 1 && this.level != -1) {
+                System.out.println("[ERROR] Error: Not valid level number");
+            }
         }
 
         // comando correcto
-        this.valid = true;
         return this;
     }
 }

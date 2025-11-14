@@ -1,4 +1,4 @@
-MarioBross 1.0
+MarioBross 2.X
 
 Time: 100
 Points: 0
@@ -53,7 +53,7 @@ Available commands:
 
 Command > [DEBUG] Executing: help con argumentosIncorrectos
 
-[ERROR] Error: Incorrect parameter number
+[ERROR] Error: Unknown command: help con argumentosIncorrectos
 Command > [DEBUG] Executing: n
 
 [ERROR] Error: Unknown command: n

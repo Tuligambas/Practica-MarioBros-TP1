@@ -38,10 +38,14 @@ public class GameObjectContainer {
   }
 
   void update() {
-    for (GameObject obj : objects) {
-      obj.update();
+    int n = objects.size();
+    for (int i = 0; i < n; i++) {
+      GameObject a = objects.get(i);
+      if (a.isAlive()) {
+        a.update();
+        doInteractionsOf(a);
+      }
     }
-    doInteractions();
     removeDead();
   }
 
@@ -81,19 +85,11 @@ public class GameObjectContainer {
   }
 
   // Recorre todas las parejas de objetos SIN repetirlas
-  private void doInteractions() {
-    int n = objects.size();
-
-    for (int i = 0; i < n; i++) {
-      GameObject a = objects.get(i);
-      if (a.isAlive()) {
-        for (int j = i + 1; j < n; j++) {
-          GameObject b = objects.get(j);
-          if (b.isAlive()) {
-            a.interactWith(b);
-            b.interactWith(a);
-          }
-        }
+  private void doInteractionsOf(GameObject a) {
+    for (GameObject b : objects) {
+      if (b != a && b.isAlive()) {
+        a.interactWith(b);
+        b.interactWith(a);
       }
     }
   }

@@ -50,12 +50,9 @@ public class Goomba extends MovingObject {
 
   @Override
   public boolean receiveInteraction(Mario mario) {
-    if (mario.goombaOnYou(this)) {
-      this.setAlive(false);
-      game.goombaWasKilled();
-      return true;
-    }
-    return false;
+    this.setAlive(false);
+    game.goombaWasKilled();
+    return true;
   }
 
   @Override
