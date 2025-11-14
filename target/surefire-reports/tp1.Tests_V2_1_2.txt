@@ -1,0 +1,100 @@
+-------------------------------------------------------------------------------
+Test set: tp1.Tests_V2_1_2
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 6, Errors: 0, Skipped: 0, Time elapsed: 0.101 s <<< FAILURE! -- in tp1.Tests_V2_1_2
+tp1.Tests_V2_1_2.test00 -- Time elapsed: 0.034 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+Line: 1
+Expected: MarioBross 2.X
+Actual  : MarioBross 1.0
+
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
+	at tp1.TestsUtils.checkOutput(TestsUtils.java:107)
+	at tp1.TestsUtils.parameterizedTest(TestsUtils.java:125)
+	at tp1.Tests_V2_1_2.testN(Tests_V2_1_2.java:20)
+	at tp1.Tests_V2_1_2.test00(Tests_V2_1_2.java:29)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+tp1.Tests_V2_1_2.test01 -- Time elapsed: 0.022 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+Line: 1
+Expected: MarioBross 2.X
+Actual  : MarioBross 1.0
+
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
+	at tp1.TestsUtils.checkOutput(TestsUtils.java:107)
+	at tp1.TestsUtils.parameterizedTest(TestsUtils.java:125)
+	at tp1.Tests_V2_1_2.testN(Tests_V2_1_2.java:20)
+	at tp1.Tests_V2_1_2.test01(Tests_V2_1_2.java:34)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+tp1.Tests_V2_1_2.test02 -- Time elapsed: 0.008 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+Line: 1
+Expected: MarioBross 2.X
+Actual  : MarioBross 1.0
+
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
+	at tp1.TestsUtils.checkOutput(TestsUtils.java:107)
+	at tp1.TestsUtils.parameterizedTest(TestsUtils.java:125)
+	at tp1.Tests_V2_1_2.testN(Tests_V2_1_2.java:20)
+	at tp1.Tests_V2_1_2.test02(Tests_V2_1_2.java:39)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+tp1.Tests_V2_1_2.test03 -- Time elapsed: 0.012 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+Line: 1
+Expected: MarioBross 2.X
+Actual  : MarioBross 1.0
+
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
+	at tp1.TestsUtils.checkOutput(TestsUtils.java:107)
+	at tp1.TestsUtils.parameterizedTest(TestsUtils.java:125)
+	at tp1.Tests_V2_1_2.testN(Tests_V2_1_2.java:20)
+	at tp1.Tests_V2_1_2.test03(Tests_V2_1_2.java:44)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+tp1.Tests_V2_1_2.test04 -- Time elapsed: 0.006 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+Line: 1
+Expected: MarioBross 2.X
+Actual  : MarioBross 1.0
+
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
+	at tp1.TestsUtils.checkOutput(TestsUtils.java:107)
+	at tp1.TestsUtils.parameterizedTest(TestsUtils.java:125)
+	at tp1.Tests_V2_1_2.testN(Tests_V2_1_2.java:20)
+	at tp1.Tests_V2_1_2.test04(Tests_V2_1_2.java:49)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+tp1.Tests_V2_1_2.test05 -- Time elapsed: 0.006 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+Line: 1
+Expected: MarioBross 2.X
+Actual  : MarioBross 1.0
+
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
+	at tp1.TestsUtils.checkOutput(TestsUtils.java:107)
+	at tp1.TestsUtils.parameterizedTest(TestsUtils.java:125)
+	at tp1.Tests_V2_1_2.testN(Tests_V2_1_2.java:20)
+	at tp1.Tests_V2_1_2.test05(Tests_V2_1_2.java:54)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

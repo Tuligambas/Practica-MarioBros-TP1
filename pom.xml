@@ -1,4 +1,4 @@
-este es mi pom <project>
+<project>
     <modelVersion>4.0.0</modelVersion>
     <groupId>es.ucm.fdi.tp</groupId>  <!-- tu organización; ej.: es.ucm.fdi.tp -->
     <artifactId>p2</artifactId>  <!-- nombre del proyecto -->
