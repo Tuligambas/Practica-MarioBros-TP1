@@ -31,6 +31,7 @@ public class AddObjectCommand extends AbstractCommand /* NoParamsCommand */ { //
         GameObject obj = game.parseObject(infoObj);
 
         if (obj == null) {
+            view.showError("Invalid game object: " + fullDescription);
             return;
         }
 
