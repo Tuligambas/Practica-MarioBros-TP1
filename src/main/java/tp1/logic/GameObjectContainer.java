@@ -87,7 +87,7 @@ public class GameObjectContainer {
   // Recorre todas las parejas de objetos SIN repetirlas
   public void doInteractionsOf(GameItem a) {
     for (GameObject b : objects) {
-      if (b != a && b.isAlive()) {
+      if (b != a && b.isAlive() && a.isAlive()) {
         a.interactWith(b);
         b.interactWith(a);
       }

@@ -26,7 +26,7 @@ public abstract class GameObject implements GameItem {
 
     // MÉTODO QUE COMPRUEBA SI EL NOMBRE QUE TE LLEGA ES EL DEL OBJETO
     protected boolean matchObjectName(String name) {
-        return getName().equalsIgnoreCase(name); // lo pone todo en minúsculas
+        return getName().equalsIgnoreCase(name) || getShortCut().equalsIgnoreCase(name); // lo pone todo en minúsculas
     }
 
     // todos los objs se actualizan con su propio update

@@ -66,8 +66,8 @@ public class Goomba extends MovingObject {
 
     if (matchObjectName(nombre)) {// comprueba que el nombre que le entra corresponde con el de goomba
       String[] ws = words[0].replace("(", " ").replace(",", " ").replace(")", " ").strip().split("( )+");
-      int col = Integer.valueOf(ws[1]); // convierte lo que le llega en un entero (columna de la posición)
-      int row = Integer.valueOf(ws[0]); // convierte lo que le llega en un entero (fila de la posición)
+      int col = Integer.parseInt(ws[1]); // convierte lo que le llega en un entero (columna de la posición)
+      int row = Integer.parseInt(ws[0]); // convierte lo que le llega en un entero (fila de la posición)
       posNueva = new Position(col, row); // crea la posición con la columna y fila que hemos conseguido
       if (!posNueva.isInBoard()) // si la posición conseguida no está en el tablero lanzará una excepción
         return null;
@@ -76,7 +76,7 @@ public class Goomba extends MovingObject {
         return new Goomba(posNueva, game);
 
       Action dir = Action.StringToDir(words[2].toUpperCase()); // convierte la palabra en una dirección
-      if (dir == null || dir != Action.LEFT) { // si le ponemos una dirección que no existe o no es LEFT
+      if (dir == null) { // si le ponemos una dirección que no existe
         return null;
       }
 

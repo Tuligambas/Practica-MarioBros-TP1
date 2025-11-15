@@ -154,9 +154,8 @@ public class Mario extends MovingObject {
 
   @Override
   public boolean receiveInteraction(Goomba goomba) {
-    if (prevPosition.above(goomba.getPos())) {
+    if (prevPosition.above(goomba.getPos()))
       return true;
-    }
 
     if (goomba.getPos().above(this.pos)) {
       marioGetAttacked();
@@ -167,15 +166,6 @@ public class Mario extends MovingObject {
 
     marioGetAttacked();
     return true;
-
-  }
-
-  private boolean goombaAgainstYou(Goomba goomba) {
-    return goomba.getPos().move(goomba.geAction()).equals(pos);
-  }
-
-  private boolean samePos(Goomba g) {
-    return pos.equals(g.getPos()) || pos.move(Action.UP).equals(g.getPos());
   }
 
   public boolean goombaOnYou(Goomba g) {
@@ -186,6 +176,7 @@ public class Mario extends MovingObject {
     if (this.big) {
       this.big = false;
     } else {
+      this.isAlive = false;
       game.looseLife();
     }
   }
@@ -225,8 +216,8 @@ public class Mario extends MovingObject {
 
     if (matchObjectName(nombre)) {// comprueba que el nombre que le entra corresponde con el de mario
       String[] ws = words[0].replace("(", " ").replace(",", " ").replace(")", " ").strip().split("( )+");
-      int col = Integer.valueOf(ws[1]); // convierte lo que le llega en un entero (columna de la posición)
-      int row = Integer.valueOf(ws[0]); // convierte lo que le llega en un entero (fila de la posición)
+      int col = Integer.parseInt(ws[1]); // convierte lo que le llega en un entero (columna de la posición)
+      int row = Integer.parseInt(ws[0]); // convierte lo que le llega en un entero (fila de la posición)
       posNueva = new Position(col, row); // crea la posición con la columna y fila que hemos conseguido
       if (!posNueva.isInBoard()) { // si la posición conseguida no está en el tablero lanzará una excepción
         return null;
