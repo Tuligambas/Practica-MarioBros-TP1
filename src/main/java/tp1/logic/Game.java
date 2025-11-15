@@ -238,4 +238,9 @@ public class Game implements GameModel, GameStatus, GameWorld {
     return GameObjectFactory.parse(infoObj, this);
   }
 
+  @Override
+  public void checkInteractions(GameItem obj) {
+    gameObjects.doInteractionsOf(obj);
+  }
+
 }

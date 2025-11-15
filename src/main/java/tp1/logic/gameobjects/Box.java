@@ -37,7 +37,7 @@ public class Box extends GameObject {
 
     @Override
     protected GameObject parse(String[] words, GameWorld game) {
-        if (words.length != 3 && words.length != 2) { // si no tiene 3 palabras, no es un goomba válido
+        if (words.length != 3 && words.length != 2) {
             return null;
         }
         String nombre = words[1];

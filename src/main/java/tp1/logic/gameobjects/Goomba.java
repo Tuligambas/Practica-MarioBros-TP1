@@ -60,7 +60,7 @@ public class Goomba extends MovingObject {
     String nombre = words[1]; // guarda la segunda palabra como el nombre del objeto
     Position posNueva; // Creamos la posición del nuevo goomba
 
-    if (words.length != 3) { // si no tiene 3 palabras, no es un goomba válido
+    if (words.length != 3 && words.length != 2) { // si no tiene 3 o 2 palabras, no es un goomba válido
       return null;
     }
 
@@ -69,9 +69,11 @@ public class Goomba extends MovingObject {
       int col = Integer.valueOf(ws[1]); // convierte lo que le llega en un entero (columna de la posición)
       int row = Integer.valueOf(ws[0]); // convierte lo que le llega en un entero (fila de la posición)
       posNueva = new Position(col, row); // crea la posición con la columna y fila que hemos conseguido
-      if (!posNueva.isInBoard()) { // si la posición conseguida no está en el tablero lanzará una excepción
+      if (!posNueva.isInBoard()) // si la posición conseguida no está en el tablero lanzará una excepción
         return null;
-      }
+
+      if (words.length == 2) // si solo tiene 2 palabras, crea el goomba con dirección LEFT por defecto
+        return new Goomba(posNueva, game);
 
       Action dir = Action.StringToDir(words[2].toUpperCase()); // convierte la palabra en una dirección
       if (dir == null || dir != Action.LEFT) { // si le ponemos una dirección que no existe o no es LEFT

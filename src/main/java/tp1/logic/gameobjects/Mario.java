@@ -61,12 +61,17 @@ public class Mario extends MovingObject {
           Position next = this.pos.move(action);
           this.prevPosition = new Position(this.pos.getCol(), this.pos.getRow());
           this.pos = next;
+          checkInteractions();
         }
       }
     }
 
     if (this.prevPosition.equals(this.pos))
       automaticMovement();
+  }
+
+  private void checkInteractions() {
+    game.checkInteractions(this);
   }
 
   private void toTheFloor() {
@@ -154,13 +159,12 @@ public class Mario extends MovingObject {
     }
 
     if (goomba.getPos().above(this.pos)) {
-    marioGetAttacked();
-    goomba.setAlive(false);
-    game.goombaWasKilled();
-    return true;
+      marioGetAttacked();
+      goomba.setAlive(false);
+      game.goombaWasKilled();
+      return true;
     }
 
-    // if (samePos(goomba) || goombaAgainstYou(goomba))
     marioGetAttacked();
     return true;
 

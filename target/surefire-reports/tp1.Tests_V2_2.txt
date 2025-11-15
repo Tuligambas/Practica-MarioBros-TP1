@@ -1,12 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: tp1.Tests_V2_2
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 7, Errors: 0, Skipped: 0, Time elapsed: 0.029 s <<< FAILURE! -- in tp1.Tests_V2_2
+Tests run: 7, Failures: 7, Errors: 0, Skipped: 0, Time elapsed: 0.030 s <<< FAILURE! -- in tp1.Tests_V2_2
 tp1.Tests_V2_2.test00 -- Time elapsed: 0.001 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
-Line: 30
-Expected:    [a]dd[O]bject <object_description>: adds to the board the object given by object_description.
-Actual  :    [a]ction [[R]IGHT | [L]EFT | [U]P | [D]OWN | [S]TOP]+: user performs actions
+Line: 31
+Expected:       <object_description> = (col,row) objName [dir [BIG|SMALL]]. Ej. (12,3) Mario LEFT SMALL
+Actual  :   <object_description> = (col,row) objName [dir [BIG|SMALL]]. Ej. (12,3) Mario LEFT SMALL
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
@@ -18,11 +18,11 @@ Actual  :    [a]ction [[R]IGHT | [L]EFT | [U]P | [D]OWN | [S]TOP]+: user perform
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V2_2.test01 -- Time elapsed: 0.006 s <<< FAILURE!
+tp1.Tests_V2_2.test01 -- Time elapsed: 0.007 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
-Line: 29
-Expected: Time: 100
-Actual  : Invalid game object: (10,0) Goomba
+Line: 55
+Expected: Time: 99
+Actual  : Time: 100
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
@@ -34,11 +34,11 @@ Actual  : Invalid game object: (10,0) Goomba
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V2_2.test02 -- Time elapsed: 0.004 s <<< FAILURE!
+tp1.Tests_V2_2.test02 -- Time elapsed: 0.005 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
-Line: 81
-Expected: Time: 100
-Actual  : Time: 97
+Line: 82
+Expected: Points: 200
+Actual  : Points: 100
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
@@ -82,7 +82,7 @@ Actual  : Invalid game object: (-1,-1) Land
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V2_2.test05 -- Time elapsed: 0.004 s <<< FAILURE!
+tp1.Tests_V2_2.test05 -- Time elapsed: 0.003 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 9
 Expected:   0┃                                                                             🐻                                         ┃0
@@ -98,7 +98,7 @@ Actual  :   0┃                                                                
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V2_2.test06 -- Time elapsed: 0.003 s <<< FAILURE!
+tp1.Tests_V2_2.test06 -- Time elapsed: 0.004 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 9
 Expected:   0┃                                                                             🐻                                         ┃0

@@ -1,6 +1,5 @@
 package tp1.logic;
 
-
 public interface GameWorld {
 
     public void addPoints(int points);
@@ -14,5 +13,7 @@ public interface GameWorld {
     public void looseLife();
 
     public void goombaWasKilled();
+
+    public void checkInteractions(GameItem item);
 
 }

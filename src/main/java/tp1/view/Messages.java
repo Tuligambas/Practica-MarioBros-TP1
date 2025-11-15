@@ -58,6 +58,8 @@ public class Messages {
 	public static final String HELP_AVAILABLE_COMMANDS = "Available commands:";
 	/* @formatter:off */
 	public static final String[] HELP_LINES = new String[] { HELP_AVAILABLE_COMMANDS,
+        "[a]dd[O]bject <object_description>: adds to the board the object given by object_description.\n" +
+        "  <object_description> = (col,row) objName [dir [BIG|SMALL]]. Ej. (12,3) Mario LEFT SMALL",
 		"[a]ction [[R]IGHT | [L]EFT | [U]P | [D]OWN | [S]TOP]+: user performs actions",
 		"[u]pdate | \"\": user does not perform any action",
 		"[r]eset [numLevel]: reset the game to initial configuration if not numLevel else load the numLevel map",
