@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: tp1.Tests_V2_2
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 0.023 s <<< FAILURE! -- in tp1.Tests_V2_2
-tp1.Tests_V2_2.test00 -- Time elapsed: 0.002 s <<< FAILURE!
+Tests run: 7, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.024 s <<< FAILURE! -- in tp1.Tests_V2_2
+tp1.Tests_V2_2.test00 -- Time elapsed: 0.001 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 31
 Expected:       <object_description> = (col,row) objName [dir [BIG|SMALL]]. Ej. (12,3) Mario LEFT SMALL
@@ -18,23 +18,7 @@ Actual  :   <object_description> = (col,row) objName [dir [BIG|SMALL]]. Ej. (12,
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V2_2.test03 -- Time elapsed: 0.003 s <<< FAILURE!
-org.opentest4j.AssertionFailedError: 
-Line: 185
-Expected: Time: 100
-Actual  : [ERROR] Error: Invalid game object: (13,2) Mario L S
-
-	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
-	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
-	at tp1.TestsUtils.checkOutput(TestsUtils.java:107)
-	at tp1.TestsUtils.parameterizedTest(TestsUtils.java:125)
-	at tp1.Tests_V2_2.testN(Tests_V2_2.java:21)
-	at tp1.Tests_V2_2.test03(Tests_V2_2.java:45)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-
-tp1.Tests_V2_2.test05 -- Time elapsed: 0.002 s <<< FAILURE!
+tp1.Tests_V2_2.test05 -- Time elapsed: 0.003 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 9
 Expected:   0┃                                                                             🐻                                         ┃0

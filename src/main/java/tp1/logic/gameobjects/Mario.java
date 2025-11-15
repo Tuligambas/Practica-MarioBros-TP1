@@ -25,6 +25,12 @@ public class Mario extends MovingObject {
   public Mario() {
   }
 
+  public Mario(Position posNueva, GameWorld game, Action dir, boolean big) {
+    super(posNueva, game, false, dir);
+    this.big = big;
+    this.actionList = new ActionList();
+  }
+
   @Override
   public void update() {
     setPrevPosition(); // simplifica colisiones e interacciones
@@ -233,15 +239,14 @@ public class Mario extends MovingObject {
       String size; // crea la fuerza de caída que lleva en ese momento, que siempre va a ser 0
       size = words[3]; // la lee, que normalmente es 0
       boolean big;
-      if (size.equalsIgnoreCase("BIG"))
+      if (size.equalsIgnoreCase("BIG") || size.equalsIgnoreCase("B"))
         big = true;
-      else if (size.equalsIgnoreCase("SMALL"))
+      else if (size.equalsIgnoreCase("SMALL") || size.equalsIgnoreCase("S"))
         big = false;
       else
         return null;
 
-      return new Mario(posNueva, game, big); // devuelve el nuevo mario creado con los parámetros obtenidos
-
+      return new Mario(posNueva, game, dir, big); // devuelve el nuevo mario creado con los parámetros obtenidos
     }
     return null;
 
