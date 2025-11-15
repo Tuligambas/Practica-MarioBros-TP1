@@ -68,6 +68,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 
   @Override
   public void reset(int level) {
+    this.nLevel = level;
     if (level == -1)
       initLevelMenos1();
     if (level == 0)
@@ -158,11 +159,6 @@ public class Game implements GameModel, GameStatus, GameWorld {
     this.points = 0;
     this.numLives = 3;
     gameObjects = new GameObjectContainer();
-
-    // Poner a Mario en el inicio
-    this.mario = new Mario(new Position(1, Game.DIM_Y - 3), this, false);
-    gameObjects.add(this.mario);
-
   }
 
   private void initLevel0() {
