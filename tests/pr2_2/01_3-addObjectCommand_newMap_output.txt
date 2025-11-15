@@ -78,10 +78,10 @@ Lives: 3
 
 Command > [DEBUG] Executing: Ao (14,1) l
 
-Invalid game object: (14,1) l
+[ERROR] Error: Invalid game object: (14,1) l
 Command > [DEBUG] Executing: addoBjEct (14,2) L
 
-Invalid game object: (14,2) L
+[ERROR] Error: Invalid game object: (14,2) L
 Command > [DEBUG] Executing: addObject (14,3) ExitDoor
 
 Time: 100
@@ -136,7 +136,7 @@ Lives: 3
 
 Command > [DEBUG] Executing: ao (13,2) Mario L S
 
-Invalid game object: (13,2) Mario L S
+[ERROR] Error: Invalid game object: (13,2) Mario L S
 Command > [DEBUG] Executing: a u u r
 
 Time: 99

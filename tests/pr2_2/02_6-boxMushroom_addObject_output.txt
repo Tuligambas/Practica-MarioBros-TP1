@@ -156,10 +156,10 @@ Lives: 3
 
 Command > [DEBUG] Executing: ao (12,2) MU L
 
-Invalid game object: (12,2) MU L
+[ERROR] Error: Invalid game object: (12,2) MU L
 Command > [DEBUG] Executing: ao (12,3) Mushroom L
 
-Invalid game object: (12,3) Mushroom L
+[ERROR] Error: Invalid game object: (12,3) Mushroom L
 Command > [DEBUG] Executing: 
 
 Time: 97
