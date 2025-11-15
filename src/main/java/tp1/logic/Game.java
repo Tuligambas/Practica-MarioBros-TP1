@@ -2,12 +2,14 @@ package tp1.logic;
 
 import java.util.List;
 
+import tp1.logic.gameobjects.Box;
 import tp1.logic.gameobjects.ExitDoor;
 import tp1.logic.gameobjects.GameObject;
 import tp1.logic.gameobjects.GameObjectFactory;
 import tp1.logic.gameobjects.Goomba;
 import tp1.logic.gameobjects.Land;
 import tp1.logic.gameobjects.Mario;
+import tp1.logic.gameobjects.Mushroom;
 
 public class Game implements GameModel, GameStatus, GameWorld {
   public static final int DIM_X = 30;
@@ -37,6 +39,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
       initLevel0();
     if (nLevel == 1)
       initLevel1();
+    if (nLevel == 2)
+      initLevel2();
   }
 
   // Métodos de GameModel
@@ -59,6 +63,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
       initLevel0();
     if (this.nLevel == 1)
       initLevel1();
+    if (this.nLevel == 2)
+      initLevel2();
   }
 
   @Override
@@ -75,6 +81,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
       initLevel0();
     if (level == 1)
       initLevel1();
+    if (level == 2)
+      initLevel2();
   }
 
   @Override
@@ -217,6 +225,13 @@ public class Game implements GameModel, GameStatus, GameWorld {
     gameObjects.add(new Goomba(new Position(10, 10), this));
     gameObjects.add(new Goomba(new Position(11, 12), this));
     gameObjects.add(new Goomba(new Position(14, 12), this));
+  }
+
+  private void initLevel2() {
+    initLevel1();
+    gameObjects.add(new Mushroom(new Position(8, 12), this));
+    gameObjects.add(new Mushroom(new Position(20, 2), this));
+    gameObjects.add(new Box(new Position(4, 9), this, false));
   }
 
   @Override

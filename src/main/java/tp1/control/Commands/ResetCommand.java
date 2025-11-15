@@ -24,7 +24,7 @@ public class ResetCommand extends AbstractCommand/* NoParamsCommand */ { // A lo
         if (variousParameters == false) {
             game.reset();
             view.showGame();
-        } else if (level == -1 || level == 0 || level == 1) {
+        } else if (level == -1 || level == 0 || level == 1 || level == 2) {
             game.reset(level);
             view.showGame();
         }
@@ -42,7 +42,7 @@ public class ResetCommand extends AbstractCommand/* NoParamsCommand */ { // A lo
         if (commandWords.length > 1) {
             this.variousParameters = true;
             this.level = Integer.parseInt(commandWords[1]);
-            if (this.level != 0 && this.level != 1 && this.level != -1) {
+            if (this.level != 0 && this.level != 1 && this.level != -1 && this.level != 2) {
                 System.out.println("[ERROR] Error: Not valid level number");
             }
         }

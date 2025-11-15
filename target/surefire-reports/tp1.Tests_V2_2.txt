@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: tp1.Tests_V2_2
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.024 s <<< FAILURE! -- in tp1.Tests_V2_2
+Tests run: 7, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.025 s <<< FAILURE! -- in tp1.Tests_V2_2
 tp1.Tests_V2_2.test00 -- Time elapsed: 0.001 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 31
@@ -18,11 +18,11 @@ Actual  :   <object_description> = (col,row) objName [dir [BIG|SMALL]]. Ej. (12,
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V2_2.test05 -- Time elapsed: 0.003 s <<< FAILURE!
+tp1.Tests_V2_2.test05 -- Time elapsed: 0.006 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
-Line: 9
-Expected:   0┃                                                                             🐻                                         ┃0
-Actual  :   0┃                                                                                                                        ┃0
+Line: 108
+Expected: Points: 150
+Actual  : Points: 100
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
@@ -36,9 +36,9 @@ Actual  :   0┃                                                                
 
 tp1.Tests_V2_2.test06 -- Time elapsed: 0.003 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
-Line: 9
-Expected:   0┃                                                                             🐻                                         ┃0
-Actual  :   0┃                                                                                                                        ┃0
+Line: 159
+Expected: Time: 99
+Actual  : [ERROR] Error: Invalid game object: (12,2) MU L
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)

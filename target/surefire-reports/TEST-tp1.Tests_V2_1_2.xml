@@ -12,7 +12,7 @@
     <property name="user.country" value="ES"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-21.0.8.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/davidarranz/Library/CloudStorage/OneDrive-UniversidadComplutensedeMadrid(UCM)/Asignaturas/SEGUNDO DE CARRERA/TP1/Segunda matricula/PRACTICA/P2-Practica-MarioBros-TP1/target/surefire/surefirebooter-20251115200529566_3.jar /Users/davidarranz/Library/CloudStorage/OneDrive-UniversidadComplutensedeMadrid(UCM)/Asignaturas/SEGUNDO DE CARRERA/TP1/Segunda matricula/PRACTICA/P2-Practica-MarioBros-TP1/target/surefire 2025-11-15T20-05-29_529-jvmRun1 surefire-20251115200529566_1tmp surefire_0-20251115200529566_2tmp"/>
+    <property name="sun.java.command" value="/Users/davidarranz/Library/CloudStorage/OneDrive-UniversidadComplutensedeMadrid(UCM)/Asignaturas/SEGUNDO DE CARRERA/TP1/Segunda matricula/PRACTICA/P2-Practica-MarioBros-TP1/target/surefire/surefirebooter-20251115202214009_3.jar /Users/davidarranz/Library/CloudStorage/OneDrive-UniversidadComplutensedeMadrid(UCM)/Asignaturas/SEGUNDO DE CARRERA/TP1/Segunda matricula/PRACTICA/P2-Practica-MarioBros-TP1/target/surefire 2025-11-15T20-22-13_977-jvmRun1 surefire-20251115202214009_1tmp surefire_0-20251115202214009_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/davidarranz/Library/CloudStorage/OneDrive-UniversidadComplutensedeMadrid(UCM)/Asignaturas/SEGUNDO DE CARRERA/TP1/Segunda matricula/PRACTICA/P2-Practica-MarioBros-TP1/target/test-classes:/Users/davidarranz/Library/CloudStorage/OneDrive-UniversidadComplutensedeMadrid(UCM)/Asignaturas/SEGUNDO DE CARRERA/TP1/Segunda matricula/PRACTICA/P2-Practica-MarioBros-TP1/target/classes:/Users/davidarranz/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.0/junit-jupiter-api-5.10.0.jar:/Users/davidarranz/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/davidarranz/.m2/repository/org/junit/platform/junit-platform-commons/1.10.0/junit-platform-commons-1.10.0.jar:/Users/davidarranz/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -28,7 +28,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/davidarranz/Library/CloudStorage/OneDrive-UniversidadComplutensedeMadrid(UCM)/Asignaturas/SEGUNDO DE CARRERA/TP1/Segunda matricula/PRACTICA/P2-Practica-MarioBros-TP1/target/surefire/surefirebooter-20251115200529566_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/davidarranz/Library/CloudStorage/OneDrive-UniversidadComplutensedeMadrid(UCM)/Asignaturas/SEGUNDO DE CARRERA/TP1/Segunda matricula/PRACTICA/P2-Practica-MarioBros-TP1/target/surefire/surefirebooter-20251115202214009_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.8+12-LTS-250"/>
     <property name="user.name" value="davidarranz"/>
@@ -55,10 +55,10 @@
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="test00" classname="tp1.Tests_V2_1_2" time="0.033"/>
-  <testcase name="test01" classname="tp1.Tests_V2_1_2" time="0.027"/>
-  <testcase name="test02" classname="tp1.Tests_V2_1_2" time="0.01"/>
-  <testcase name="test03" classname="tp1.Tests_V2_1_2" time="0.016"/>
+  <testcase name="test00" classname="tp1.Tests_V2_1_2" time="0.034"/>
+  <testcase name="test01" classname="tp1.Tests_V2_1_2" time="0.03"/>
+  <testcase name="test02" classname="tp1.Tests_V2_1_2" time="0.011"/>
+  <testcase name="test03" classname="tp1.Tests_V2_1_2" time="0.017"/>
   <testcase name="test04" classname="tp1.Tests_V2_1_2" time="0.008"/>
-  <testcase name="test05" classname="tp1.Tests_V2_1_2" time="0.009"/>
+  <testcase name="test05" classname="tp1.Tests_V2_1_2" time="0.008"/>
 </testsuite>
