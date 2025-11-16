@@ -118,14 +118,10 @@ public class Mario extends MovingObject {
       return true;
     }
     if (this.big) {
-      // casilla justo arriba (misma columna, fila - 1)
-      Position above = new Position(pos.getCol(), pos.getRow() - 1);
-      boolean yes = above.equals(p);
-      if (yes == true)
-        return yes;
-      else
-        return false;
+      Position above = pos.move(Action.UP);
+      return above.equals(p);
     }
+
     return false;
   }
 
@@ -171,8 +167,9 @@ public class Mario extends MovingObject {
 
   @Override
   public boolean interactWith(GameItem item) {
+    Position above = this.pos.move(Action.UP);
     // Interacción normal (misma casilla)
-    if (item.isInPosition(this.pos)) {
+    if (item.isInPosition(this.pos) || (big && item.isInPosition(above))) {
       return item.receiveInteraction(this);
     }
 
@@ -202,13 +199,6 @@ public class Mario extends MovingObject {
     if (prevPosition.above(goomba.getPos()))
       return true;
 
-    if (goomba.getPos().above(this.pos)) {
-      marioGetAttacked();
-      goomba.setAlive(false);
-      game.goombaWasKilled();
-      return true;
-    }
-
     marioGetAttacked();
     return true;
   }
@@ -225,14 +215,6 @@ public class Mario extends MovingObject {
       game.looseLife();
     }
   }
-
-  /*
-   * private void killGoomba(Goomba goomba) {
-   * goomba.setAlive(false);
-   * game.goombaWasKilled();
-   * }
-   */
-  // Eliminar porque no se usa
 
   @Override
   protected void checkPosition() {

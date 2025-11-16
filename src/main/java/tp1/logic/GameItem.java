@@ -27,4 +27,6 @@ public interface GameItem {
 
     public boolean receiveInteraction(Box box);
 
+    public Position getPos();
+
 }

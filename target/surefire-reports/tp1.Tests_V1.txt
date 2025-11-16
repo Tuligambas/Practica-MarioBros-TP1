@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: tp1.Tests_V1
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 7, Errors: 0, Skipped: 0, Time elapsed: 0.051 s <<< FAILURE! -- in tp1.Tests_V1
+Tests run: 7, Failures: 7, Errors: 0, Skipped: 0, Time elapsed: 0.048 s <<< FAILURE! -- in tp1.Tests_V1
 tp1.Tests_V1.test00 -- Time elapsed: 0.001 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
@@ -18,7 +18,7 @@ Actual  : MarioBross 2.X
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V1.test01 -- Time elapsed: 0.007 s <<< FAILURE!
+tp1.Tests_V1.test01 -- Time elapsed: 0.004 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 1.0
@@ -34,7 +34,7 @@ Actual  : MarioBross 2.X
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V1.test02 -- Time elapsed: 0.012 s <<< FAILURE!
+tp1.Tests_V1.test02 -- Time elapsed: 0.011 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 1.0
@@ -50,7 +50,7 @@ Actual  : MarioBross 2.X
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V1.test03 -- Time elapsed: 0.007 s <<< FAILURE!
+tp1.Tests_V1.test03 -- Time elapsed: 0.006 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 1.0
@@ -66,7 +66,7 @@ Actual  : MarioBross 2.X
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V1.test04 -- Time elapsed: 0.012 s <<< FAILURE!
+tp1.Tests_V1.test04 -- Time elapsed: 0.011 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 1.0
@@ -98,7 +98,7 @@ Actual  : MarioBross 2.X
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V1.test06 -- Time elapsed: 0.005 s <<< FAILURE!
+tp1.Tests_V1.test06 -- Time elapsed: 0.006 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 1.0

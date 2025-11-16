@@ -43,7 +43,7 @@ public class Mushroom extends MovingObject {
 
     @Override
     public boolean receiveInteraction(Mario mario) {
-        if (this.pos.equals(mario.getPos())) {
+        if (mario.isInPosition(pos)) {
             if (!mario.isBig()) {
                 mario.makeBig();
             }
