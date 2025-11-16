@@ -169,7 +169,7 @@ public class Mario extends MovingObject {
   public boolean interactWith(GameItem item) {
     Position above = this.pos.move(Action.UP);
     // Interacción normal (misma casilla)
-    if (item.isInPosition(this.pos) || (big && item.isInPosition(above))) {
+    if (this.isInPosition(item.getPos())) {
       return item.receiveInteraction(this);
     }
 

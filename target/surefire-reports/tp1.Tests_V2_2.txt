@@ -1,4 +1,20 @@
 -------------------------------------------------------------------------------
 Test set: tp1.Tests_V2_2
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.026 s -- in tp1.Tests_V2_2
+Tests run: 7, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.025 s <<< FAILURE! -- in tp1.Tests_V2_2
+tp1.Tests_V2_2.test01 -- Time elapsed: 0.008 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+Line: 393
+Expected: Time: 100
+Actual  : Time: 98
+
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
+	at tp1.TestsUtils.checkOutput(TestsUtils.java:107)
+	at tp1.TestsUtils.parameterizedTest(TestsUtils.java:125)
+	at tp1.Tests_V2_2.testN(Tests_V2_2.java:21)
+	at tp1.Tests_V2_2.test01(Tests_V2_2.java:35)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
