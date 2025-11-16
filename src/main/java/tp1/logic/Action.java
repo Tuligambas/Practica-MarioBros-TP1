@@ -50,10 +50,10 @@ public enum Action {
 
 	// Método que devuelve la dirección contraria
 	public Action opposite() {
-		Action r;
+		Action r = Action.STOP;
 		if (this == Action.RIGHT) {
 			r = Action.LEFT;
-		} else {
+		} else if (this == Action.LEFT) {
 			r = Action.RIGHT;
 		}
 		return r;

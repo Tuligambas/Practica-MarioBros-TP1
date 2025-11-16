@@ -27,9 +27,8 @@ public class Box extends GameObject {
     public boolean receiveInteraction(Mario mario) {
         if (!empty) {
             this.empty = true;
-            if (!mario.isBig()) {
-                mario.makeBig();
-            }
+            game.addPoints(50);
+            game.newMushroomAt(pos);
             return true;
         }
         return false;

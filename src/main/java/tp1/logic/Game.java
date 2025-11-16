@@ -24,7 +24,6 @@ public class Game implements GameModel, GameStatus, GameWorld {
   private boolean win = false; // como playerwon
 
   private GameObjectContainer gameObjects;
-  private Mario mario;
 
   public Game(int nLevel) {
     this.nLevel = nLevel;
@@ -176,8 +175,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
     gameObjects = new GameObjectContainer();
 
     // personajes
-    this.mario = new Mario(new Position(0, Game.DIM_Y - 3), this, true);
-    gameObjects.add(this.mario);
+    gameObjects.add(new Mario(new Position(0, Game.DIM_Y - 3), this, true));
 
     // suelo base filas 13 y 14
     for (int col = 0; col < 15; col++) {
@@ -252,6 +250,11 @@ public class Game implements GameModel, GameStatus, GameWorld {
   @Override
   public void checkInteractions(GameItem obj) {
     gameObjects.doInteractionsOf(obj);
+  }
+
+  @Override
+  public void newMushroomAt(Position pos) {
+    gameObjects.new_add(new Mushroom(pos.move(Action.UP), this));
   }
 
 }

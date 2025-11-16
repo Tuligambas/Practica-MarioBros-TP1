@@ -79,4 +79,10 @@ public class ActionList {
         return actions.remove(0);
     }
 
+    public Action getFirst() {
+        if (actions.isEmpty())
+            return null;
+        return actions.get(0);
+    }
+
 }

@@ -16,4 +16,6 @@ public interface GameWorld {
 
     public void checkInteractions(GameItem item);
 
+    public void newMushroomAt(Position pos);
+
 }

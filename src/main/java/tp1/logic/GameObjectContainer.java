@@ -8,15 +8,21 @@ import tp1.view.Messages;
 
 public class GameObjectContainer {
   private List<GameObject> objects;
+  private List<GameObject> new_gameObjects;
 
   // solo se necesita esta lista con todos los distintos objetos
   // ya que todos heredan de GameObject
   public GameObjectContainer() {
     objects = new ArrayList<>();
+    new_gameObjects = new ArrayList<>();
   }
 
   public void add(GameObject object) {
     objects.add(object);
+  }
+
+  public void new_add(GameObject object) {
+    new_gameObjects.add(object);
   }
 
   public String positionToString(int col, int row) {
@@ -46,6 +52,14 @@ public class GameObjectContainer {
         doInteractionsOf(a);
       }
     }
+    // meto los nuevos posibles objetos
+    for (GameObject obj : new_gameObjects) {
+      objects.add(obj);
+    }
+    // limpio la lista de nuevos objetos
+    new_gameObjects.clear();
+
+    // elimino los objetos muertos
     removeDead();
   }
 

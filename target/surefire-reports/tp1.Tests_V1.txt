@@ -2,7 +2,7 @@
 Test set: tp1.Tests_V1
 -------------------------------------------------------------------------------
 Tests run: 7, Failures: 7, Errors: 0, Skipped: 0, Time elapsed: 0.050 s <<< FAILURE! -- in tp1.Tests_V1
-tp1.Tests_V1.test00 -- Time elapsed: 0.002 s <<< FAILURE!
+tp1.Tests_V1.test00 -- Time elapsed: 0.001 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 1.0

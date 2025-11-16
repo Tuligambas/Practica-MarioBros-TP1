@@ -14,6 +14,7 @@ public class Mario extends MovingObject {
   private ActionList actionList;
   private static final String NAME = Messages.MARIO_NAME;
   private static final String SHORTCUT = Messages.SHORTCUT_MARIO;
+  private Action lastMove = null;
 
   public Mario(Position position, GameWorld game, boolean big) {
     super(position, game, false, Action.RIGHT);
@@ -50,20 +51,19 @@ public class Mario extends MovingObject {
   private void commandMovement() {
     while (!actionList.isEmpty()) {
       Action action = actionList.getNext(); // método auxiliar que devuelve y elimina
-
-      // cambia de direccion
       if (action.isHorizontal() || action == Action.STOP)
         this.dir = action;
-
       if (action == Action.DOWN) {
         if (solidBelow())
           this.dir = Action.STOP;
         else
           toTheFloor();
       } else if (action != Action.STOP) {
-        if (solidNextTo(action) || wallNextTo(action))
+        if (solidNextTo(action) || wallNextTo(action)) {
+          this.lastMove = action;
+          checkInteractions();
           this.dir = action.opposite();
-        else {
+        } else {
           Position next = this.pos.move(action);
           this.prevPosition = new Position(this.pos.getCol(), this.pos.getRow());
           this.pos = next;
@@ -71,7 +71,6 @@ public class Mario extends MovingObject {
         }
       }
     }
-
     if (this.prevPosition.equals(this.pos))
       automaticMovement();
   }
@@ -84,6 +83,7 @@ public class Mario extends MovingObject {
     while (!solidBelow() && pos.isInBoard()) {
       setPrevPosition();
       this.pos = this.pos.move(Action.DOWN);
+      checkInteractions();
     }
 
   }
@@ -91,8 +91,11 @@ public class Mario extends MovingObject {
   @Override
   protected boolean solidNextTo(Action dir) {
     Position next = this.pos.move(dir);
-    Position next_big = this.pos.move(dir).move(Action.UP);
-    return this.game.isSolid(next) || game.isSolid(next_big);
+    if (big) {
+      Position next_big = this.pos.move(dir).move(Action.UP);
+      return this.game.isSolid(next) || game.isSolid(next_big);
+    }
+    return this.game.isSolid(next);
   }
 
   @Override
@@ -102,6 +105,14 @@ public class Mario extends MovingObject {
     }
     if (this.big) {
       // casilla justo arriba (misma columna, fila - 1)
+      Position above = new Position(pos.getCol(), pos.getRow() - 1);
+      boolean yes = above.equals(p);
+      if (yes == true)
+        return yes;
+      else
+        return false;
+    }
+    if (lastMove == Action.UP) {
       Position above = new Position(pos.getCol(), pos.getRow() - 1);
       return above.equals(p);
     }
@@ -150,12 +161,33 @@ public class Mario extends MovingObject {
 
   @Override
   public boolean interactWith(GameItem item) {
-    boolean canInteract = item.isInPosition(this.pos);
-    boolean solidAndUp = item.isInPosition(this.pos.move(Action.UP)) && dir == Action.UP;
-    if (canInteract || solidAndUp) {
+    // Interacción normal (misma casilla)
+    if (item.isInPosition(this.pos)) {
       return item.receiveInteraction(this);
     }
+
+    // Interacción desde abajo
+    if (hitsFromBelow(item)) {
+      return item.receiveInteraction(this);
+    }
+
     return false;
+  }
+
+  public boolean hitsFromBelow(GameItem item) {
+    if (lastMove != Action.UP)
+      return false;
+
+    // Mario pequeño
+    Position arriba1 = this.pos.move(Action.UP);
+
+    // Mario grande (2 tiles)
+    Position arriba2 = arriba1.move(Action.UP);
+
+    boolean chocaSmall = item.isInPosition(arriba1);
+    boolean chocaBig = this.isBig() && item.isInPosition(arriba2);
+
+    return item.isSolid() && (chocaSmall || chocaBig);
   }
 
   @Override
