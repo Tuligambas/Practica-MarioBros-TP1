@@ -62,7 +62,8 @@ public class Mario extends MovingObject {
         if (solidNextTo(action) || wallNextTo(action)) {
           this.lastMove = action;
           checkInteractions();
-          this.dir = action.opposite();
+          if (action.isHorizontal())
+            this.dir = action.opposite();
         } else {
           Position next = this.pos.move(action);
           this.prevPosition = new Position(this.pos.getCol(), this.pos.getRow());
@@ -178,16 +179,13 @@ public class Mario extends MovingObject {
     if (lastMove != Action.UP)
       return false;
 
-    // Mario pequeño
-    Position arriba1 = this.pos.move(Action.UP);
+    Position above = this.pos.move(Action.UP);
+    Position aboveBig = above.move(Action.UP);
 
-    // Mario grande (2 tiles)
-    Position arriba2 = arriba1.move(Action.UP);
+    boolean crashSmall = item.isInPosition(above);
+    boolean crashBig = this.isBig() && item.isInPosition(aboveBig);
 
-    boolean chocaSmall = item.isInPosition(arriba1);
-    boolean chocaBig = this.isBig() && item.isInPosition(arriba2);
-
-    return item.isSolid() && (chocaSmall || chocaBig);
+    return item.isSolid() && (crashSmall || crashBig);
   }
 
   @Override

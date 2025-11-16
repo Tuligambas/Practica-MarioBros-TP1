@@ -82,8 +82,8 @@ public class Messages {
 	public static final String MARIO_LEFT = "🚶";// "⬅️🚶";
 	public static final String GOOMBA = "🐻";
 	public static final String MUSHROOM = "🍄";
-	public static final String BOX_CERRADO = "????";
-	public static final String BOX_ABIERTO = "0000";
+	public static final String BOX_CERRADO = MyStringUtils.repeat("?", ConsoleView.CELL_SIZE);
+	public static final String BOX_ABIERTO = MyStringUtils.repeat("0", ConsoleView.CELL_SIZE);
 
 	public static final String SHORTCUT_EXITDOOR = "ED";
 	public static final String SHORTCUT_LAND = "L";

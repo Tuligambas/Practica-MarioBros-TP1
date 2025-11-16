@@ -76,7 +76,10 @@ public class Box extends GameObject {
 
     @Override
     public String getIcon() {
-        return empty ? Messages.BOX_ABIERTO : Messages.BOX_CERRADO;
+        if (empty)
+            return Messages.BOX_ABIERTO;
+        else
+            return Messages.BOX_CERRADO;
     }
 
     @Override

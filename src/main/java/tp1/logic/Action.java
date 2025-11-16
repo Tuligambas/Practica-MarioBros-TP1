@@ -48,15 +48,19 @@ public enum Action {
 		return null;
 	}
 
-	// Método que devuelve la dirección contraria
 	public Action opposite() {
-		Action r = Action.STOP;
-		if (this == Action.RIGHT) {
-			r = Action.LEFT;
-		} else if (this == Action.LEFT) {
-			r = Action.RIGHT;
+		switch (this) {
+			case RIGHT:
+				return Action.LEFT;
+			case LEFT:
+				return Action.RIGHT;
+			case UP:
+				return Action.DOWN;
+			case DOWN:
+				return Action.UP;
+			default:
+				return Action.STOP;
 		}
-		return r;
 	}
 
 	public boolean isHorizontal() {
