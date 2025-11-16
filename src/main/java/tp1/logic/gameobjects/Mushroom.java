@@ -17,6 +17,10 @@ public class Mushroom extends MovingObject {
     public Mushroom() {
     }
 
+    public Mushroom(Position pos, Action dir, GameWorld game) {
+        super(pos, game, false, dir);
+    }
+
     @Override
     public void update() {
         automaticMovement();
@@ -51,18 +55,27 @@ public class Mushroom extends MovingObject {
 
     @Override
     protected GameObject parse(String[] words, GameWorld game) {
-        if (words.length != 2)
+        if (words.length != 3 && words.length != 2) { // si no tiene 3 o 2 palabras, no es un goomba válido
             return null;
+        }
         String nombre = words[1];
         if (matchObjectName(words[1])) {
             String[] w = words[0].replace("(", " ").replace(",", " ").replace(")", " ").strip().split("( )+");
             int fila = Integer.parseInt(w[0]);
             int col = Integer.parseInt(w[1]);
             Position pos = new Position(col, fila);
+            if (!pos.isInBoard())
+                return null;
 
-            if (pos.isInBoard())
+            if (words.length == 2) {
                 return new Mushroom(pos, game);
+            }
 
+            Action dir = Action.StringToDir(words[2].toUpperCase()); // convierte la tercera palabra en una
+            if (dir != Action.LEFT && dir != Action.RIGHT)
+                return null;
+
+            return new Mushroom(pos, dir, game);
         }
         return null;
     }
