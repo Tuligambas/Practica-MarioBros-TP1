@@ -50,28 +50,41 @@ public class Mario extends MovingObject {
 
   private void commandMovement() {
     while (!actionList.isEmpty()) {
-      Action action = actionList.getNext(); // método auxiliar que devuelve y elimina
+      Action action = actionList.getNext();
+
+      // Cambia icono solo si horizontal o stop
       if (action.isHorizontal() || action == Action.STOP)
         this.dir = action;
+
+      // Movimiento hacia abajo
       if (action == Action.DOWN) {
+        this.lastMove = Action.DOWN;
         if (solidBelow())
           this.dir = Action.STOP;
         else
           toTheFloor();
-      } else if (action != Action.STOP) {
+      }
+
+      // UP/LEFT/RIGHT
+      else if (action != Action.STOP) {
+        // Colisión lateral o pared
         if (solidNextTo(action) || wallNextTo(action)) {
-          this.lastMove = action;
+          this.lastMove = action; //
           checkInteractions();
           if (action.isHorizontal())
             this.dir = action.opposite();
-        } else {
+        }
+        // Movimiento normal
+        else {
           Position next = this.pos.move(action);
-          this.prevPosition = new Position(this.pos.getCol(), this.pos.getRow());
+          this.prevPosition = this.pos;
           this.pos = next;
+          this.lastMove = action;
           checkInteractions();
         }
       }
     }
+
     if (this.prevPosition.equals(this.pos))
       automaticMovement();
   }
@@ -112,10 +125,6 @@ public class Mario extends MovingObject {
         return yes;
       else
         return false;
-    }
-    if (lastMove == Action.UP) {
-      Position above = new Position(pos.getCol(), pos.getRow() - 1);
-      return above.equals(p);
     }
     return false;
   }

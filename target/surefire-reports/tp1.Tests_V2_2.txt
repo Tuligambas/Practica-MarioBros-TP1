@@ -1,12 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: tp1.Tests_V2_2
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.025 s <<< FAILURE! -- in tp1.Tests_V2_2
-tp1.Tests_V2_2.test05 -- Time elapsed: 0.006 s <<< FAILURE!
+Tests run: 7, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.029 s <<< FAILURE! -- in tp1.Tests_V2_2
+tp1.Tests_V2_2.test05 -- Time elapsed: 0.007 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
-Line: 122
-Expected:   9┃        ▓▓▓▓    0000▓▓▓▓▓▓▓▓▓▓▓▓                                                        ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓            ┃9
-Actual  :   9┃        ▓▓▓▓    🧑00▓▓▓▓▓▓▓▓▓▓▓▓                                                        ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓            ┃9
+Line: 306
+Expected:  11┃                                 🧍                                             ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓            ┃11
+Actual  :  11┃                                🧍🍄                                            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓            ┃11
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
