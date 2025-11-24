@@ -1,5 +1,8 @@
 package tp1.control.Commands;
 
+import tp1.exceptions.CommandParseException;
+import tp1.view.Messages;
+
 public abstract class NoParamsCommand extends AbstractCommand {
 
     // CONSTRUCTORA
@@ -8,12 +11,14 @@ public abstract class NoParamsCommand extends AbstractCommand {
     }
 
     @Override
-    public Command parse(String[] commandWords) {
-        // no hay palabras o el comando no coincide
-        if (commandWords.length == 0 || !matchCommandName(commandWords[0]) || commandWords.length > 1) {
+    public Command parse(String[] commandWords) throws CommandParseException {
+        if (commandWords.length < 1 || !matchCommandName(commandWords[0]))
             return null;
-        }
 
-        return this;
+        if (commandWords.length == 1 && matchCommandName(commandWords[0]))
+            return this;
+
+        throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER);
+
     }
 }

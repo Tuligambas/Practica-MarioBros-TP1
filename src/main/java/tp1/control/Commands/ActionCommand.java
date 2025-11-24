@@ -3,6 +3,8 @@ package tp1.control.Commands;
 import java.util.ArrayList;
 import java.util.List;
 
+import tp1.exceptions.CommandExecuteException;
+import tp1.exceptions.CommandParseException;
 import tp1.logic.Action;
 import tp1.logic.GameModel;
 import tp1.view.GameView;
@@ -13,9 +15,6 @@ public class ActionCommand extends AbstractCommand { // He cambiado el noparams 
     private static final String SHORTCUT = Messages.COMMAND_ACTION_SHORTCUT;
     private static final String DETAILS = Messages.COMMAND_ACTION_DETAILS;
     private static final String HELP = Messages.COMMAND_ACTION_HELP;
-
-    private boolean incorrectParameters;
-    private boolean missingParameters;
     private List<Action> actions;
 
     // CONSTRUCTOR
@@ -24,18 +23,22 @@ public class ActionCommand extends AbstractCommand { // He cambiado el noparams 
     }
 
     @Override
-    public Command parse(String[] commandWords) {
-        actions = new ArrayList<>();
+    public Command parse(String[] commandWords) throws CommandParseException {
 
-        if (!matchCommandName(commandWords[0]) || commandWords.length < 2) {
+        if (commandWords.length == 0 || !matchCommandName(commandWords[0]))
             return null;
-        }
+
+        if (commandWords.length < 2)
+            throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER);
+
+        actions = new ArrayList<>();
 
         // Si tiene más palabras, las intentamos convertir a acciones
         for (int i = 1; i < commandWords.length; i++) {
             Action act = Action.StringToDir(commandWords[i]);
-            if (act != null)
-                actions.add(act);
+            if (act == null)
+                throw new CommandParseException(Messages.UNKNOWN_COMMAND.formatted(String.join(" ", commandWords)));
+            actions.add(act);
 
         }
 
@@ -46,10 +49,14 @@ public class ActionCommand extends AbstractCommand { // He cambiado el noparams 
     }
 
     @Override
-    public void execute(GameModel game, GameView view) {
-        game.addActions(actions);
-        game.update();
-        view.showGame();
+    public void execute(GameModel game, GameView view) throws CommandExecuteException {
+        try {
+            game.addActions(actions);
+            game.update();
+            view.showGame();
+        } catch (Exception e) {
+            throw new CommandExecuteException(Messages.ERROR_COMMAND_EXECUTE, e);
+        }
     }
 
 }

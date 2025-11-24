@@ -24,6 +24,7 @@
   - [F. Colisiones Mario ↔ Goombas](#f-colisiones-mario-goombas)
 * [4. Entrega](#4-entrega)
 * [5. Pruebas](#5-pruebas)
+  - [Automatización de las pruebas: JUnit](#pruebas-JUnit)
 <!-- TOC end -->
 
 
@@ -91,6 +92,7 @@ Se os entrega una plantilla con los siguientes paquetes y clases:
     - `GameObjectContainer`
 	- `Action`
 	- `Position`
+	- `Game`
 + `tp1.logic.gameobjects`
     - `Mario`
 
@@ -471,3 +473,41 @@ Aparecerá una nueva ventana donde se mostrarán marcadas claramente las diferen
 Por supuesto, nuestra salida puede tener algún error, así que si detectas alguna inconsistencia por favor comunícanoslo para que lo corrijamos.
 
 Durante la corrección de prácticas <!-- os daremos nuevos --> usaremos otros ficheros de prueba para asegurarnos de que vuestras prácticas se generalizan correctamente, así que asegúrate de probar no solo los casos que te damos, sino también otras posibles ejecuciones.
+
+<!-- TOC --><a name="pruebas-JUnit"></a>
+### Automatización de las pruebas: JUnit
+
+Para simplificar las pruebas y atomatizar el proceso visto anteriormente, vamos a «abusar» del soporte de [JUnit](https://junit.org/) dentro de Eclipse, lo cual facilitará nuestras pruebas de comparación de la salida de nuestro programa. JUnit es un *framework* para la realización de pruebas automatizadas al código Java de tu aplicación. Seguramente verás y utilizarás JUnit, o análogo, en otras asignaturas de la carrera.
+
+Como parte de la plantilla de la práctica, se incluye la clase `tp1.Tests`, la cual es una clase de pruebas JUnit. Esta clase contiene una prueba para cada uno de los casos de prueba de esta práctica.
+
+Antes de poder ejecutar las pruebas que incluye, tenemos que añadir JUnit a nuestro proyecto. Para ello, tenemos que ir a las propiedades del proyecto *Project > Properties*, seleccionar *Java Build Path* e ir a la pestaña *Libraries*. Allí, con *Classpath* seleccionado (no *ModulePath*), pulsamos en el botón *Add Library...*
+
+![](./imgs/jUnit/00-ProjectProjerties.jpg)
+
+En la nueva ventana seleccionamos *JUnit* y pulsamos en el botón *Finish* 
+
+![](./imgs/jUnit/01-AddJUnit.jpg)
+
+Al volver a la ventana de las propiedades del proyecto, pulsamos en el botón *Apply and Close*.
+
+Si lo hemos configurado correctamente, al pulsar con el botón derecho del ratón sobre el fichero `Tests.java` e ir al menú *Run As*, debería aparecer la opción *JUnit Test*.
+
+![](./imgs/jUnit/02-RunAsJUnitTest.jpg)
+
+Si ejecutamos las pruebas, Eclipse mostrará una vista en la que podremos ver el resultado de las pruebas y lanzar las que hayan fallado de manera individualizada o todas a la vez. **Recuerda** que utilizamos las pruebas JUnit simplemente para comparar la salida de tu programa con la salida esperada. Si quieres ver los detalles en el caso de que no se produzca concordancia, tendrás que aplicar el mismo procedimiento que en la Práctica 1.
+
+<!-- ![Fallo JUnit](./imgs/jUnit/03-JUnitFailed.jpg) -->
+<figure>
+    <img src="./imgs/jUnit/03-JUnitFailed.jpg"
+         alt="Fallo JUnit">
+    <figcaption>Fallan las pruebas JUnit</figcaption>
+</figure>
+
+<!-- ![Todas las pruebas JUnit tienen éxito](./imgs/jUnit/04-JUnitPass.jpg) -->
+<figure>
+    <img src="./imgs/jUnit/04-JUnitPass.jpg"
+         alt="Éxito JUnit">
+    <figcaption>Todas las pruebas JUnit tienen éxito</figcaption>
+</figure>
+

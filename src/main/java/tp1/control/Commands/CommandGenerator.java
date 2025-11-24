@@ -3,6 +3,9 @@ package tp1.control.Commands;
 import java.util.Arrays;
 import java.util.List;
 
+import tp1.exceptions.CommandParseException;
+import tp1.view.Messages;
+
 public class CommandGenerator {
     // LISTA DE COMANDOS DISPONIBLES
     private static final List<Command> AVAILABLE_COMMANDS = Arrays.asList(
@@ -15,14 +18,15 @@ public class CommandGenerator {
 
     // RECORRE LA LISTA DE LOS COMANDOS, COMPROBANDO SI LO QUE LE ENTRA ES UN
     // COMANDO CON EL PARSE DE CADA COMANDO
-    public static Command parse(String[] commandWords) {
+    public static Command parse(String[] commandWords) throws CommandParseException {
         for (Command c : AVAILABLE_COMMANDS) {
             Command commandDevuelto = c.parse(commandWords);
             if (commandDevuelto != null) { // devuelve el comando que coincide
                 return commandDevuelto;
             }
         }
-        return null;
+        throw new CommandParseException(Messages.UNKNOWN_COMMAND.formatted(commandWords[0]));
+
     }
 
     // MUESTRA LOS MENSAJES DE HELP DE CADA COMANDO

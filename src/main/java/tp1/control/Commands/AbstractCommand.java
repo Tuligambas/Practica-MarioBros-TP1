@@ -1,5 +1,9 @@
 package tp1.control.Commands;
 
+import tp1.exceptions.CommandExecuteException;
+import tp1.exceptions.CommandParseException;
+import tp1.logic.GameModel;
+import tp1.view.GameView;
 import tp1.view.Messages;
 
 public abstract class AbstractCommand implements Command {
@@ -31,6 +35,12 @@ public abstract class AbstractCommand implements Command {
     protected String getHelp() {
         return help;
     }
+
+    @Override
+    public abstract void execute(GameModel game, GameView view) throws CommandExecuteException;
+
+    @Override
+    public abstract Command parse(String[] commandWords) throws CommandParseException;
 
     // COMPRUEBA SI EL NOMBRE QUE LE ENTRA ES UN COMANDO
     protected boolean matchCommandName(String name) {

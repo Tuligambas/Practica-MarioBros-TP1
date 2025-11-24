@@ -2,6 +2,8 @@ package tp1.control.Commands;
 
 import java.util.Arrays;
 
+import tp1.exceptions.CommandExecuteException;
+import tp1.exceptions.CommandParseException;
 import tp1.logic.GameModel;
 import tp1.logic.gameobjects.GameObject;
 import tp1.view.GameView;
@@ -26,27 +28,36 @@ public class AddObjectCommand extends AbstractCommand /* NoParamsCommand */ { //
     }
 
     @Override
-    public void execute(GameModel game, GameView view) {
+    public void execute(GameModel game, GameView view) throws CommandExecuteException {
         String fullDescription = String.join(" ", infoObj);
-        GameObject obj = game.parseObject(infoObj);
+        try {
+            GameObject obj = game.parseObject(infoObj);
 
-        if (obj == null) {
-            view.showError("Invalid game object: " + fullDescription);
-            return;
+            if (obj == null) {
+                throw new CommandExecuteException("Invalid game object: " + fullDescription);
+            }
+
+            game.addObject(obj);
+            view.showGame();
+        } catch (CommandExecuteException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new CommandExecuteException(Messages.ERROR_COMMAND_EXECUTE, e);
         }
-
-        game.addObject(obj);
-        view.showGame();
     }
 
     @Override
-    public Command parse(String[] words) {
+    public Command parse(String[] words) throws CommandParseException {
         if (words.length == 0 || !matchCommandName(words[0]))
             return null;
 
-        // Si el usuario solo puso addobject
-        if (words.length < 2)
-            return null;
+        // Necesitamos al menos posición y nombre
+        if (words.length < 3)
+            throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER);
+
+        // Los objetos sin argumentos extra deben controlar su longitud (p.ej. Land)
+        if (words.length > 3 && words[2].equalsIgnoreCase(Messages.LAND_NAME))
+            throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER);
 
         // Copiamos SOLO los parámetros después del nombre del comando
         String[] params = Arrays.copyOfRange(words, 1, words.length);

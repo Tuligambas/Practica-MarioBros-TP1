@@ -54,34 +54,25 @@ public class Game implements GameModel, GameStatus, GameWorld {
     gameObjects.update();
   }
 
+  // METODO DE TE LLAMA AL METODO INITGAME QUE TE HACE EL REINICIO DEL JUEGO Y
+  // SI HAY UNA CONFIGURACIÓN, LA RESETEA CON EL LOAD
   @Override
-  public void reset() {
-    if (this.nLevel == -1)
-      initLevelMenos1();
-    if (this.nLevel == 0)
-      initLevel0();
-    if (this.nLevel == 1)
-      initLevel1();
-    if (this.nLevel == 2)
-      initLevel2();
+  public boolean reset(int nLevel) {
+    if (conf == FileGameConfiguration.NONE) {
+      return initGame(nLevel);
+    } else {
+      try {
+        load(this.fileName);
+      } catch (GameLoadException e) {
+        conf = FileGameConfiguration.NONE;
+      }
+      return true;
+    }
   }
 
   @Override
   public void exit() {
     this.exit = true;
-  }
-
-  @Override
-  public void reset(int level) {
-    this.nLevel = level;
-    if (level == -1)
-      initLevelMenos1();
-    if (level == 0)
-      initLevel0();
-    if (level == 1)
-      initLevel1();
-    if (level == 2)
-      initLevel2();
   }
 
   @Override

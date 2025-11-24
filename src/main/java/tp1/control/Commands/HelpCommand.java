@@ -17,7 +17,6 @@ public class HelpCommand extends NoParamsCommand {
 
     @Override
     public void execute(GameModel game, GameView view) {
-        // game.showHelp();
         System.out.println(Messages.HELP);
     }
 

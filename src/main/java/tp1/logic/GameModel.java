@@ -13,7 +13,7 @@ public interface GameModel {
 
     public void exit();
 
-    public void reset(int level);
+    public boolean reset(int level);
 
     // public void showHelp(); // esta no
 

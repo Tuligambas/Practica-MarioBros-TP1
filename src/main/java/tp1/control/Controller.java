@@ -2,6 +2,7 @@ package tp1.control;
 
 import tp1.control.Commands.Command;
 import tp1.control.Commands.CommandGenerator;
+import tp1.exceptions.CommandException;
 import tp1.logic.GameModel;
 import tp1.view.GameView;
 import tp1.view.Messages;
@@ -23,17 +24,21 @@ public class Controller {
     String[] words = null;
 
     view.showWelcome();
+
     view.showGame();
     while (!game.isFinished()) {
-      // coge lo que has escrito
-      words = view.getPrompt();
-
-      // crea el comando y lo ejecuta
-      Command command = CommandGenerator.parse(words);
-      if (command != null)
-        command.execute(game, view);
-      else
-        view.showError(Messages.UNKNOWN_COMMAND.formatted(String.join(" ", words)));
+      try {
+        words = view.getPrompt();
+        Command command = CommandGenerator.parse(words);
+        if (command != null)
+          command.execute(game, view);
+      } catch (CommandException e) {
+        view.showError(e.getMessage());
+        Throwable cause = e.getCause();
+        if (cause != null)
+          view.showError(cause.getMessage());
+        view.showMessage(Messages.EMPTY);
+      }
     }
     view.showEndMessage();
   }
