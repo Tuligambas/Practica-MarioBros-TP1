@@ -48,6 +48,8 @@ public class Messages {
 	public static final String UNKNOWN_COMMAND = "Unknown command: %s";
 	public static final String UNKNOWN_ACTION = "Unknown action: \"%s\"";
 	public static final String ILLEGAL_ACTION = "Illegal action: \"%s\"";
+	public static final String INVALID_GAME_OBJECT = "Invalid game object: %s";
+
 	// Errores de commandos:
 	public static final String COMMAND_PARAMETERS_MISSING = "Missing parameters";
 	public static final String COMMAND_INCORRECT_PARAMETER_NUMBER = "Incorrect parameter number";

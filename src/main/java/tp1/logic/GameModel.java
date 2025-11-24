@@ -2,6 +2,8 @@ package tp1.logic;
 
 import java.util.List;
 
+import tp1.exceptions.ObjectParseException;
+import tp1.exceptions.OffBoardException;
 import tp1.logic.gameobjects.GameObject;
 
 public interface GameModel {
@@ -9,19 +11,13 @@ public interface GameModel {
 
     public void update();
 
-    public void reset();
-
     public void exit();
 
     public boolean reset(int level);
 
-    // public void showHelp(); // esta no
-
     public void addActions(List<Action> actions);
 
-    // public void load(String filename);
-
-    public void addObject(GameObject obj);
+    public void addObject(String[] objWords) throws OffBoardException, ObjectParseException;
 
     public GameObject parseObject(String[] infoObj);
 

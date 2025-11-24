@@ -1,5 +1,7 @@
 package tp1.logic.gameobjects;
 
+import tp1.exceptions.ObjectParseException;
+import tp1.exceptions.OffBoardException;
 import tp1.logic.GameWorld;
 import tp1.logic.Position;
 import tp1.view.Messages;
@@ -11,7 +13,6 @@ public class ExitDoor extends GameObject {
 
   public ExitDoor(Position position, GameWorld game) {
     super(position, game);
-    this.isAlive = true;
   }
 
   // CONSTRUCTOR VACIO
@@ -46,20 +47,22 @@ public class ExitDoor extends GameObject {
 
   @Override
   protected GameObject parse(String[] words, GameWorld game) {
-    if (words.length != 2)
-      return null;
-
     String nombre = words[1];
     if (matchObjectName(words[1])) {
-      String[] w = words[0].replace("(", " ").replace(",", " ").replace(")", " ").strip().split("( )+");
-      int fila = Integer.parseInt(w[0]);
-      int col = Integer.parseInt(w[1]);
-      Position pos = new Position(col, fila);
-
-      if (!pos.isInBoard())
-        return null;
-      else
-        return new ExitDoor(pos, game);
+      try {
+        String[] w = words[0].replace("(", " ").replace(",", " ").replace(")", " ").strip().split("( )+");
+        int fila = Integer.parseInt(w[0]);
+        int col = Integer.parseInt(w[1]);
+        Position pos = new Position(col, fila);
+        if (!pos.isInBoard()) {
+          throw new OffBoardException(Messages.OBJECT_OFF_WORLD_POSITION.formatted(line));
+        } else
+          return new ExitDoor(pos, game);
+      } catch (ArrayIndexOutOfBoundsException e1) {
+        throw new ObjectParseException(Messages.INVALID_GAME_OBJECT.formatted(line));
+      } catch (NumberFormatException e2) {
+        throw new ObjectParseException(Messages.INVALID_POSITION.formatted(line));
+      }
     }
     return null;
   }

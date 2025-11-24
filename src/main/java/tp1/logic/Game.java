@@ -2,6 +2,8 @@ package tp1.logic;
 
 import java.util.List;
 
+import tp1.exceptions.ObjectParseException;
+import tp1.exceptions.OffBoardException;
 import tp1.logic.gameobjects.Box;
 import tp1.logic.gameobjects.ExitDoor;
 import tp1.logic.gameobjects.GameObject;
@@ -22,24 +24,12 @@ public class Game implements GameModel, GameStatus, GameWorld {
   private int numLives = 3;
   public boolean exit = false; // como finished
   private boolean win = false; // como playerwon
-
+  private GameConfiguration conf = FileGameConfiguration.NONE; // FileGameConfiguration que no tiene nada
   private GameObjectContainer gameObjects;
 
   public Game(int nLevel) {
     this.nLevel = nLevel;
-    this.gameObjects = new GameObjectContainer();
-    this.points = 0;
-    this.numLives = 3;
-    this.exit = false;
-    this.remainingTime = 100;
-    if (nLevel == -1)
-      initLevelMenos1();
-    if (nLevel == 0)
-      initLevel0();
-    if (nLevel == 1)
-      initLevel1();
-    if (nLevel == 2)
-      initLevel2();
+    initGame(nLevel);
   }
 
   // Métodos de GameModel
@@ -133,7 +123,6 @@ public class Game implements GameModel, GameStatus, GameWorld {
     this.points += this.remainingTime * 10;
     this.remainingTime = 0;
     playerWins();
-
   }
 
   @Override
@@ -145,8 +134,21 @@ public class Game implements GameModel, GameStatus, GameWorld {
   public void looseLife() {
     this.numLives--;
     if (this.numLives > 0) {
-      reset();
+      reset(nLevel);
     }
+  }
+
+  // METODO PARA EL REINCIO
+  public boolean initGame(int nLevel) {
+    boolean b = true;
+    switch (nLevel) {
+      case 0 -> initLevel0();
+      case 1 -> initLevel1();
+      case 2 -> initLevel2();
+      case -1 -> initLevelMenos1();
+      default -> reset(this.nLevel);
+    }
+    return b;
   }
 
   private void initLevelMenos1() {
@@ -224,13 +226,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
   }
 
   @Override
-  public String toString() {
-    return "TODO: Hola soy el game";
-  }
-
-  @Override
-  public void addObject(GameObject obj) {
-    gameObjects.add(obj);
+  public void addObject(String[] objWords) throws OffBoardException, ObjectParseException {
+    gameObjects.add(objWords);
   }
 
   @Override
