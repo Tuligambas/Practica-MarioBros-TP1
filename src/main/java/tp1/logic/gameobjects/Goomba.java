@@ -95,4 +95,8 @@ public class Goomba extends MovingObject {
     return SHORTCUT;
   }
 
+  public String serialize(){
+    return "(" + pos.getRow() + "," + pos.getCol() + ")" + " " + getName() + " " + this.dir.toString();
+  }
+
 }

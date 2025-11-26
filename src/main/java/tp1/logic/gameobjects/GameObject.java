@@ -113,6 +113,11 @@ public abstract class GameObject implements GameItem {
 
     protected abstract GameObject parse(String objWords[], GameWorld game); // implementar en todas las clases
 
+    public String serialize(){
+    return "(" + pos.getRow() + "," + pos.getCol() + ")" + " " + getName();
+    }
+
+
     /*
      * public boolean receiveInteraction(GameItem other) {
      * return false;

@@ -80,4 +80,10 @@ public class Mushroom extends MovingObject {
         return null;
     }
 
+
+    public String serialize(){
+        return "(" + pos.getRow() + "," + pos.getCol() + ")" + " " + getName() + " " + this.dir.toString();
+    }
+
+
 }

@@ -238,9 +238,9 @@ public class Game implements GameModel, GameStatus, GameWorld {
     this.numLives = conf.getLives();
     this.gameObjects = new GameObjectContainer();
 
-  for(GameObject obj : conf.getObjects()){
+    for(GameObject obj : conf.getObjects()){
     this.gameObjects.add(obj);
-  }
+    }
     
   }
 
@@ -272,7 +272,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 
     sb.append(remainingTime).append(" ").append(points).append(" ").append(numLives).append("\n");
 
-    for(GameObject obj : gameObjects){
+    for(GameObject obj : gameObjects.getAllObjects()){
     sb.append(obj.serialize()).append("\n");
     }
 
@@ -282,7 +282,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
 
   @Override
   public void save(String fileName) throws GameModelException { // ver si esta bien esta función
-    
+
     try (PrintWriter pw = new PrintWriter(new FileWriter(fileName))) {
         
         // Serializar el estado actual del juego

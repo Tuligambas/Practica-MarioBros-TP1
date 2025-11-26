@@ -92,4 +92,10 @@ public class Box extends GameObject {
         return SHORTCUT;
     }
 
+    @Override
+    public String serialize(){
+        String estado = this.empty ? "EMPTY" : "FULL";
+        return "(" + pos.getRow() + "," + pos.getCol() + ")" + " " + getName() + " " + estado ;
+    }
+    
 }
