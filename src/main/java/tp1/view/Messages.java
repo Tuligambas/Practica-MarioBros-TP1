@@ -57,6 +57,19 @@ public class Messages {
 	public static final String INVALID_COMMAND_PARAMETERS = "Invalid command parameters";
 	public static final String ERROR_COMMAND_EXECUTE = "Command execute problem";
 	public static final String INCORRECT_ACTION_COMMAND = "Incorrect 'action command', because the action list is empty (all actions are unknown).";
+	public static final String OBJECT_PARSE_ERROR_TOO_MUCH_ARGS = "Object parse error, too much args: \"%s\"";
+	public static final String OBJECT_POSITION_OFF_BOARD = "Object position is off board: \"%s\"";
+	public static final String INVALID_OBJECT_POSITION = "Invalid object position: \"%s\"";
+	public static final String INVALID_POSITION = "Invalid position: \"%s\"";
+	public static final String UNKNOWN_MOVING_OBJECT_DIRECTION = "Unknown moving object direction: \"%s\"";
+	public static final String INVALID_MOVING_OBJECT_DIRECTION = "Invalid moving object direction: \"%s\"";
+	public static final String UNKNOWN_GAME_OBJECT = "Unknown game object: \"%s\"";
+	public static final String INVALID_BOX_STATUS = " Invalid Box status: \"%s\"";
+	public static final String INVALID_MARIO_SIZE = "Invalid Mario size: \"%s\"";
+	public static final String UNABLE_TO_LOAD_GAME_CONFIGURATION = "Unable to load game configuration from file \"%s\"";
+	public static final String FILE_NOT_FOUND = "File not found: \"%s\"";
+	public static final String INCORRECT_GAME_STATUS = "Incorrect game status \"%s\"";
+	public static final String INVALID_FILE_CONFIGURATION = "Invalid file \"%s\" configuration";
 
 	public static final String HELP_AVAILABLE_COMMANDS = "Available commands:";
 
@@ -127,11 +140,15 @@ public class Messages {
 	public static final String COMMAND_ACTION_DETAILS = "Performs an action";
 	public static final String COMMAND_ACTION_HELP = "[a]ction: performs an action";
 
-	// AddObject
-	public static final String COMMAND_LOAD_NAME = "addObject";
-	public static final String COMMAND_LOAD_SHORTCUT = "aO";
-	public static final String COMMAND_LOAD_DETAILS = "[a]dd[O]bject <object_description>";
-	public static final String COMMAND_LOAD_HELP = "adds to the board the object given by object_description";
+	public static final String COMMAND_ADD_NAME = "addObject";
+	public static final String COMMAND_ADD_SHORTCUT = "aO";
+	public static final String COMMAND_ADD_DETAILS = "[a]dd[O]bject <object_description>";
+	public static final String COMMAND_ADD_HELP = "adds to the board the object given by object_description";
+
+	public static final String COMMAND_LOAD_NAME = "loadObject";
+	public static final String COMMAND_LOAD_SHORTCUT = "l";
+	public static final String COMMAND_LOAD_DETAILS = "[l]oad[O]bject <object_description>";
+	public static final String COMMAND_LOAD_HELP = "loads from the board the object given by object_description";
 
 	public static char[] showError(String commandIncorrectParameterNumber) {
 		return String.format(ERROR, commandIncorrectParameterNumber).toCharArray();

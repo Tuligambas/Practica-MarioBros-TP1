@@ -5,15 +5,14 @@ import java.util.Arrays;
 import tp1.exceptions.CommandExecuteException;
 import tp1.exceptions.CommandParseException;
 import tp1.logic.GameModel;
-import tp1.logic.gameobjects.GameObject;
 import tp1.view.GameView;
 import tp1.view.Messages;
 
 public class AddObjectCommand extends AbstractCommand /* NoParamsCommand */ { // ver si esta bien
-    public static final String NAME = Messages.COMMAND_LOAD_NAME;
-    public static final String SHORTCUT = Messages.COMMAND_LOAD_SHORTCUT;
-    public static final String DETAILS = Messages.COMMAND_LOAD_DETAILS;
-    public static final String HELP = Messages.COMMAND_LOAD_HELP;
+    public static final String NAME = Messages.COMMAND_ADD_NAME;
+    public static final String SHORTCUT = Messages.COMMAND_ADD_SHORTCUT;
+    public static final String DETAILS = Messages.COMMAND_ADD_DETAILS;
+    public static final String HELP = Messages.COMMAND_ADD_HELP;
     String[] infoObj;
 
     // CONSTRUCTORA CON LA INFORMACION DEL OBJETO A AÑADIR
@@ -29,18 +28,9 @@ public class AddObjectCommand extends AbstractCommand /* NoParamsCommand */ { //
 
     @Override
     public void execute(GameModel game, GameView view) throws CommandExecuteException {
-        String fullDescription = String.join(" ", infoObj);
         try {
-            GameObject obj = game.parseObject(infoObj);
-
-            if (obj == null) {
-                throw new CommandExecuteException("Invalid game object: " + fullDescription);
-            }
-
-            game.addObject(obj);
+            game.addObject(infoObj);
             view.showGame();
-        } catch (CommandExecuteException e) {
-            throw e;
         } catch (Exception e) {
             throw new CommandExecuteException(Messages.ERROR_COMMAND_EXECUTE, e);
         }

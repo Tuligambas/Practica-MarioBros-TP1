@@ -2,6 +2,8 @@ package tp1.logic.gameobjects;
 
 import java.util.List;
 
+import tp1.exceptions.ObjectParseException;
+import tp1.exceptions.OffBoardException;
 import tp1.logic.Action;
 import tp1.logic.GameItem;
 import tp1.logic.GameWorld;
@@ -111,7 +113,9 @@ public abstract class GameObject implements GameItem {
         return false;
     }
 
-    protected abstract GameObject parse(String objWords[], GameWorld game); // implementar en todas las clases
+    protected abstract GameObject parse(String[] words, GameWorld game) throws ObjectParseException, OffBoardException;
+
+    public abstract GameObject copy();
 
     /*
      * public boolean receiveInteraction(GameItem other) {

@@ -1,5 +1,7 @@
 package tp1.logic.gameobjects;
 
+import tp1.exceptions.ObjectParseException;
+import tp1.exceptions.OffBoardException;
 import tp1.logic.Action;
 import tp1.logic.GameWorld;
 import tp1.logic.Position;
@@ -54,30 +56,40 @@ public class Mushroom extends MovingObject {
     }
 
     @Override
-    protected GameObject parse(String[] words, GameWorld game) {
-        if (words.length != 3 && words.length != 2) { // si no tiene 3 o 2 palabras, no es un goomba válido
+    protected GameObject parse(String[] words, GameWorld game) throws ObjectParseException, OffBoardException {
+        if (words.length < 2 || !matchObjectName(words[1]))
             return null;
-        }
-        String nombre = words[1];
-        if (matchObjectName(words[1])) {
+
+        String fullDescription = String.join(" ", words);
+        if (words.length > 3)
+            throw new ObjectParseException(Messages.OBJECT_PARSE_ERROR_TOO_MUCH_ARGS.formatted(fullDescription));
+
+        Position pos;
+        try {
             String[] w = words[0].replace("(", " ").replace(",", " ").replace(")", " ").strip().split("( )+");
             int fila = Integer.parseInt(w[0]);
             int col = Integer.parseInt(w[1]);
-            Position pos = new Position(col, fila);
-            if (!pos.isInBoard())
-                return null;
-
-            if (words.length == 2) {
-                return new Mushroom(pos, game);
-            }
-
-            Action dir = Action.StringToDir(words[2].toUpperCase()); // convierte la tercera palabra en una
-            if (dir != Action.LEFT && dir != Action.RIGHT)
-                return null;
-
-            return new Mushroom(pos, dir, game);
+            pos = new Position(col, fila);
+        } catch (Exception e) {
+            throw new ObjectParseException(Messages.INVALID_OBJECT_POSITION.formatted(fullDescription), e);
         }
-        return null;
+
+        if (!pos.isInBoard())
+            throw new OffBoardException(Messages.OBJECT_POSITION_OFF_BOARD.formatted(fullDescription));
+
+        if (words.length == 2) {
+            return new Mushroom(pos, game);
+        }
+
+        Action dir = Action.StringToDir(words[2].toUpperCase()); // convierte la tercera palabra en una
+        if (dir == null) {
+            ObjectParseException cause = new ObjectParseException(Messages.UNKNOWN_ACTION.formatted(words[2]));
+            throw new ObjectParseException(Messages.UNKNOWN_MOVING_OBJECT_DIRECTION.formatted(fullDescription), cause);
+        }
+        if (dir != Action.LEFT && dir != Action.RIGHT)
+            throw new ObjectParseException(Messages.INVALID_MOVING_OBJECT_DIRECTION.formatted(fullDescription));
+
+        return new Mushroom(pos, dir, game);
     }
 
 }

@@ -2,6 +2,8 @@ package tp1.logic.gameobjects;
 
 import tp1.logic.GameWorld;
 import tp1.logic.Position;
+import tp1.exceptions.ObjectParseException;
+import tp1.exceptions.OffBoardException;
 import tp1.view.Messages;
 
 public class Land extends GameObject {
@@ -42,21 +44,25 @@ public class Land extends GameObject {
   }
 
   @Override
-  protected GameObject parse(String[] words, GameWorld game) {
-    if (words.length != 2)
+  protected GameObject parse(String[] words, GameWorld game) throws ObjectParseException, OffBoardException {
+    if (words.length != 2 || !matchObjectName(words[1]))
       return null;
-    String nombre = words[1];
-    if (matchObjectName(words[1])) {
+
+    String fullDescription = String.join(" ", words);
+    Position pos;
+    try {
       String[] w = words[0].replace("(", " ").replace(",", " ").replace(")", " ").strip().split("( )+");
       int fila = Integer.parseInt(w[0]);
       int col = Integer.parseInt(w[1]);
-      Position pos = new Position(col, fila);
-
-      if (pos.isInBoard())
-        return new Land(pos, game);
-
+      pos = new Position(col, fila);
+    } catch (Exception e) {
+      throw new ObjectParseException(Messages.INVALID_OBJECT_POSITION.formatted(fullDescription), e);
     }
-    return null;
+
+    if (!pos.isInBoard())
+      throw new OffBoardException(Messages.OBJECT_POSITION_OFF_BOARD.formatted(fullDescription));
+
+    return new Land(pos, game);
   }
 
 }

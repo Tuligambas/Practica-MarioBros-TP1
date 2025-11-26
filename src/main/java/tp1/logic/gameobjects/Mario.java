@@ -2,6 +2,8 @@ package tp1.logic.gameobjects;
 
 import java.util.List;
 
+import tp1.exceptions.ObjectParseException;
+import tp1.exceptions.OffBoardException;
 import tp1.logic.Action;
 import tp1.logic.GameItem;
 import tp1.logic.GameWorld;
@@ -233,44 +235,45 @@ public class Mario extends MovingObject {
   }
 
   @Override
-  protected GameObject parse(String[] words, GameWorld game) {
-    String nombre = words[1]; // guarda la segunda palabra como el nombre del objeto
-    Position posNueva; // Creamos la posición del nuevo mario
-
-    if (words.length != 4) { // si no tiene 4 palabras, no es un mario válido
+  protected GameObject parse(String[] words, GameWorld game) throws ObjectParseException, OffBoardException {
+    if (words.length < 2 || !matchObjectName(words[1]))
       return null;
-    }
 
-    if (matchObjectName(nombre)) {// comprueba que el nombre que le entra corresponde con el de mario
+    String fullDescription = String.join(" ", words);
+    if (words.length != 4)
+      throw new ObjectParseException(Messages.OBJECT_PARSE_ERROR_TOO_MUCH_ARGS.formatted(fullDescription));
+
+    Position posNueva;
+    try {
       String[] ws = words[0].replace("(", " ").replace(",", " ").replace(")", " ").strip().split("( )+");
-      int col = Integer.parseInt(ws[1]); // convierte lo que le llega en un entero (columna de la posición)
-      int row = Integer.parseInt(ws[0]); // convierte lo que le llega en un entero (fila de la posición)
-      posNueva = new Position(col, row); // crea la posición con la columna y fila que hemos conseguido
-      if (!posNueva.isInBoard()) { // si la posición conseguida no está en el tablero lanzará una excepción
-        return null;
-      }
-
-      Action dir = Action.StringToDir(words[2].toUpperCase()); // convierte la tercera palabra en una
-                                                               // dirección
-      if (dir == null || (dir != Action.RIGHT && dir != Action.LEFT)) { // si le ponemos una dirección que no existe o
-                                                                        // no es RIGHT o LEFT
-        return null;
-      }
-
-      String size; // crea la fuerza de caída que lleva en ese momento, que siempre va a ser 0
-      size = words[3]; // la lee, que normalmente es 0
-      boolean big;
-      if (size.equalsIgnoreCase("BIG") || size.equalsIgnoreCase("B"))
-        big = true;
-      else if (size.equalsIgnoreCase("SMALL") || size.equalsIgnoreCase("S"))
-        big = false;
-      else
-        return null;
-
-      return new Mario(posNueva, game, dir, big); // devuelve el nuevo mario creado con los parámetros obtenidos
+      int col = Integer.parseInt(ws[1]); // columna
+      int row = Integer.parseInt(ws[0]); // fila
+      posNueva = new Position(col, row);
+    } catch (Exception e) {
+      throw new ObjectParseException(Messages.INVALID_OBJECT_POSITION.formatted(fullDescription), e);
     }
-    return null;
 
+    if (!posNueva.isInBoard())
+      throw new OffBoardException(Messages.OBJECT_POSITION_OFF_BOARD.formatted(fullDescription));
+
+    Action dir = Action.StringToDir(words[2].toUpperCase()); // convierte la tercera palabra en una dirección
+    if (dir == null) {
+      ObjectParseException cause = new ObjectParseException(Messages.UNKNOWN_ACTION.formatted(words[2]));
+      throw new ObjectParseException(Messages.UNKNOWN_MOVING_OBJECT_DIRECTION.formatted(fullDescription), cause);
+    }
+    if (dir != Action.RIGHT && dir != Action.LEFT)
+      throw new ObjectParseException(Messages.INVALID_MOVING_OBJECT_DIRECTION.formatted(fullDescription));
+
+    String size = words[3];
+    boolean big;
+    if (size.equalsIgnoreCase("BIG") || size.equalsIgnoreCase("B"))
+      big = true;
+    else if (size.equalsIgnoreCase("SMALL") || size.equalsIgnoreCase("S"))
+      big = false;
+    else
+      throw new ObjectParseException(Messages.INVALID_MARIO_SIZE.formatted(fullDescription));
+
+    return new Mario(posNueva, game, dir, big); // devuelve el nuevo mario creado con los parámetros obtenidos
   }
 
   @Override

@@ -2,6 +2,7 @@ package tp1.logic;
 
 import java.util.List;
 
+import tp1.exceptions.GameLoadException;
 import tp1.exceptions.ObjectParseException;
 import tp1.exceptions.OffBoardException;
 import tp1.logic.gameobjects.Box;
@@ -25,6 +26,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
   public boolean exit = false; // como finished
   private boolean win = false; // como playerwon
   private GameConfiguration conf = FileGameConfiguration.NONE; // FileGameConfiguration que no tiene nada
+  private String fileName;
   private GameObjectContainer gameObjects;
 
   public Game(int nLevel) {
@@ -58,6 +60,15 @@ public class Game implements GameModel, GameStatus, GameWorld {
       }
       return true;
     }
+  }
+
+  public void load(String fileName) throws GameLoadException {
+    conf = new FileGameConfiguration(fileName, this);
+    this.fileName = fileName;
+    this.remainingTime = conf.getRemainingTime();
+    this.points = conf.points();
+    this.numLives = conf.numLives();
+    this.gameObjects = conf.receiveContainer();
   }
 
   @Override
@@ -227,11 +238,12 @@ public class Game implements GameModel, GameStatus, GameWorld {
 
   @Override
   public void addObject(String[] objWords) throws OffBoardException, ObjectParseException {
-    gameObjects.add(objWords);
+    GameObject obj = GameObjectFactory.parse(objWords, this);
+    gameObjects.add(obj);
   }
 
   @Override
-  public GameObject parseObject(String[] infoObj) {
+  public GameObject parseObject(String[] infoObj) throws OffBoardException, ObjectParseException {
     return GameObjectFactory.parse(infoObj, this);
   }
 

@@ -1,5 +1,7 @@
 package tp1.logic.gameobjects;
 
+import tp1.exceptions.ObjectParseException;
+import tp1.exceptions.OffBoardException;
 import tp1.logic.GameWorld;
 import tp1.logic.Position;
 import tp1.view.Messages;
@@ -35,38 +37,42 @@ public class Box extends GameObject {
     }
 
     @Override
-    protected GameObject parse(String[] words, GameWorld game) {
-        if (words.length != 3 && words.length != 2) {
+    protected GameObject parse(String[] words, GameWorld game) throws ObjectParseException, OffBoardException {
+        if (words.length < 2 || !matchObjectName(words[1]))
             return null;
-        }
-        String nombre = words[1];
-        if (matchObjectName(words[1])) {
+
+        String fullDescription = String.join(" ", words);
+
+        if (words.length > 3)
+            throw new ObjectParseException(Messages.OBJECT_PARSE_ERROR_TOO_MUCH_ARGS.formatted(fullDescription));
+
+        Position pos;
+        try {
             String[] w = words[0].replace("(", " ").replace(",", " ").replace(")", " ").strip().split("( )+");
             int fila = Integer.parseInt(w[0]);
             int col = Integer.parseInt(w[1]);
-            Position pos = new Position(col, fila);
-
-            if (!pos.isInBoard())
-                return null;
-
-            if (words.length == 2) { // Caja sin estado
-                return new Box(pos, game, true);
-            } else if (words.length == 3) {
-                String empty; // crea la fuerza de caída que lleva en ese momento, que siempre va a ser 0
-                empty = words[2]; // la lee, que normalmente es 0
-                boolean isEmpty;
-                if (empty.equalsIgnoreCase("FULL"))
-                    isEmpty = true;
-                else if (empty.equalsIgnoreCase("EMPTY"))
-                    isEmpty = false;
-                else
-                    return null;
-
-                return new Box(pos, game, isEmpty);
-            }
-
+            pos = new Position(col, fila);
+        } catch (Exception e) {
+            throw new ObjectParseException(Messages.INVALID_OBJECT_POSITION.formatted(fullDescription), e);
         }
-        return null;
+
+        if (!pos.isInBoard())
+            throw new OffBoardException(Messages.OBJECT_POSITION_OFF_BOARD.formatted(fullDescription));
+
+        if (words.length == 2) { // Caja sin estado explícito
+            return new Box(pos, game, true);
+        }
+
+        String status = words[2];
+        boolean isEmpty;
+        if (status.equalsIgnoreCase("FULL"))
+            isEmpty = true;
+        else if (status.equalsIgnoreCase("EMPTY"))
+            isEmpty = false;
+        else
+            throw new ObjectParseException(Messages.INVALID_BOX_STATUS.formatted(fullDescription));
+
+        return new Box(pos, game, isEmpty);
     }
 
     @Override
@@ -90,6 +96,12 @@ public class Box extends GameObject {
     @Override
     protected String getShortCut() {
         return SHORTCUT;
+    }
+
+    @Override
+    public GameObject copy() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'copy'");
     }
 
 }

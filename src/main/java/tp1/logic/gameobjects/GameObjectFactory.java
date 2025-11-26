@@ -3,7 +3,10 @@ package tp1.logic.gameobjects;
 import java.util.Arrays;
 import java.util.List;
 
+import tp1.exceptions.ObjectParseException;
+import tp1.exceptions.OffBoardException;
 import tp1.logic.GameWorld;
+import tp1.view.Messages;
 
 public class GameObjectFactory {
     private static final List<GameObject> availableObjects = Arrays.asList(
@@ -17,13 +20,14 @@ public class GameObjectFactory {
     // Igual que el commandGenerator
     // Recorre toda la lista de objetos, para comprobar si el nombre que le entra es
     // un objeto
-    public static GameObject parse(String objWords[], GameWorld game) {
+    public static GameObject parse(String objWords[], GameWorld game) throws ObjectParseException, OffBoardException {
         for (GameObject obj : availableObjects) {
             GameObject gameobject = obj.parse(objWords, game);
             if (gameobject != null) {
                 return gameobject;
             }
         }
-        return null;
+        String fullDescription = String.join(" ", objWords);
+        throw new ObjectParseException(Messages.UNKNOWN_GAME_OBJECT.formatted(fullDescription));
     }
 }

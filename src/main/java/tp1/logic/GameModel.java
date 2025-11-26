@@ -19,6 +19,8 @@ public interface GameModel {
 
     public void addObject(String[] objWords) throws OffBoardException, ObjectParseException;
 
-    public GameObject parseObject(String[] infoObj);
+    public GameObject parseObject(String[] infoObj) throws OffBoardException, ObjectParseException;
+
+    public void load(String filename);
 
 }

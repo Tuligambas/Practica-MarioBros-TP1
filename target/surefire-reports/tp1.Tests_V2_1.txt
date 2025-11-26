@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: tp1.Tests_V2_1
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.052 s <<< FAILURE! -- in tp1.Tests_V2_1
-tp1.Tests_V2_1.test00 -- Time elapsed: 0.001 s <<< FAILURE!
+Tests run: 7, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 0.049 s <<< FAILURE! -- in tp1.Tests_V2_1
+tp1.Tests_V2_1.test00 -- Time elapsed: 0.002 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 30
 Expected:    [a]ction [[R]IGHT | [L]EFT | [U]P | [D]OWN | [S]TOP]+: user performs actions
@@ -13,23 +13,71 @@ Actual  :    [a]dd[O]bject <object_description>: adds to the board the object gi
 	at tp1.TestsUtils.checkOutput(TestsUtils.java:107)
 	at tp1.TestsUtils.parameterizedTest(TestsUtils.java:125)
 	at tp1.Tests_V2_1.testN(Tests_V2_1.java:21)
-	at tp1.Tests_V2_1.test00(Tests_V2_1.java:30)
+	at tp1.Tests_V2_1.test00(Tests_V2_1.java:29)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V2_1.test05 -- Time elapsed: 0.005 s <<< FAILURE!
+tp1.Tests_V2_1.test01 -- Time elapsed: 0.003 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
-Line: 316
-Expected: Points: 500
-Actual  : Points: 400
+Line: 29
+Expected: [ERROR] Error: Unknown command: action
+Actual  : [ERROR] Error: Incorrect parameter number
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
 	at tp1.TestsUtils.checkOutput(TestsUtils.java:107)
 	at tp1.TestsUtils.parameterizedTest(TestsUtils.java:125)
 	at tp1.Tests_V2_1.testN(Tests_V2_1.java:21)
-	at tp1.Tests_V2_1.test05(Tests_V2_1.java:55)
+	at tp1.Tests_V2_1.test01(Tests_V2_1.java:31)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+tp1.Tests_V2_1.test02 -- Time elapsed: 0.015 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+Line: 107
+Expected: Time: 100
+Actual  : [ERROR] Error: Not valid level number
+
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
+	at tp1.TestsUtils.checkOutput(TestsUtils.java:107)
+	at tp1.TestsUtils.parameterizedTest(TestsUtils.java:125)
+	at tp1.Tests_V2_1.testN(Tests_V2_1.java:21)
+	at tp1.Tests_V2_1.test02(Tests_V2_1.java:33)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+tp1.Tests_V2_1.test04 -- Time elapsed: 0.005 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+Line: 471
+Expected: Time: 100
+Actual  : Time: 82
+
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
+	at tp1.TestsUtils.checkOutput(TestsUtils.java:107)
+	at tp1.TestsUtils.parameterizedTest(TestsUtils.java:125)
+	at tp1.Tests_V2_1.testN(Tests_V2_1.java:21)
+	at tp1.Tests_V2_1.test04(Tests_V2_1.java:37)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+tp1.Tests_V2_1.test05 -- Time elapsed: 0.005 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+Line: 81
+Expected: Time: 100
+Actual  : Time: 97
+
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
+	at tp1.TestsUtils.checkOutput(TestsUtils.java:107)
+	at tp1.TestsUtils.parameterizedTest(TestsUtils.java:125)
+	at tp1.Tests_V2_1.testN(Tests_V2_1.java:21)
+	at tp1.Tests_V2_1.test05(Tests_V2_1.java:39)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)

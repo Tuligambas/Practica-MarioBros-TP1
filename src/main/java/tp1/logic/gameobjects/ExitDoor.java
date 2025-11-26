@@ -46,7 +46,7 @@ public class ExitDoor extends GameObject {
   }
 
   @Override
-  protected GameObject parse(String[] words, GameWorld game) {
+  protected GameObject parse(String[] words, GameWorld game) throws ObjectParseException, OffBoardException {
     String nombre = words[1];
     if (matchObjectName(words[1])) {
       try {
@@ -55,13 +55,13 @@ public class ExitDoor extends GameObject {
         int col = Integer.parseInt(w[1]);
         Position pos = new Position(col, fila);
         if (!pos.isInBoard()) {
-          throw new OffBoardException(Messages.OBJECT_OFF_WORLD_POSITION.formatted(line));
+          throw new OffBoardException(Messages.OBJECT_POSITION_OFF_BOARD.formatted(words[0]));
         } else
           return new ExitDoor(pos, game);
       } catch (ArrayIndexOutOfBoundsException e1) {
-        throw new ObjectParseException(Messages.INVALID_GAME_OBJECT.formatted(line));
+        throw new ObjectParseException(Messages.INVALID_GAME_OBJECT.formatted(words[0]));
       } catch (NumberFormatException e2) {
-        throw new ObjectParseException(Messages.INVALID_POSITION.formatted(line));
+        throw new ObjectParseException(Messages.INVALID_POSITION.formatted(words[0]));
       }
     }
     return null;

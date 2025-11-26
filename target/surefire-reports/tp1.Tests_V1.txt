@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: tp1.Tests_V1
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 7, Errors: 0, Skipped: 0, Time elapsed: 0.047 s <<< FAILURE! -- in tp1.Tests_V1
-tp1.Tests_V1.test00 -- Time elapsed: 0.001 s <<< FAILURE!
+Tests run: 7, Failures: 7, Errors: 0, Skipped: 0, Time elapsed: 0.044 s <<< FAILURE! -- in tp1.Tests_V1
+tp1.Tests_V1.test00 -- Time elapsed: 0.002 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 1.0
@@ -13,12 +13,12 @@ Actual  : MarioBross 2.X
 	at tp1.TestsUtils.checkOutput(TestsUtils.java:107)
 	at tp1.TestsUtils.parameterizedTest(TestsUtils.java:125)
 	at tp1.Tests_V1.testN(Tests_V1.java:21)
-	at tp1.Tests_V1.test00(Tests_V1.java:30)
+	at tp1.Tests_V1.test00(Tests_V1.java:29)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V1.test01 -- Time elapsed: 0.004 s <<< FAILURE!
+tp1.Tests_V1.test01 -- Time elapsed: 0.002 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 1.0
@@ -29,12 +29,12 @@ Actual  : MarioBross 2.X
 	at tp1.TestsUtils.checkOutput(TestsUtils.java:107)
 	at tp1.TestsUtils.parameterizedTest(TestsUtils.java:125)
 	at tp1.Tests_V1.testN(Tests_V1.java:21)
-	at tp1.Tests_V1.test01(Tests_V1.java:35)
+	at tp1.Tests_V1.test01(Tests_V1.java:31)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V1.test02 -- Time elapsed: 0.010 s <<< FAILURE!
+tp1.Tests_V1.test02 -- Time elapsed: 0.014 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 1.0
@@ -45,12 +45,12 @@ Actual  : MarioBross 2.X
 	at tp1.TestsUtils.checkOutput(TestsUtils.java:107)
 	at tp1.TestsUtils.parameterizedTest(TestsUtils.java:125)
 	at tp1.Tests_V1.testN(Tests_V1.java:21)
-	at tp1.Tests_V1.test02(Tests_V1.java:40)
+	at tp1.Tests_V1.test02(Tests_V1.java:33)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V1.test03 -- Time elapsed: 0.007 s <<< FAILURE!
+tp1.Tests_V1.test03 -- Time elapsed: 0.008 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 1.0
@@ -61,12 +61,12 @@ Actual  : MarioBross 2.X
 	at tp1.TestsUtils.checkOutput(TestsUtils.java:107)
 	at tp1.TestsUtils.parameterizedTest(TestsUtils.java:125)
 	at tp1.Tests_V1.testN(Tests_V1.java:21)
-	at tp1.Tests_V1.test03(Tests_V1.java:45)
+	at tp1.Tests_V1.test03(Tests_V1.java:35)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V1.test04 -- Time elapsed: 0.011 s <<< FAILURE!
+tp1.Tests_V1.test04 -- Time elapsed: 0.005 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 1.0
@@ -77,12 +77,12 @@ Actual  : MarioBross 2.X
 	at tp1.TestsUtils.checkOutput(TestsUtils.java:107)
 	at tp1.TestsUtils.parameterizedTest(TestsUtils.java:125)
 	at tp1.Tests_V1.testN(Tests_V1.java:21)
-	at tp1.Tests_V1.test04(Tests_V1.java:50)
+	at tp1.Tests_V1.test04(Tests_V1.java:37)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V1.test05 -- Time elapsed: 0.005 s <<< FAILURE!
+tp1.Tests_V1.test05 -- Time elapsed: 0.007 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 1.0
@@ -93,12 +93,12 @@ Actual  : MarioBross 2.X
 	at tp1.TestsUtils.checkOutput(TestsUtils.java:107)
 	at tp1.TestsUtils.parameterizedTest(TestsUtils.java:125)
 	at tp1.Tests_V1.testN(Tests_V1.java:21)
-	at tp1.Tests_V1.test05(Tests_V1.java:55)
+	at tp1.Tests_V1.test05(Tests_V1.java:39)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V1.test06 -- Time elapsed: 0.005 s <<< FAILURE!
+tp1.Tests_V1.test06 -- Time elapsed: 0.006 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 1.0
@@ -109,7 +109,7 @@ Actual  : MarioBross 2.X
 	at tp1.TestsUtils.checkOutput(TestsUtils.java:107)
 	at tp1.TestsUtils.parameterizedTest(TestsUtils.java:125)
 	at tp1.Tests_V1.testN(Tests_V1.java:21)
-	at tp1.Tests_V1.test06(Tests_V1.java:60)
+	at tp1.Tests_V1.test06(Tests_V1.java:41)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
