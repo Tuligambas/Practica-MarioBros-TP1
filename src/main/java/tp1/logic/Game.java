@@ -1,7 +1,11 @@
 package tp1.logic;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
+import tp1.exceptions.GameModelException;
 import tp1.exceptions.ObjectParseException;
 import tp1.exceptions.OffBoardException;
 import tp1.logic.gameobjects.Box;
@@ -25,6 +29,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
   public boolean exit = false; // como finished
   private boolean win = false; // como playerwon
   private GameConfiguration conf = FileGameConfiguration.NONE; // FileGameConfiguration que no tiene nada
+  private String fileName;
   private GameObjectContainer gameObjects;
 
   public Game(int nLevel) {
@@ -225,6 +230,20 @@ public class Game implements GameModel, GameStatus, GameWorld {
     gameObjects.add(new Box(new Position(4, 9), this, false));
   }
 
+  public void load(String fileName) throws GameLoadException {
+    conf = new FileGameConfiguration(fileName, this);
+    this.fileName = fileName;
+    this.remainingTime = conf.getTime();
+    this.points = conf.getPoints();
+    this.numLives = conf.getLives();
+    this.gameObjects = new GameObjectContainer();
+
+  for(GameObject obj : conf.getObjects()){
+    this.gameObjects.add(obj);
+  }
+    
+  }
+
   @Override
   public void addObject(String[] objWords) throws OffBoardException, ObjectParseException {
     gameObjects.add(objWords);
@@ -244,5 +263,36 @@ public class Game implements GameModel, GameStatus, GameWorld {
   public void newMushroomAt(Position pos) {
     gameObjects.new_add(new Mushroom(pos.move(Action.UP), this));
   }
+
+
+  // Función para leer
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+
+    sb.append(remainingTime).append(" ").append(points).append(" ").append(numLives).append("\n");
+
+    for(GameObject obj : gameObjects){
+    sb.append(obj.serialize()).append("\n");
+    }
+
+    return sb.toString();
+  }
+  
+
+  @Override
+  public void save(String fileName) throws GameModelException { // ver si esta bien esta función
+    
+    try (PrintWriter pw = new PrintWriter(new FileWriter(fileName))) {
+        
+        // Serializar el estado actual del juego
+        pw.print(this.toString());
+
+    } catch (IOException e) {
+        throw new GameModelException("Error saving game to file: " + fileName, e); 
+    }
+  }
+
+
 
 }
