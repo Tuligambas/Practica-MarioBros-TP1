@@ -18,6 +18,13 @@ public abstract class MovingObject extends GameObject {
     public MovingObject() {
     }
 
+    // CONSTRUCTORA PARA LA COPIA DE LOS OBJETOS
+    public MovingObject(MovingObject obj) {
+        super(obj);
+        this.isfalling = obj.isfalling;
+        this.dir = obj.dir;
+    }
+
     // ESTAS FUNCIONES VAN AQUI???
     protected boolean wallNextTo(Action dir) {
         Position next = this.pos.move(dir);

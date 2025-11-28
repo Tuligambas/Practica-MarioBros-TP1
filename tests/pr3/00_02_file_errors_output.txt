@@ -26,43 +26,43 @@ Lives: 3
 
 Command > [DEBUG] Executing: load conf
 
-[ERROR] Error: Unknown command: load
+[ERROR] Error: Unknown command: load conf
 
 Command > [DEBUG] Executing: load conf_2
 
-[ERROR] Error: Unknown command: load
+[ERROR] Error: Unknown command: load conf_2
 
 Command > [DEBUG] Executing: load conf_3
 
-[ERROR] Error: Unknown command: load
+[ERROR] Error: Unknown command: load conf_3
 
 Command > [DEBUG] Executing: load conf_4
 
-[ERROR] Error: Unknown command: load
+[ERROR] Error: Unknown command: load conf_4
 
 Command > [DEBUG] Executing: load conf_5
 
-[ERROR] Error: Unknown command: load
+[ERROR] Error: Unknown command: load conf_5
 
 Command > [DEBUG] Executing: load conf_6
 
-[ERROR] Error: Unknown command: load
+[ERROR] Error: Unknown command: load conf_6
 
 Command > [DEBUG] Executing: load conf_7
 
-[ERROR] Error: Unknown command: load
+[ERROR] Error: Unknown command: load conf_7
 
 Command > [DEBUG] Executing: load conf_8
 
-[ERROR] Error: Unknown command: load
+[ERROR] Error: Unknown command: load conf_8
 
 Command > [DEBUG] Executing: load conf_0
 
-[ERROR] Error: Unknown command: load
+[ERROR] Error: Unknown command: load conf_0
 
 Command > [DEBUG] Executing: load conf_1
 
-[ERROR] Error: Unknown command: load
+[ERROR] Error: Unknown command: load conf_1
 
 Command > [DEBUG] Executing: a u r u r u r u r
 

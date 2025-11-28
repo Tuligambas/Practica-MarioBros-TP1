@@ -1,11 +1,11 @@
 package tp1.logic.gameobjects;
 
+import tp1.exceptions.ObjectParseException;
+import tp1.exceptions.OffBoardException;
 import tp1.logic.Action;
 import tp1.logic.GameItem;
 import tp1.logic.GameWorld;
 import tp1.logic.Position;
-import tp1.exceptions.ObjectParseException;
-import tp1.exceptions.OffBoardException;
 import tp1.view.Messages;
 
 public class Goomba extends MovingObject {
@@ -18,6 +18,10 @@ public class Goomba extends MovingObject {
   }
 
   public Goomba() {
+  }
+
+  public Goomba(Goomba goomba) {
+    super(goomba);
   }
 
   @Override
@@ -108,4 +112,8 @@ public class Goomba extends MovingObject {
     return "(" + pos.getRow() + "," + pos.getCol() + ")" + " " + getName() + " " + this.dir.toString();
   }
 
+  @Override
+  public GameObject copy() {
+    return new Goomba(this);
+  }
 }

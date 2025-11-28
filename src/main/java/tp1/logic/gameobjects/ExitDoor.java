@@ -19,6 +19,10 @@ public class ExitDoor extends GameObject {
   public ExitDoor() {
   }
 
+  public ExitDoor(ExitDoor exitDoor) {
+    super(exitDoor);
+  }
+
   @Override
   public String getIcon() {
     return ICON;
@@ -65,6 +69,11 @@ public class ExitDoor extends GameObject {
       }
     }
     return null;
+  }
+
+  @Override
+  public GameObject copy() {
+    return new ExitDoor(this);
   }
 
 }

@@ -1,8 +1,8 @@
 package tp1.logic;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
+import tp1.exceptions.GameLoadException;
 import tp1.exceptions.GameModelException;
 import tp1.exceptions.ObjectParseException;
 import tp1.exceptions.OffBoardException;
@@ -23,7 +23,7 @@ public interface GameModel {
 
     public GameObject parseObject(String[] infoObj) throws OffBoardException, ObjectParseException;
 
-    public void load(String filename);
+    public void load(String filename) throws GameLoadException;
 
     public void save(String fileName) throws GameModelException; // Nueva con el save
 }

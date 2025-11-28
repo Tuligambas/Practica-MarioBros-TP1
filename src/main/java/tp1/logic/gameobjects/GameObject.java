@@ -22,6 +22,13 @@ public abstract class GameObject implements GameItem {
         this.game = game;
     }
 
+    // CONSTRUCTORA PARA LA COPIA DE LOS OBJETOS
+    public GameObject(GameObject obj) {
+        this.isAlive = obj.isAlive;
+        this.pos = obj.pos;
+        this.game = obj.game;
+    }
+
     // CONSTRUCTOR VACIO
     GameObject() {
     }
@@ -117,10 +124,9 @@ public abstract class GameObject implements GameItem {
 
     public abstract GameObject copy();
 
-    public String serialize(){
-    return "(" + pos.getRow() + "," + pos.getCol() + ")" + " " + getName();
+    public String serialize() {
+        return "(" + pos.getRow() + "," + pos.getCol() + ")" + " " + getName();
     }
-
 
     /*
      * public boolean receiveInteraction(GameItem other) {

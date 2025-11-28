@@ -26,7 +26,7 @@ Lives: 3
 
 Command > [DEBUG] Executing: aob (1,1) Land
 
-[ERROR] Error: Unknown command: aob
+[ERROR] Error: Unknown command: aob (1,1) Land
 
 Command > [DEBUG] Executing: addoBjEct (-1,-1) Land
 

@@ -159,7 +159,7 @@ Command > [DEBUG] Executing: addObject (3,5) Mario Right Small extraArgs
 
 Command > [DEBUG] Executing: s
 
-[ERROR] Error: Unknown command: s
+[ERROR] Error: Incorrect parameter number
 
 Command > [DEBUG] Executing: l
 
@@ -167,15 +167,15 @@ Command > [DEBUG] Executing: l
 
 Command > [DEBUG] Executing: save fileName extraArgs
 
-[ERROR] Error: Unknown command: save
+[ERROR] Error: Incorrect parameter number
 
 Command > [DEBUG] Executing: load fileName extraArgs
 
-[ERROR] Error: Unknown command: load
+[ERROR] Error: Unknown command: load fileName extraArgs
 
 Command > [DEBUG] Executing: load unknownFile
 
-[ERROR] Error: Unknown command: load
+[ERROR] Error: Unknown command: load unknownFile
 
 Command > [DEBUG] Executing: exit
 

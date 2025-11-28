@@ -14,4 +14,5 @@ public interface GameConfiguration {
 
     // game objects
     public List<GameObject> getObjects();
+
 }

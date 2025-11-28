@@ -11,16 +11,18 @@ public class ResetCommand extends AbstractCommand/* NoParamsCommand */ { // A lo
     private static final String SHORTCUT = Messages.COMMAND_RESET_SHORTCUT;
     private static final String DETAILS = Messages.COMMAND_RESET_DETAILS;
     private static final String HELP = Messages.COMMAND_RESET_HELP;
+    private static final int NO_LEVEL = -2;
     private int level;
 
     // CONSTRUCTORA
-    public ResetCommand() {
-        super(NAME, SHORTCUT, DETAILS, HELP);
-    }
-
     public ResetCommand(int level) {
         super(NAME, SHORTCUT, DETAILS, HELP);
         this.level = level;
+    }
+
+    // Constructora sin nivel: se usa -2 para reiniciar el nivel actual por defecto
+    protected ResetCommand() {
+        this(NO_LEVEL);
     }
 
     // llama al game.reset para que se reinicie el juego
@@ -46,12 +48,12 @@ public class ResetCommand extends AbstractCommand/* NoParamsCommand */ { // A lo
             if (commandWords.length == 1) { // devuelve la constructora sin nivel,reset el nivel en el que está
                 return new ResetCommand();
             } else { // si le entra reset y un nivel, parseará el nivel que le entra, que tiene q ser
-                     // 0, 1 o 2
+                     // -1, 0, 1 o 2
                 if (Integer.parseInt(commandWords[1].toUpperCase()) <= 2
-                        && Integer.parseInt(commandWords[1].toUpperCase()) >= 0) {
+                        && Integer.parseInt(commandWords[1].toUpperCase()) >= -1) {
                     return new ResetCommand(Integer.parseInt(commandWords[1])); // devuelve constructora reset con nivel
                                                                                 // que ha parseado
-                } else { // si el nivel no está entre 0 y 2, lanza la excepción
+                } else { // si el nivel no está entre -1 y 2, lanza la excepción
                     throw new CommandParseException(Messages.INVALID_LEVEL_NUMBER.formatted(commandWords[1]));
                 }
             }

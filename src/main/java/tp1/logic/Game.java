@@ -1,8 +1,8 @@
 package tp1.logic;
 
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import tp1.exceptions.GameLoadException;
@@ -17,6 +17,7 @@ import tp1.logic.gameobjects.Goomba;
 import tp1.logic.gameobjects.Land;
 import tp1.logic.gameobjects.Mario;
 import tp1.logic.gameobjects.Mushroom;
+import tp1.view.Messages;
 
 public class Game implements GameModel, GameStatus, GameWorld {
   public static final int DIM_X = 30;
@@ -30,7 +31,6 @@ public class Game implements GameModel, GameStatus, GameWorld {
   public boolean exit = false; // como finished
   private boolean win = false; // como playerwon
   private GameConfiguration conf = FileGameConfiguration.NONE; // FileGameConfiguration que no tiene nada
-  private String fileName;
   private String fileName;
   private GameObjectContainer gameObjects;
 
@@ -55,6 +55,9 @@ public class Game implements GameModel, GameStatus, GameWorld {
   // SI HAY UNA CONFIGURACIÓN, LA RESETEA CON EL LOAD
   @Override
   public boolean reset(int nLevel) {
+    if (nLevel != -2) { // guardamos el último nivel solicitado, salvo el sentinel sin parámetros
+      this.nLevel = nLevel;
+    }
     if (conf == FileGameConfiguration.NONE) {
       return initGame(nLevel);
     } else {
@@ -67,13 +70,18 @@ public class Game implements GameModel, GameStatus, GameWorld {
     }
   }
 
+  @Override
   public void load(String fileName) throws GameLoadException {
     conf = new FileGameConfiguration(fileName, this);
     this.fileName = fileName;
     this.remainingTime = conf.getRemainingTime();
     this.points = conf.points();
     this.numLives = conf.numLives();
-    this.gameObjects = conf.receiveContainer();
+    this.gameObjects = new GameObjectContainer();
+    for (GameObject obj : conf.getObjects()) {
+      gameObjects.add(obj);
+    }
+
   }
 
   @Override
@@ -162,7 +170,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
       case 1 -> initLevel1();
       case 2 -> initLevel2();
       case -1 -> initLevelMenos1();
-      default -> reset(this.nLevel);
+      case -2 -> reset(this.nLevel);
+      default -> b = false;
     }
     return b;
   }
@@ -241,20 +250,6 @@ public class Game implements GameModel, GameStatus, GameWorld {
     gameObjects.add(new Box(new Position(4, 9), this, false));
   }
 
-  public void load(String fileName) throws GameLoadException {
-    conf = new FileGameConfiguration(fileName, this);
-    this.fileName = fileName;
-    this.remainingTime = conf.getTime();
-    this.points = conf.getPoints();
-    this.numLives = conf.getLives();
-    this.gameObjects = new GameObjectContainer();
-
-    for (GameObject obj : conf.getObjects()) {
-      this.gameObjects.add(obj);
-    }
-
-  }
-
   @Override
   public void addObject(String[] objWords) throws OffBoardException, ObjectParseException {
     GameObject obj = GameObjectFactory.parse(objWords, this);
@@ -274,6 +269,25 @@ public class Game implements GameModel, GameStatus, GameWorld {
   @Override
   public void newMushroomAt(Position pos) {
     gameObjects.new_add(new Mushroom(pos.move(Action.UP), this));
+  }
+
+  @Override
+  public void save(String fileName) throws GameModelException {
+    String ls = System.lineSeparator();
+    StringBuilder sb = new StringBuilder();
+    sb.append(remainingTime).append(" ").append(points).append(" ").append(numLives).append(ls);
+    for (GameObject obj : gameObjects.getAllObjects()) {
+      sb.append(obj.serialize()).append(ls);
+    }
+
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+      writer.write(sb.toString());
+    } catch (IOException e) {
+      throw new GameModelException("Error saving file \"" + fileName + "\"", e);
+    }
+
+    System.out.println();
+    System.out.println(Messages.LINE_TAB.formatted("File \"" + fileName + "\" correctly saved"));
   }
 
 }

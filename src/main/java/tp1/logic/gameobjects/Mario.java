@@ -34,6 +34,20 @@ public class Mario extends MovingObject {
     this.actionList = new ActionList();
   }
 
+  public Mario(Mario mario) {
+    super(mario);
+    this.big = mario.big;
+    this.actionList = mario.getActionListCopy();
+  }
+
+  private ActionList getActionListCopy() {
+    ActionList copy = new ActionList();
+    for (Action a : this.actionList.getActions()) {
+      copy.addAction(a);
+    }
+    return copy;
+  }
+
   @Override
   public void update() {
     setPrevPosition(); // simplifica colisiones e interacciones
@@ -286,10 +300,15 @@ public class Mario extends MovingObject {
     return SHORTCUT;
   }
 
-  public String serialize(){
+  public String serialize() {
     String tamano = this.isBig() ? "Big" : "Small";
 
     return "(" + pos.getRow() + "," + pos.getCol() + ")" + " " + getName() + " " + this.dir.toString() + " " + tamano;
+  }
+
+  @Override
+  public GameObject copy() {
+    return new Mario(this);
   }
 
 }

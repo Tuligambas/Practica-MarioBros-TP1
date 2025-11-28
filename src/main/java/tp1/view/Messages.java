@@ -69,6 +69,9 @@ public class Messages {
 	public static final String UNABLE_TO_LOAD_GAME_CONFIGURATION = "Unable to load game configuration from file \"%s\"";
 	public static final String FILE_NOT_FOUND = "File not found: \"%s\"";
 	public static final String INCORRECT_GAME_STATUS = "Incorrect game status \"%s\"";
+	public static final String INVALID_GAME_STATUS = "Invalid game status \"%s\"";
+	public static final String READ_ERROR = "Undetermined error reading file \"%s\"";
+
 	public static final String INVALID_FILE_CONFIGURATION = "Invalid file \"%s\" configuration";
 
 	public static final String HELP_AVAILABLE_COMMANDS = "Available commands:";

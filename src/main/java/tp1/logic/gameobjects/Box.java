@@ -20,6 +20,12 @@ public class Box extends GameObject {
     public Box() {
     }
 
+    // Constructora para la copia
+    public Box(Box box) {
+        super(box);
+        this.empty = box.empty;
+    }
+
     @Override
     public void update() {
         // No hace nada
@@ -100,8 +106,7 @@ public class Box extends GameObject {
 
     @Override
     public GameObject copy() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'copy'");
+        return new Box(this);
     }
 
     @Override

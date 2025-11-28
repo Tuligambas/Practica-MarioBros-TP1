@@ -1,0 +1,6 @@
+99 0 3
+(2,2) Mario RIGHT Big
+(13,2) Goomba LEFT
+(12,2) Goomba LEFT
+(12,2) Goomba LEFT
+(14,2) Land

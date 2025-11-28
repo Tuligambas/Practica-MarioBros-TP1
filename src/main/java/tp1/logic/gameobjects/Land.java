@@ -1,9 +1,9 @@
 package tp1.logic.gameobjects;
 
-import tp1.logic.GameWorld;
-import tp1.logic.Position;
 import tp1.exceptions.ObjectParseException;
 import tp1.exceptions.OffBoardException;
+import tp1.logic.GameWorld;
+import tp1.logic.Position;
 import tp1.view.Messages;
 
 public class Land extends GameObject {
@@ -16,6 +16,10 @@ public class Land extends GameObject {
   }
 
   public Land() {
+  }
+
+  public Land(Land land) {
+    super(land);
   }
 
   // el land no se actualiza
@@ -63,6 +67,11 @@ public class Land extends GameObject {
       throw new OffBoardException(Messages.OBJECT_POSITION_OFF_BOARD.formatted(fullDescription));
 
     return new Land(pos, game);
+  }
+
+  @Override
+  public GameObject copy() {
+    return new Land(this);
   }
 
 }

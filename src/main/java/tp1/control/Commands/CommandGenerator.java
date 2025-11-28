@@ -26,7 +26,7 @@ public class CommandGenerator {
                 return commandDevuelto;
             }
         }
-        throw new CommandParseException(Messages.UNKNOWN_COMMAND.formatted(commandWords[0]));
+        throw new CommandParseException(Messages.UNKNOWN_COMMAND.formatted(String.join(" ", commandWords)));
 
     }
 

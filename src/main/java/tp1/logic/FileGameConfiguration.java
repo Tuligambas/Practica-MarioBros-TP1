@@ -34,6 +34,9 @@ public class FileGameConfiguration implements GameConfiguration {
         return numLives;
     }
 
+    private FileGameConfiguration() {
+    }
+
     public FileGameConfiguration(String fileName, GameWorld game) throws GameLoadException {
         try (BufferedReader entrada = new BufferedReader(new FileReader(fileName))) { // abre el archivo para lectura
             this.objects = new ArrayList<>(); // Se crea una nueva lista de objetos del juego, que es la que se copiará
@@ -44,7 +47,8 @@ public class FileGameConfiguration implements GameConfiguration {
             linea = entrada.readLine(); // leo la siguiente línea
 
             while (linea != null && !linea.isEmpty()) { // si la líena que lee no es nula y no está vacía, entonces...
-                GameObject obj = GameObjectFactory.parse(linea, game); // parseo cada objeto
+                String[] objWords = linea.trim().split("\\s+");
+                GameObject obj = GameObjectFactory.parse(objWords, game); // parseo cada objeto objects.add(obj);
                 objects.add(obj); // lo añado en la lista de objetos de copias
                 linea = entrada.readLine(); // leo el siguiente objeto
             }
