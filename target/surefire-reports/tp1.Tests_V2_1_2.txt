@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: tp1.Tests_V2_1_2
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 6, Errors: 0, Skipped: 0, Time elapsed: 0.110 s <<< FAILURE! -- in tp1.Tests_V2_1_2
-tp1.Tests_V2_1_2.test00 -- Time elapsed: 0.034 s <<< FAILURE!
+Tests run: 6, Failures: 6, Errors: 0, Skipped: 0, Time elapsed: 0.112 s <<< FAILURE! -- in tp1.Tests_V2_1_2
+tp1.Tests_V2_1_2.test00 -- Time elapsed: 0.035 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 2.X
@@ -18,7 +18,7 @@ Actual  : MarioBross 3.0
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V2_1_2.test01 -- Time elapsed: 0.028 s <<< FAILURE!
+tp1.Tests_V2_1_2.test01 -- Time elapsed: 0.029 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 2.X
@@ -34,7 +34,7 @@ Actual  : MarioBross 3.0
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V2_1_2.test02 -- Time elapsed: 0.009 s <<< FAILURE!
+tp1.Tests_V2_1_2.test02 -- Time elapsed: 0.010 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 2.X
@@ -82,7 +82,7 @@ Actual  : MarioBross 3.0
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V2_1_2.test05 -- Time elapsed: 0.006 s <<< FAILURE!
+tp1.Tests_V2_1_2.test05 -- Time elapsed: 0.005 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 2.X

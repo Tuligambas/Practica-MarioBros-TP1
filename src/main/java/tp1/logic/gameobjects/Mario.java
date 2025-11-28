@@ -12,6 +12,7 @@ import tp1.view.Messages;
 
 public class Mario extends MovingObject {
   private boolean big;
+  private boolean bigAtUpdateStart;
   private Position prevPosition;
   private ActionList actionList;
   private static final String NAME = Messages.MARIO_NAME;
@@ -21,6 +22,7 @@ public class Mario extends MovingObject {
   public Mario(Position position, GameWorld game, boolean big) {
     super(position, game, false, Action.RIGHT);
     this.big = big;
+    this.bigAtUpdateStart = big;
     this.actionList = new ActionList();
   }
 
@@ -31,12 +33,14 @@ public class Mario extends MovingObject {
   public Mario(Position posNueva, GameWorld game, Action dir, boolean big) {
     super(posNueva, game, false, dir);
     this.big = big;
+    this.bigAtUpdateStart = big;
     this.actionList = new ActionList();
   }
 
   public Mario(Mario mario) {
     super(mario);
     this.big = mario.big;
+    this.bigAtUpdateStart = mario.bigAtUpdateStart;
     this.actionList = mario.getActionListCopy();
   }
 
@@ -50,6 +54,7 @@ public class Mario extends MovingObject {
 
   @Override
   public void update() {
+    this.bigAtUpdateStart = this.big;
     setPrevPosition(); // simplifica colisiones e interacciones
     if (actionList.isEmpty()) {
       automaticMovement();
@@ -183,9 +188,7 @@ public class Mario extends MovingObject {
 
   @Override
   public boolean interactWith(GameItem item) {
-    Position above = this.pos.move(Action.UP);
-    // Interacción normal (misma casilla)
-    if (this.isInPosition(item.getPos())) {
+    if (occupiesPositionForInteraction(item.getPos())) {
       return item.receiveInteraction(this);
     }
 
@@ -208,6 +211,14 @@ public class Mario extends MovingObject {
     boolean crashBig = this.isBig() && item.isInPosition(aboveBig);
 
     return item.isSolid() && (crashSmall || crashBig);
+  }
+
+  private boolean occupiesPositionForInteraction(Position target) {
+    if (this.pos.equals(target))
+      return true;
+
+    boolean countsAsBig = this.big || this.bigAtUpdateStart;
+    return countsAsBig && this.pos.move(Action.UP).equals(target);
   }
 
   @Override
