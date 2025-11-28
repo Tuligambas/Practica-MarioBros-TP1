@@ -1,4 +1,4 @@
-MarioBross 2.X
+MarioBross 3.0
 
 Time: 100
 Points: 0
@@ -27,11 +27,9 @@ Lives: 3
 Command > [DEBUG] Executing: action
 
 [ERROR] Error: Incorrect parameter number
-
 Command > [DEBUG] Executing: action dir_Incorrecta
 
-[ERROR] Error: Unknown command: action dir_Incorrecta
-
+[ERROR] Error: Incorrect 'action command', because the action list is empty (all actions are unknown).
 Command > [DEBUG] Executing: update
 
 Time: 99

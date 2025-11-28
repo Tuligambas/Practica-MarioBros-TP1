@@ -5,7 +5,6 @@ import tp1.control.Commands.CommandGenerator;
 import tp1.exceptions.CommandException;
 import tp1.logic.GameModel;
 import tp1.view.GameView;
-import tp1.view.Messages;
 
 /**
  * Accepts user input and coordinates the game execution logic
@@ -35,9 +34,10 @@ public class Controller {
       } catch (CommandException e) {
         view.showError(e.getMessage());
         Throwable cause = e.getCause();
-        if (cause != null)
+        while (cause != null) {
           view.showError(cause.getMessage());
-        view.showMessage(Messages.EMPTY);
+          cause = cause.getCause();
+        }
       }
     }
     view.showEndMessage();

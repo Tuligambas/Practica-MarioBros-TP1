@@ -49,18 +49,22 @@ public class Land extends GameObject {
 
   @Override
   protected GameObject parse(String[] words, GameWorld game) throws ObjectParseException, OffBoardException {
-    if (words.length != 2 || !matchObjectName(words[1]))
+    if (words.length < 2 || !matchObjectName(words[1]))
       return null;
 
     String fullDescription = String.join(" ", words);
+    if (words.length > 2)
+      throw new ObjectParseException(Messages.OBJECT_PARSE_ERROR_TOO_MUCH_ARGS.formatted(fullDescription));
+
     Position pos;
     try {
       String[] w = words[0].replace("(", " ").replace(",", " ").replace(")", " ").strip().split("( )+");
       int fila = Integer.parseInt(w[0]);
       int col = Integer.parseInt(w[1]);
       pos = new Position(col, fila);
-    } catch (Exception e) {
-      throw new ObjectParseException(Messages.INVALID_OBJECT_POSITION.formatted(fullDescription), e);
+    } catch (NumberFormatException e) {
+      ObjectParseException cause = new ObjectParseException(Messages.INVALID_POSITION.formatted(words[0]), e);
+      throw new ObjectParseException(Messages.INVALID_OBJECT_POSITION.formatted(fullDescription), cause);
     }
 
     if (!pos.isInBoard())

@@ -1,12 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: tp1.Tests_V1
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 7, Errors: 0, Skipped: 0, Time elapsed: 0.048 s <<< FAILURE! -- in tp1.Tests_V1
-tp1.Tests_V1.test00 -- Time elapsed: 0.001 s <<< FAILURE!
+Tests run: 7, Failures: 7, Errors: 0, Skipped: 0, Time elapsed: 0.054 s <<< FAILURE! -- in tp1.Tests_V1
+tp1.Tests_V1.test00 -- Time elapsed: 0.002 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 1.0
-Actual  : MarioBross 2.X
+Actual  : MarioBross 3.0
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
@@ -22,7 +22,7 @@ tp1.Tests_V1.test01 -- Time elapsed: 0.005 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 1.0
-Actual  : MarioBross 2.X
+Actual  : MarioBross 3.0
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
@@ -34,11 +34,11 @@ Actual  : MarioBross 2.X
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V1.test02 -- Time elapsed: 0.011 s <<< FAILURE!
+tp1.Tests_V1.test02 -- Time elapsed: 0.014 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 1.0
-Actual  : MarioBross 2.X
+Actual  : MarioBross 3.0
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
@@ -54,7 +54,7 @@ tp1.Tests_V1.test03 -- Time elapsed: 0.007 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 1.0
-Actual  : MarioBross 2.X
+Actual  : MarioBross 3.0
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
@@ -70,7 +70,7 @@ tp1.Tests_V1.test04 -- Time elapsed: 0.011 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 1.0
-Actual  : MarioBross 2.X
+Actual  : MarioBross 3.0
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
@@ -86,7 +86,7 @@ tp1.Tests_V1.test05 -- Time elapsed: 0.005 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 1.0
-Actual  : MarioBross 2.X
+Actual  : MarioBross 3.0
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
@@ -98,11 +98,11 @@ Actual  : MarioBross 2.X
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V1.test06 -- Time elapsed: 0.005 s <<< FAILURE!
+tp1.Tests_V1.test06 -- Time elapsed: 0.006 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 1
 Expected: MarioBross 1.0
-Actual  : MarioBross 2.X
+Actual  : MarioBross 3.0
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)

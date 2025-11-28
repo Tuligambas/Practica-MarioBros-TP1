@@ -57,17 +57,20 @@ public class Game implements GameModel, GameStatus, GameWorld {
   public boolean reset(int nLevel) {
     if (nLevel != -2) { // guardamos el último nivel solicitado, salvo el sentinel sin parámetros
       this.nLevel = nLevel;
-    }
-    if (conf == FileGameConfiguration.NONE) {
+      conf = FileGameConfiguration.NONE; // al resetear a un nivel concreto, se pierde la config de fichero
       return initGame(nLevel);
-    } else {
+    }
+
+    if (conf != FileGameConfiguration.NONE) {
       try {
         load(this.fileName);
+        return true;
       } catch (GameLoadException e) {
         conf = FileGameConfiguration.NONE;
       }
-      return true;
     }
+
+    return initGame(this.nLevel);
   }
 
   @Override
@@ -158,7 +161,19 @@ public class Game implements GameModel, GameStatus, GameWorld {
   public void looseLife() {
     this.numLives--;
     if (this.numLives > 0) {
-      reset(nLevel);
+      if (conf == FileGameConfiguration.NONE) {
+        reset(this.nLevel);
+      } else {
+        int remainingLives = this.numLives; // conserva la vida restada
+        try {
+          load(this.fileName); // recarga la config del fichero
+          this.numLives = Math.min(remainingLives, this.numLives); // no se le ponen las vidas de la config, sino las
+                                                                   // que quedan tras restar
+        } catch (GameLoadException e) {
+          conf = FileGameConfiguration.NONE;
+          reset(this.nLevel);
+        }
+      }
     }
   }
 

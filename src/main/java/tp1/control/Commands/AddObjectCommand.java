@@ -45,10 +45,6 @@ public class AddObjectCommand extends AbstractCommand /* NoParamsCommand */ { //
         if (words.length < 3)
             throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER);
 
-        // Los objetos sin argumentos extra deben controlar su longitud (p.ej. Land)
-        if (words.length > 3 && words[2].equalsIgnoreCase(Messages.LAND_NAME))
-            throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER);
-
         // Copiamos SOLO los parámetros después del nombre del comando
         String[] params = Arrays.copyOfRange(words, 1, words.length);
         // he cambiado el nombre a parms para que no se repita con infoObj

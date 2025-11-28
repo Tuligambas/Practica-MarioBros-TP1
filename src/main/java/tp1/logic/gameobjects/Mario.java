@@ -254,7 +254,7 @@ public class Mario extends MovingObject {
       return null;
 
     String fullDescription = String.join(" ", words);
-    if (words.length != 4)
+    if (words.length > 4)
       throw new ObjectParseException(Messages.OBJECT_PARSE_ERROR_TOO_MUCH_ARGS.formatted(fullDescription));
 
     Position posNueva;
@@ -270,22 +270,27 @@ public class Mario extends MovingObject {
     if (!posNueva.isInBoard())
       throw new OffBoardException(Messages.OBJECT_POSITION_OFF_BOARD.formatted(fullDescription));
 
-    Action dir = Action.StringToDir(words[2].toUpperCase()); // convierte la tercera palabra en una dirección
-    if (dir == null) {
-      ObjectParseException cause = new ObjectParseException(Messages.UNKNOWN_ACTION.formatted(words[2]));
-      throw new ObjectParseException(Messages.UNKNOWN_MOVING_OBJECT_DIRECTION.formatted(fullDescription), cause);
+    Action dir = Action.RIGHT; // dirección por defecto
+    if (words.length >= 3) {
+      dir = Action.StringToDir(words[2].toUpperCase()); // convierte la tercera palabra en una dirección
+      if (dir == null) {
+        ObjectParseException cause = new ObjectParseException(Messages.UNKNOWN_ACTION.formatted(words[2]));
+        throw new ObjectParseException(Messages.UNKNOWN_MOVING_OBJECT_DIRECTION.formatted(fullDescription), cause);
+      }
+      if (dir != Action.RIGHT && dir != Action.LEFT)
+        throw new ObjectParseException(Messages.INVALID_MOVING_OBJECT_DIRECTION.formatted(fullDescription));
     }
-    if (dir != Action.RIGHT && dir != Action.LEFT)
-      throw new ObjectParseException(Messages.INVALID_MOVING_OBJECT_DIRECTION.formatted(fullDescription));
 
-    String size = words[3];
-    boolean big;
-    if (size.equalsIgnoreCase("BIG") || size.equalsIgnoreCase("B"))
-      big = true;
-    else if (size.equalsIgnoreCase("SMALL") || size.equalsIgnoreCase("S"))
-      big = false;
-    else
-      throw new ObjectParseException(Messages.INVALID_MARIO_SIZE.formatted(fullDescription));
+    boolean big = true; // tamaño por defecto
+    if (words.length == 4) {
+      String size = words[3];
+      if (size.equalsIgnoreCase("BIG") || size.equalsIgnoreCase("B"))
+        big = true;
+      else if (size.equalsIgnoreCase("SMALL") || size.equalsIgnoreCase("S"))
+        big = false;
+      else
+        throw new ObjectParseException(Messages.INVALID_MARIO_SIZE.formatted(fullDescription));
+    }
 
     return new Mario(posNueva, game, dir, big); // devuelve el nuevo mario creado con los parámetros obtenidos
   }

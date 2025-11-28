@@ -1,4 +1,4 @@
-MarioBross 2.X
+MarioBross 3.0
 
 Time: 100
 Points: 0
@@ -27,6 +27,8 @@ Lives: 3
 Command > [DEBUG] Executing: h
 
 Available commands:
+   [l]oad <fileName>: load the game configuration from text file <fileName>
+   [s]ave <fileName>: save the actual configuration in text file <fileName>
    [a]dd[O]bject <object_description>: adds to the board the object given by object_description.
       <object_description> = (col,row) objName [dir [BIG|SMALL]]. Ej. (12,3) Mario LEFT SMALL
    [a]ction [[R]IGHT | [L]EFT | [U]P | [D]OWN | [S]TOP]+: user performs actions
@@ -38,6 +40,8 @@ Available commands:
 Command > [DEBUG] Executing: help
 
 Available commands:
+   [l]oad <fileName>: load the game configuration from text file <fileName>
+   [s]ave <fileName>: save the actual configuration in text file <fileName>
    [a]dd[O]bject <object_description>: adds to the board the object given by object_description.
       <object_description> = (col,row) objName [dir [BIG|SMALL]]. Ej. (12,3) Mario LEFT SMALL
    [a]ction [[R]IGHT | [L]EFT | [U]P | [D]OWN | [S]TOP]+: user performs actions
@@ -49,6 +53,8 @@ Available commands:
 Command > [DEBUG] Executing: helP
 
 Available commands:
+   [l]oad <fileName>: load the game configuration from text file <fileName>
+   [s]ave <fileName>: save the actual configuration in text file <fileName>
    [a]dd[O]bject <object_description>: adds to the board the object given by object_description.
       <object_description> = (col,row) objName [dir [BIG|SMALL]]. Ej. (12,3) Mario LEFT SMALL
    [a]ction [[R]IGHT | [L]EFT | [U]P | [D]OWN | [S]TOP]+: user performs actions
@@ -60,15 +66,12 @@ Available commands:
 Command > [DEBUG] Executing: help con argumentosIncorrectos
 
 [ERROR] Error: Incorrect parameter number
-
 Command > [DEBUG] Executing: n
 
 [ERROR] Error: Unknown command: n
-
 Command > [DEBUG] Executing: noExiste
 
 [ERROR] Error: Unknown command: noExiste
-
 Command > [DEBUG] Executing: E
 
 Player leaves the game

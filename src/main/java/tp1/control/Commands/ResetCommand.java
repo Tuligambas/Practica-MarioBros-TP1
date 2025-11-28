@@ -49,8 +49,8 @@ public class ResetCommand extends AbstractCommand/* NoParamsCommand */ { // A lo
                 return new ResetCommand();
             } else { // si le entra reset y un nivel, parseará el nivel que le entra, que tiene q ser
                      // -1, 0, 1 o 2
-                if (Integer.parseInt(commandWords[1].toUpperCase()) <= 2
-                        && Integer.parseInt(commandWords[1].toUpperCase()) >= -1) {
+                if (Integer.parseInt(commandWords[1]) <= 2
+                        && Integer.parseInt(commandWords[1]) >= -1) {
                     return new ResetCommand(Integer.parseInt(commandWords[1])); // devuelve constructora reset con nivel
                                                                                 // que ha parseado
                 } else { // si el nivel no está entre -1 y 2, lanza la excepción
@@ -58,7 +58,7 @@ public class ResetCommand extends AbstractCommand/* NoParamsCommand */ { // A lo
                 }
             }
         } catch (NumberFormatException e) { // se lanza cuando el nivel no tiene formato válido (es una letra)
-            throw new CommandParseException(Messages.INVALID_LEVEL_NUMBER.formatted(commandWords[1]));
+            throw new CommandParseException(Messages.LEVEL_NOT_A_NUMBER_ERROR.formatted(commandWords[1]), e);
         }
     }
 }

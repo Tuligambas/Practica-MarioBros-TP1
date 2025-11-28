@@ -31,7 +31,7 @@ public class LoadCommand extends NoParamsCommand {
             game.load(this.filename);
             view.showGame();
         } catch (GameLoadException e) { // si no puede cargar el juego, lanza una excepción
-            throw new CommandExecuteException(Messages.INVALID_FILE_CONFIGURATION.formatted(filename), e);
+            throw new CommandExecuteException(Messages.UNABLE_TO_LOAD_GAME_CONFIGURATION.formatted(filename), e);
         }
     }
 

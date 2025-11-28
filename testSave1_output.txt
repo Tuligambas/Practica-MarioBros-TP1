@@ -1,5 +1,5 @@
-95 200 3
-(12,3) Mario RIGHT Small
+96 150 3
+(12,2) Mario RIGHT Small
 (13,0) Land
 (14,0) Land
 (13,1) Land
@@ -100,14 +100,16 @@
 (6,26) Land
 (5,26) Land
 (12,29) ExitDoor
-(5,19) Goomba LEFT
-(8,5) Goomba LEFT
+(4,19) Goomba LEFT
+(7,5) Goomba LEFT
+(12,4) Goomba LEFT
+(12,11) Goomba RIGHT
 (12,11) Goomba LEFT
-(12,10) Goomba LEFT
-(13,15) Goomba RIGHT
-(12,4) Mushroom
-(7,20) Mushroom
+(12,15) Goomba RIGHT
+(12,6) Mushroom
+(6,20) Mushroom
 (9,4) Box FULL
-(11,6) Box EMPTY
+(11,6) Box FULL
 (9,1) Box EMPTY
+(8,3) Mushroom
 (3,4) Land

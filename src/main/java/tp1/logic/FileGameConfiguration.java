@@ -53,12 +53,12 @@ public class FileGameConfiguration implements GameConfiguration {
                 linea = entrada.readLine(); // leo el siguiente objeto
             }
         } catch (FileNotFoundException a) { // se lanza si no encuentra el fichero
-            throw new GameLoadException(Messages.FILE_NOT_FOUND.formatted(fileName));
+            throw new GameLoadException(Messages.FILE_NOT_FOUND.formatted(fileName), a);
         } catch (IOException e) { // se lanza si el fichero no se puede leer bien
-            throw new GameLoadException(Messages.READ_ERROR.formatted(fileName));
+            throw new GameLoadException(Messages.READ_ERROR.formatted(fileName), e);
         } catch (ObjectParseException | OffBoardException o) { // se lanza si no puede guardar correctamente el objeto
                                                                // ya que éste tiene un nombre o posición incorrecta
-            throw new GameLoadException(o.getMessage());
+            throw new GameLoadException(Messages.INVALID_FILE_CONFIGURATION.formatted(fileName), o);
         }
     }
 
@@ -70,10 +70,10 @@ public class FileGameConfiguration implements GameConfiguration {
                 points = Integer.parseInt(parts[1]);
                 numLives = Integer.parseInt(parts[2]);
             } else { // se lanza si la primera línea no tiene 3 palabras
-                throw new GameLoadException(Messages.INVALID_GAME_STATUS.formatted(linea));
+                throw new GameLoadException(Messages.INCORRECT_GAME_STATUS.formatted(linea));
             }
         } catch (NumberFormatException e) { // se lanza si algo que lee no es un número
-            throw new GameLoadException(Messages.INVALID_GAME_STATUS.formatted(linea));
+            throw new GameLoadException(Messages.INCORRECT_GAME_STATUS.formatted(linea));
         }
     }
 

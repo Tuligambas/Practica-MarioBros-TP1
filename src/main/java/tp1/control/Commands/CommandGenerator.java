@@ -15,6 +15,7 @@ public class CommandGenerator {
             new HelpCommand(),
             new AddObjectCommand(),
             new SaveCommand(),
+            new LoadCommand(),
             new ExitCommand());
 
     // RECORRE LA LISTA DE LOS COMANDOS, COMPROBANDO SI LO QUE LE ENTRA ES UN

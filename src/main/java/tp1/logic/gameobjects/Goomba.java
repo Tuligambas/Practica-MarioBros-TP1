@@ -78,7 +78,8 @@ public class Goomba extends MovingObject {
       int row = Integer.parseInt(ws[0]); // fila
       posNueva = new Position(col, row);
     } catch (Exception e) {
-      throw new ObjectParseException(Messages.INVALID_OBJECT_POSITION.formatted(fullDescription), e);
+      ObjectParseException cause = new ObjectParseException(Messages.INVALID_POSITION.formatted(words[0]), e);
+      throw new ObjectParseException(Messages.INVALID_OBJECT_POSITION.formatted(fullDescription), cause);
     }
 
     if (!posNueva.isInBoard())

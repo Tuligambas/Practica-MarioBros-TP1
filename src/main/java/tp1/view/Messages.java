@@ -4,7 +4,7 @@ import tp1.util.MyStringUtils;
 
 public class Messages {
 
-	public static final String VERSION = "2.X";
+	public static final String VERSION = "3.0";
 
 	public static final String GAME_NAME = "MarioBross";
 
@@ -71,6 +71,7 @@ public class Messages {
 	public static final String INCORRECT_GAME_STATUS = "Incorrect game status \"%s\"";
 	public static final String INVALID_GAME_STATUS = "Invalid game status \"%s\"";
 	public static final String READ_ERROR = "Undetermined error reading file \"%s\"";
+	public static final String FILE_NOT_FOUND_SYSTEM = "%s (El sistema no puede encontrar el archivo especificado)";
 
 	public static final String INVALID_FILE_CONFIGURATION = "Invalid file \"%s\" configuration";
 
@@ -80,6 +81,8 @@ public class Messages {
 
 	/* @formatter:off */
 	public static final String[] HELP_LINES = new String[] { HELP_AVAILABLE_COMMANDS,
+        "[l]oad <fileName>: load the game configuration from text file <fileName>",
+        "[s]ave <fileName>: save the actual configuration in text file <fileName>",
         "[a]dd[O]bject <object_description>: adds to the board the object given by object_description.\n" +
         IND6 +"<object_description> = (col,row) objName [dir [BIG|SMALL]]. Ej. (12,3) Mario LEFT SMALL",
 		"[a]ction [[R]IGHT | [L]EFT | [U]P | [D]OWN | [S]TOP]+: user performs actions",
@@ -148,9 +151,9 @@ public class Messages {
 	public static final String COMMAND_ADD_DETAILS = "[a]dd[O]bject <object_description>";
 	public static final String COMMAND_ADD_HELP = "adds to the board the object given by object_description";
 
-	public static final String COMMAND_LOAD_NAME = "loadObject";
+	public static final String COMMAND_LOAD_NAME = "load";
 	public static final String COMMAND_LOAD_SHORTCUT = "l";
-	public static final String COMMAND_LOAD_DETAILS = "[l]oad[O]bject <object_description>";
+	public static final String COMMAND_LOAD_DETAILS = "[l]oad <object_description>";
 	public static final String COMMAND_LOAD_HELP = "loads from the board the object given by object_description";
 
 	public static final String COMMAND_SAVE_NAME = "save";

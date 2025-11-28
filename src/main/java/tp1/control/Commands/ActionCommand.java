@@ -33,14 +33,17 @@ public class ActionCommand extends AbstractCommand { // He cambiado el noparams 
 
         actions = new ArrayList<>();
 
-        // Si tiene más palabras, las intentamos convertir a acciones
+        // Si tiene más palabras, las intentamos convertir a acciones (ignorando las desconocidas)
         for (int i = 1; i < commandWords.length; i++) {
             Action act = Action.StringToDir(commandWords[i]);
-            if (act == null)
-                throw new CommandParseException(Messages.UNKNOWN_COMMAND.formatted(String.join(" ", commandWords)));
-            actions.add(act);
-
+            if (act != null)
+                actions.add(act);
         }
+
+        // Si ninguna acción es válida, el comando es incorrecto
+        if (actions.isEmpty())
+            throw new CommandParseException(
+                    Messages.INCORRECT_ACTION_COMMAND.formatted(String.join(" ", commandWords)));
 
         ActionCommand cmd = new ActionCommand();
         cmd.actions = actions;

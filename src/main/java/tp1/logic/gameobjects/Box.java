@@ -72,9 +72,9 @@ public class Box extends GameObject {
         String status = words[2];
         boolean isEmpty;
         if (status.equalsIgnoreCase("FULL"))
-            isEmpty = true;
-        else if (status.equalsIgnoreCase("EMPTY"))
             isEmpty = false;
+        else if (status.equalsIgnoreCase("EMPTY"))
+            isEmpty = true;
         else
             throw new ObjectParseException(Messages.INVALID_BOX_STATUS.formatted(fullDescription));
 
