@@ -1,8 +1,12 @@
 package tp1.logic;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import tp1.exceptions.GameLoadException;
+import tp1.exceptions.GameModelException;
 import tp1.exceptions.ObjectParseException;
 import tp1.exceptions.OffBoardException;
 import tp1.logic.gameobjects.Box;
@@ -26,6 +30,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
   public boolean exit = false; // como finished
   private boolean win = false; // como playerwon
   private GameConfiguration conf = FileGameConfiguration.NONE; // FileGameConfiguration que no tiene nada
+  private String fileName;
   private String fileName;
   private GameObjectContainer gameObjects;
 
@@ -234,6 +239,20 @@ public class Game implements GameModel, GameStatus, GameWorld {
     gameObjects.add(new Mushroom(new Position(8, 12), this));
     gameObjects.add(new Mushroom(new Position(20, 2), this));
     gameObjects.add(new Box(new Position(4, 9), this, false));
+  }
+
+  public void load(String fileName) throws GameLoadException {
+    conf = new FileGameConfiguration(fileName, this);
+    this.fileName = fileName;
+    this.remainingTime = conf.getTime();
+    this.points = conf.getPoints();
+    this.numLives = conf.getLives();
+    this.gameObjects = new GameObjectContainer();
+
+    for (GameObject obj : conf.getObjects()) {
+      this.gameObjects.add(obj);
+    }
+
   }
 
   @Override

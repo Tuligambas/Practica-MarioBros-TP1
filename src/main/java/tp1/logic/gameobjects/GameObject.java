@@ -117,6 +117,11 @@ public abstract class GameObject implements GameItem {
 
     public abstract GameObject copy();
 
+    public String serialize(){
+    return "(" + pos.getRow() + "," + pos.getCol() + ")" + " " + getName();
+    }
+
+
     /*
      * public boolean receiveInteraction(GameItem other) {
      * return false;

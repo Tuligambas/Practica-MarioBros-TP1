@@ -150,6 +150,11 @@ public class Messages {
 	public static final String COMMAND_LOAD_DETAILS = "[l]oad[O]bject <object_description>";
 	public static final String COMMAND_LOAD_HELP = "loads from the board the object given by object_description";
 
+	public static final String COMMAND_SAVE_NAME = "save";
+	public static final String COMMAND_SAVE_SHORTCUT = "s";
+	public static final String COMMAND_SAVE_DETAILS = "<fileName>";
+	public static final String COMMAND_SAVE_HELP = "save the actual configuration in text file <fileName>";
+
 	public static char[] showError(String commandIncorrectParameterNumber) {
 		return String.format(ERROR, commandIncorrectParameterNumber).toCharArray();
 	}

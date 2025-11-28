@@ -89,7 +89,8 @@ public class Mushroom extends MovingObject {
         if (dir != Action.LEFT && dir != Action.RIGHT)
             throw new ObjectParseException(Messages.INVALID_MOVING_OBJECT_DIRECTION.formatted(fullDescription));
 
-        return new Mushroom(pos, dir, game);
-    }
+            return new Mushroom(pos, dir, game);
+        }return null;
+}
 
 }

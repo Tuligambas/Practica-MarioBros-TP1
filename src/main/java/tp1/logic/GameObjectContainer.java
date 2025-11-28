@@ -108,4 +108,11 @@ public class GameObjectContainer {
     }
   }
 
+
+  // ver si esta bien
+  public List<GameObject> getAllObjects() {
+    return objects;
+  }
+
+
 }

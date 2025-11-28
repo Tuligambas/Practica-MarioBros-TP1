@@ -104,4 +104,10 @@ public class Box extends GameObject {
         throw new UnsupportedOperationException("Unimplemented method 'copy'");
     }
 
+    @Override
+    public String serialize() {
+        String estado = this.empty ? "EMPTY" : "FULL";
+        return "(" + pos.getRow() + "," + pos.getCol() + ")" + " " + getName() + " " + estado;
+    }
+
 }
