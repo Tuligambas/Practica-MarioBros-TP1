@@ -64,6 +64,16 @@ public class Mario extends MovingObject {
     checkPosition(); // chequea si esta en una posicion valida
   }
 
+  @Override
+  public boolean interactWith(GameItem item) {
+    boolean canInteract = occupiesPositionForInteraction(item.getPos()) || hitsFromBelow(item);
+    boolean interacted = false;
+    if (canInteract) {
+      interacted = item.receiveInteraction(this);
+    }
+    return canInteract && interacted;
+  }
+
   private void setPrevPosition() {
     if (dir != Action.STOP)
       this.prevPosition = new Position(this.pos.getCol(), this.pos.getRow());
@@ -111,6 +121,7 @@ public class Mario extends MovingObject {
   }
 
   private void checkInteractions() {
+    this.bigAtUpdateStart = this.big;
     game.checkInteractions(this);
   }
 
@@ -186,20 +197,6 @@ public class Mario extends MovingObject {
     }
   }
 
-  @Override
-  public boolean interactWith(GameItem item) {
-    if (occupiesPositionForInteraction(item.getPos())) {
-      return item.receiveInteraction(this);
-    }
-
-    // Interacción desde abajo
-    if (hitsFromBelow(item)) {
-      return item.receiveInteraction(this);
-    }
-
-    return false;
-  }
-
   public boolean hitsFromBelow(GameItem item) {
     if (lastMove != Action.UP)
       return false;
@@ -226,7 +223,7 @@ public class Mario extends MovingObject {
     if (prevPosition.above(goomba.getPos()))
       return true;
 
-    marioGetAttacked();
+    marioGetAttacked(goombaOnYou(goomba));// util para diferenciar si el goomba le cae encima o choca lateralmente
     return true;
   }
 
@@ -234,9 +231,12 @@ public class Mario extends MovingObject {
     return prevPosition.equals(g.getPos()) || prevPosition.move(Action.UP).equals(g.getPos());
   }
 
-  private void marioGetAttacked() {
+  private void marioGetAttacked(boolean preserveBigAtStart) {
     if (this.big) {
       this.big = false;
+      if (!preserveBigAtStart) {
+        this.bigAtUpdateStart = false;
+      }
     } else {
       this.isAlive = false;
       game.looseLife();

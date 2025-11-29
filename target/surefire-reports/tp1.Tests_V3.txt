@@ -18,7 +18,7 @@ Actual  : [ERROR] Error: unknownFile (No such file or directory)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V3.test02 -- Time elapsed: 0.006 s <<< FAILURE!
+tp1.Tests_V3.test02 -- Time elapsed: 0.007 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 31
 Expected: [ERROR] Error: conf (El sistema no puede encontrar el archivo especificado)
@@ -34,7 +34,7 @@ Actual  : [ERROR] Error: conf (No such file or directory)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V3.test04 -- Time elapsed: 0.020 s <<< FAILURE!
+tp1.Tests_V3.test04 -- Time elapsed: 0.021 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 375
 Expected: Time: 99
