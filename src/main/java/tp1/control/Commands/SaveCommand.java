@@ -24,6 +24,7 @@ public class SaveCommand extends AbstractCommand {
     public void execute (GameModel game, GameView view) throws CommandExecuteException {
        try{
         game.save(fileName);
+        view.showMessage("   File \"" + fileName + "\" correctly saved");
        } 
        catch (GameModelException e){
         throw new CommandExecuteException(Messages.ERROR_COMMAND_EXECUTE, e);

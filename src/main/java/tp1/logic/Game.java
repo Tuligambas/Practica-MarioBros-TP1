@@ -301,8 +301,10 @@ public class Game implements GameModel, GameStatus, GameWorld {
       throw new GameModelException("Error saving file \"" + fileName + "\"", e);
     }
 
-    System.out.println();
-    System.out.println(Messages.LINE_TAB.formatted("File \"" + fileName + "\" correctly saved"));
+    //System.out.println();
+    //System.out.println(Messages.LINE_TAB.formatted("File \"" + fileName + "\" correctly saved"));
+    //System.out.println("File \"" + fileName + "\" correctly saved");
+
   }
 
 }
