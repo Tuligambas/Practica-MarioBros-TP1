@@ -106,10 +106,10 @@
 (12,11) Goomba RIGHT
 (12,11) Goomba LEFT
 (12,15) Goomba RIGHT
-(12,6) Mushroom
-(6,20) Mushroom
+(12,5) Mushroom LEFT
+(6,20) Mushroom RIGHT
 (9,4) Box FULL
 (11,6) Box FULL
 (9,1) Box EMPTY
-(8,3) Mushroom
+(8,3) Mushroom RIGHT
 (3,4) Land

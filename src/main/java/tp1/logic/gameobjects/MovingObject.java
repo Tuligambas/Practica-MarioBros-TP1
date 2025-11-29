@@ -76,4 +76,9 @@ public abstract class MovingObject extends GameObject {
         }
     }
 
+    @Override
+    public String serialize() {
+        return super.serialize() + " " + this.dir.toString();
+    }
+
 }

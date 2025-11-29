@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: tp1.Tests_V3
 -------------------------------------------------------------------------------
-Tests run: 16, Failures: 3, Errors: 1, Skipped: 0, Time elapsed: 0.094 s <<< FAILURE! -- in tp1.Tests_V3
-tp1.Tests_V3.test00 -- Time elapsed: 0.003 s <<< FAILURE!
+Tests run: 16, Failures: 3, Errors: 1, Skipped: 0, Time elapsed: 0.160 s <<< FAILURE! -- in tp1.Tests_V3
+tp1.Tests_V3.test00 -- Time elapsed: 0.028 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 152
 Expected: [ERROR] Error: unknownFile (El sistema no puede encontrar el archivo especificado)
@@ -18,7 +18,7 @@ Actual  : [ERROR] Error: unknownFile (No such file or directory)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V3.test02 -- Time elapsed: 0.002 s <<< FAILURE!
+tp1.Tests_V3.test02 -- Time elapsed: 0.006 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
 Line: 31
 Expected: [ERROR] Error: conf (El sistema no puede encontrar el archivo especificado)
@@ -34,11 +34,11 @@ Actual  : [ERROR] Error: conf (No such file or directory)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V3.test04 -- Time elapsed: 0.016 s <<< FAILURE!
+tp1.Tests_V3.test04 -- Time elapsed: 0.020 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: 
-Line: 81
-Expected:    File "testSave1_output.txt" correctly saved
-Actual  : 
+Line: 375
+Expected: Time: 99
+Actual  : Time: 96
 
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
@@ -50,9 +50,9 @@ Actual  :
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-tp1.Tests_V3.testOPTIONAL -- Time elapsed: 0 s <<< ERROR!
+tp1.Tests_V3.testOPTIONAL -- Time elapsed: 0.001 s <<< ERROR!
 java.lang.NullPointerException: Cannot invoke "tp1.logic.GameObjectContainer.positionToString(int, int)" because "this.gameObjects" is null
-	at tp1.logic.Game.positionToString(Game.java:113)
+	at tp1.logic.Game.positionToString(Game.java:112)
 	at tp1.view.ConsoleView.toString(ConsoleView.java:89)
 	at tp1.view.ConsoleView.showGame(ConsoleView.java:138)
 	at tp1.control.Controller.run(Controller.java:27)

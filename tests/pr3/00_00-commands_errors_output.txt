@@ -149,7 +149,7 @@ Command > [DEBUG] Executing: load unknownFile
 
 [ERROR] Error: Unable to load game configuration from file "unknownFile"
 [ERROR] Error: File not found: "unknownFile"
-[ERROR] Error: unknownFile (El sistema no puede encontrar el archivo especificado)
+[ERROR] Error: unknownFile (No such file or directory)
 Command > [DEBUG] Executing: exit
 
 Player leaves the game

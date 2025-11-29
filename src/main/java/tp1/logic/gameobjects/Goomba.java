@@ -17,6 +17,10 @@ public class Goomba extends MovingObject {
     super(position, game, false, Action.LEFT);
   }
 
+  public Goomba(Position position, GameWorld game, Action dir) {
+    super(position, game, false, dir);
+  }
+
   public Goomba() {
   }
 
@@ -96,7 +100,7 @@ public class Goomba extends MovingObject {
     if (dir != Action.LEFT && dir != Action.RIGHT)
       throw new ObjectParseException(Messages.INVALID_MOVING_OBJECT_DIRECTION.formatted(fullDescription));
 
-    return new Goomba(posNueva, game); // mantiene dirección inicial por defecto
+    return new Goomba(posNueva, game, dir);
   }
 
   @Override

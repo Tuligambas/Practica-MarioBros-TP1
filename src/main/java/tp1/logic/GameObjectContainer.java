@@ -108,11 +108,24 @@ public class GameObjectContainer {
     }
   }
 
-
   // ver si esta bien
   public List<GameObject> getAllObjects() {
     return objects;
   }
 
+  // Devuelve una instantánea de los objetos que deben persistirse
+  // (incluye los pendientes y omite los muertos).
+  public List<GameObject> getSerializableObjects() {
+    List<GameObject> snapshot = new ArrayList<>();
+    for (GameObject obj : objects) {
+      if (obj.isAlive())
+        snapshot.add(obj);
+    }
+    for (GameObject obj : new_gameObjects) {
+      if (obj.isAlive())
+        snapshot.add(obj);
+    }
+    return snapshot;
+  }
 
 }

@@ -317,9 +317,8 @@ public class Mario extends MovingObject {
   }
 
   public String serialize() {
-    String tamano = this.isBig() ? "Big" : "Small";
-
-    return "(" + pos.getRow() + "," + pos.getCol() + ")" + " " + getName() + " " + this.dir.toString() + " " + tamano;
+    String size = this.isBig() ? "Big" : "Small";
+    return super.serialize() + " " + size;
   }
 
   @Override

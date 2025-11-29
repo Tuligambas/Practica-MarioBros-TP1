@@ -17,7 +17,6 @@ import tp1.logic.gameobjects.Goomba;
 import tp1.logic.gameobjects.Land;
 import tp1.logic.gameobjects.Mario;
 import tp1.logic.gameobjects.Mushroom;
-import tp1.view.Messages;
 
 public class Game implements GameModel, GameStatus, GameWorld {
   public static final int DIM_X = 30;
@@ -291,7 +290,7 @@ public class Game implements GameModel, GameStatus, GameWorld {
     String ls = System.lineSeparator();
     StringBuilder sb = new StringBuilder();
     sb.append(remainingTime).append(" ").append(points).append(" ").append(numLives).append(ls);
-    for (GameObject obj : gameObjects.getAllObjects()) {
+    for (GameObject obj : gameObjects.getSerializableObjects()) {
       sb.append(obj.serialize()).append(ls);
     }
 
@@ -300,10 +299,6 @@ public class Game implements GameModel, GameStatus, GameWorld {
     } catch (IOException e) {
       throw new GameModelException("Error saving file \"" + fileName + "\"", e);
     }
-
-    //System.out.println();
-    //System.out.println(Messages.LINE_TAB.formatted("File \"" + fileName + "\" correctly saved"));
-    //System.out.println("File \"" + fileName + "\" correctly saved");
 
   }
 
