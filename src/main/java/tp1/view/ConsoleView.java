@@ -151,7 +151,7 @@ public class ConsoleView extends GameView {
 	@Override
 	public void showMessage(String message) {
 		System.out.println(message + "\n");
-		
+
 	}
 
 	/**
@@ -163,6 +163,7 @@ public class ConsoleView extends GameView {
 	public String[] getPrompt() {
 		System.out.print(Messages.PROMPT);
 		String line = scanner.nextLine();
+
 		String[] words = line.trim().split("\\s+");
 
 		System.out.println(Messages.DEBUG.formatted(line));

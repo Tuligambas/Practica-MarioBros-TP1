@@ -29,7 +29,8 @@ public class Game implements GameModel, GameStatus, GameWorld {
   private int numLives = 3;
   public boolean exit = false; // como finished
   private boolean win = false; // como playerwon
-  private GameConfiguration conf = FileGameConfiguration.NONE; // FileGameConfiguration que no tiene nada
+  // Configuración cargada desde fichero (NONE si no hay partida cargada)
+  private GameConfiguration loadedConfig = FileGameConfiguration.NONE;
   private String fileName;
   private GameObjectContainer gameObjects;
 
@@ -50,40 +51,54 @@ public class Game implements GameModel, GameStatus, GameWorld {
     gameObjects.update();
   }
 
-  // METODO DE TE LLAMA AL METODO INITGAME QUE TE HACE EL REINICIO DEL JUEGO Y
-  // SI HAY UNA CONFIGURACIÓN, LA RESETEA CON EL LOAD
   @Override
   public boolean reset(int nLevel) {
-    if (nLevel != -2) { // guardamos el último nivel solicitado, salvo el sentinel sin parámetros
+    // Reset de un nivel concreto: descarta cualquier configuración cargada
+    if (nLevel != -2) {
       this.nLevel = nLevel;
-      conf = FileGameConfiguration.NONE; // al resetear a un nivel concreto, se pierde la config de fichero
+      loadedConfig = FileGameConfiguration.NONE;
       return initGame(nLevel);
     }
 
-    if (conf != FileGameConfiguration.NONE) {
+    // Reset sin nivel, si hay config cargada, se reaplica conservando progreso
+    if (loadedConfig != FileGameConfiguration.NONE) {
       try {
-        load(this.fileName);
+        restoreFromConfiguration();
         return true;
       } catch (GameLoadException e) {
-        conf = FileGameConfiguration.NONE;
+        loadedConfig = FileGameConfiguration.NONE;
       }
     }
 
+    // Sin config cargada, reinicia el nivel actual
     return initGame(this.nLevel);
   }
 
   @Override
   public void load(String fileName) throws GameLoadException {
-    conf = new FileGameConfiguration(fileName, this);
+    loadedConfig = new FileGameConfiguration(fileName, this);
     this.fileName = fileName;
-    this.remainingTime = conf.getRemainingTime();
-    this.points = conf.points();
-    this.numLives = conf.numLives();
+    applyConfiguration(loadedConfig);
+  }
+
+  private void applyConfiguration(GameConfiguration config) throws GameLoadException {
+    this.remainingTime = config.getRemainingTime();
+    this.points = config.points();
+    this.numLives = config.numLives();
     this.gameObjects = new GameObjectContainer();
-    for (GameObject obj : conf.getObjects()) {
+    for (GameObject obj : config.getObjects()) {
       gameObjects.add(obj);
     }
+  }
 
+  // Reaplica la configuración cargada conservando puntos/vidas obtenidos tras el
+  // último load.
+  private void restoreFromConfiguration() throws GameLoadException {
+    int savedPoints = this.points;
+    int savedLives = this.numLives;
+    applyConfiguration(loadedConfig);
+    this.points = Math.max(this.points, savedPoints);
+    this.numLives = Math.min(this.numLives, savedLives);
   }
 
   @Override
@@ -160,16 +175,20 @@ public class Game implements GameModel, GameStatus, GameWorld {
   public void looseLife() {
     this.numLives--;
     if (this.numLives > 0) {
-      if (conf == FileGameConfiguration.NONE) {
+      if (loadedConfig == FileGameConfiguration.NONE) {
         reset(this.nLevel);
       } else {
         int remainingLives = this.numLives; // conserva la vida restada
+        int currentPoints = this.points; // conserva puntos ganados en el tick fatal
         try {
-          load(this.fileName); // recarga la config del fichero
+          applyConfiguration(loadedConfig); // recarga la config cargada
+          // conserva los puntos acumulados desde el último load (no se pierden en el
+          // reset)
+          this.points = Math.max(this.points, currentPoints);
           this.numLives = Math.min(remainingLives, this.numLives); // no se le ponen las vidas de la config, sino las
                                                                    // que quedan tras restar
         } catch (GameLoadException e) {
-          conf = FileGameConfiguration.NONE;
+          loadedConfig = FileGameConfiguration.NONE;
           reset(this.nLevel);
         }
       }
