@@ -274,7 +274,7 @@ public class Mario extends MovingObject {
       int col = Integer.parseInt(ws[1]); // columna
       int row = Integer.parseInt(ws[0]); // fila
       posNueva = new Position(col, row);
-    } catch (Exception e) {
+    } catch (NumberFormatException e) {
       throw new ObjectParseException(Messages.INVALID_OBJECT_POSITION.formatted(fullDescription), e);
     }
 
