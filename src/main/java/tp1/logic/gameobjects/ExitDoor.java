@@ -62,9 +62,7 @@ public class ExitDoor extends GameObject {
           throw new OffBoardException(Messages.OBJECT_POSITION_OFF_BOARD.formatted(words[0]));
         } else
           return new ExitDoor(pos, game);
-      } catch (ArrayIndexOutOfBoundsException e1) {
-        throw new ObjectParseException(Messages.INVALID_GAME_OBJECT.formatted(words[0]));
-      } catch (NumberFormatException e2) {
+      } catch (NumberFormatException e) {
         throw new ObjectParseException(Messages.INVALID_POSITION.formatted(words[0]));
       }
     }

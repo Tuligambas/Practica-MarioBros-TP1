@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import tp1.exceptions.CommandExecuteException;
 import tp1.exceptions.CommandParseException;
+import tp1.exceptions.GameModelException;
 import tp1.logic.GameModel;
 import tp1.view.GameView;
 import tp1.view.Messages;
@@ -31,7 +32,7 @@ public class AddObjectCommand extends AbstractCommand /* NoParamsCommand */ { //
         try {
             game.addObject(infoObj);
             view.showGame();
-        } catch (Exception e) {
+        } catch (GameModelException e) {
             throw new CommandExecuteException(Messages.ERROR_COMMAND_EXECUTE, e);
         }
     }

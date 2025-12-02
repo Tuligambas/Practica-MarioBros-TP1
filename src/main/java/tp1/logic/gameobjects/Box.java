@@ -58,7 +58,7 @@ public class Box extends GameObject {
             int fila = Integer.parseInt(w[0]);
             int col = Integer.parseInt(w[1]);
             pos = new Position(col, fila);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             throw new ObjectParseException(Messages.INVALID_OBJECT_POSITION.formatted(fullDescription), e);
         }
 
